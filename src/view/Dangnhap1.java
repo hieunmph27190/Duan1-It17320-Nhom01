@@ -4,19 +4,22 @@
  */
 package view;
 
+import domain.Employee;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import service.EmployeeService;
+import service.impl.EmployeeServiceImpl;
 
 /**
  *
  * @author Administrator
  */
-public class Dangnhap extends javax.swing.JFrame {
+public class Dangnhap1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Dangnhap
      */
-    public Dangnhap() {
+    public Dangnhap1() {
    
         initComponents();
 //        setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -42,7 +45,7 @@ public class Dangnhap extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnDangNhap = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jLabel3.setText("User Name ");
@@ -52,7 +55,7 @@ public class Dangnhap extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 102, 51))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 102, 51))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 0, 51));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,20 +74,25 @@ public class Dangnhap extends javax.swing.JFrame {
 
         jLabel4.setText("Password");
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(70, 50, 255));
-        jButton1.setText("??ng Nh?p");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 153)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 0, 153))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.setBackground(new java.awt.Color(255, 0, 204));
+        btnDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDangNhap.setForeground(new java.awt.Color(70, 50, 255));
+        btnDangNhap.setText("??ng Nh?p");
+        btnDangNhap.setToolTipText("");
+        btnDangNhap.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 153)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 0, 153))); // NOI18N
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
 
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Quên M?t Kh?u");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,7 +114,7 @@ public class Dangnhap extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtUsername)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -122,7 +130,7 @@ public class Dangnhap extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -159,45 +167,47 @@ public class Dangnhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+ 
+      
+        
+   EmployeeService employeeService = new EmployeeServiceImpl();
+
+       
+            String username = txtUsername.getText().trim();
+            String password = txtPassword.getText().trim();
+            if (username.length() <= 0 || password.length() <= 0) {
+                JOptionPane.showMessageDialog(this, "vui lòng nh?p tài kho?n và m?t kh?u");
+                return;
+            }
+            
+            Employee employee = employeeService.findUserNamePassWord(username, password);
+             
+            if (employee != null ) {
+                if (employee.getRole().getCode().equals("nv")) {
+                     JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n nhân viên");
+                } else if (employee.getRole().getCode().equals("ql")) {
+                    JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n qu?n lý");
+                } else {
+                    JOptionPane.showMessageDialog(this, "vai trò không h?p l?");
+                }
+                JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n thành công");           
+               
+            
+            } else {
+                 JOptionPane.showMessageDialog(this, "thông tin tài kho?n m?t kh?u không chính xác");
+            }
+
+       
+            
+        
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-//          if(txtUsername.getText().equals("") || txtPassword.getText().equals("")){
-//              JOptionPane.showMessageDialog(this, "Please enter the information");
-//            return;
-//       }
-//       // EmployeeService employeeService = new EmployeeServiceImpl();
-//
-//        try {
-//            String username = txtUsername.getText().trim();
-//            String password = txtPassword.getText().trim();
-//            if (username.length() <= 0 || password.length() <= 0) {
-//                JOptionPane.showMessageDialog(this, "Please input username and password");
-//                return;
-//            }
-//            employees employee = employeeService.getByUsername(username);
-//            if ((username.equals(employee.getUsename()) == false) && (password.equals(employee.getPassword()) == false)) {
-//                JOptionPane.showMessageDialog(this, "Username or Password incorrect");
-//                return;
-//            } else if (username.equals(employee.getUsename()) == false) {
-//                JOptionPane.showMessageDialog(this, "Username is correct or Account does not exist");
-//                return;
-//            } else if (password.equals(employee.getPassword()) == false) {
-//                JOptionPane.showMessageDialog(this, "Password is incorrect");
-//                return;
-//            } else if (employee.getAvaliable() == false) {
-//                JOptionPane.showMessageDialog(this, "Account has been disabled");
-//                return;
-//            } else {
-//                if (password.equals(employee.getPassword()) && employee.getAvaliable() == true) {
-//                    JOptionPane.showMessageDialog(this, "Login success");
-////                Welcome wl = new Welcome();
-////                wl.setVisible(true);
-//                    HomePage hp = new HomePage(employee);
-//                    hp.setVisible(true);
-//                    this.dispose();
-//                }
-         
-    }//GEN-LAST:event_jButton1ActionPerformed
+          
+       
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -216,14 +226,18 @@ public class Dangnhap extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dangnhap1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dangnhap1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dangnhap1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dangnhap1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,13 +246,13 @@ public class Dangnhap extends javax.swing.JFrame {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                  new Dangnhap().setVisible(true);
+                  new Dangnhap1().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

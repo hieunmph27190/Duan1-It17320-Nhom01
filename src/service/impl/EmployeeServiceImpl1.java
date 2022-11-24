@@ -8,10 +8,10 @@ import domain.Employee;
 import repository.EmployeeRepository;
 import service.EmployeeService;
 
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl1 implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
-	public EmployeeServiceImpl() {
+	public EmployeeServiceImpl1() {
 		employeeRepository = new EmployeeRepository();
 	}
 
@@ -49,5 +49,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Long count() {
 		return employeeRepository.count();
 	}
+
+    @Override
+    public Employee findUserNamePassWord(String username,String password) {
+        return employeeRepository.findUserNamePassWord(username,password);
+    }
 	
 }

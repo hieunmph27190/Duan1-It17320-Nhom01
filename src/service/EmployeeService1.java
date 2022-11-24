@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import domain.Employee;
 
-public interface EmployeeService {
-
+public interface EmployeeService1 {
+        
 	Long count();
 
 	void remove(UUID key) throws Exception;
@@ -22,4 +22,6 @@ public interface EmployeeService {
 
 	List<Employee> findAll();
 
+    public Employee findUserNamePassWord(String username,String password);
+            
 }
