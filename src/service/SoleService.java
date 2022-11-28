@@ -7,24 +7,25 @@ import domain.Sole;
 
 public interface SoleService {
 
-	Long count();
+    Long count();
 
-	void remove(UUID key) throws Exception;
+    void remove(UUID key) throws Exception;
 
-	void update(Sole entity) throws Exception;
+    void update(Sole entity) throws Exception;
 
-	void insert(Sole entity) throws Exception;
+    void insert(Sole entity) throws Exception;
 
-	Sole findByID(UUID key);
+    Sole findByID(UUID key);
 
-	List<Sole> findAll(int first, int size);
+    List<Sole> findAll(int first, int size);
 
-	List<Sole> findAll();
+    List<Sole> findAll();
 
     List<Sole> findByTypeEqual(int i);
 
     List<Sole> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
-	
+
+    List<Sole> findByNameLike(String key);
 }

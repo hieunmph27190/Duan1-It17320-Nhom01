@@ -61,4 +61,9 @@ public class SizeServiceImpl implements SizeService {
         sizeRepository.setType(id, type);
     }
 
+    @Override
+    public List<Size> findByNameLike(String key) {
+        return sizeRepository.findByNameLike(key);
+    }
+
 }

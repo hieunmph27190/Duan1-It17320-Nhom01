@@ -15,96 +15,102 @@ import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the Size database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Size.findAll", query="SELECT s FROM Size s")
+@NamedQuery(name = "Size.findAll", query = "SELECT s FROM Size s")
 public class Size implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="Code")
-	private String code;
+    @Id
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Size")
-	private Integer size;
+    @Column(name = "Code")
+    private String code;
 
-	@Column(name="Type")
-	private Integer type;
+    @Column(name = "Size")
+    private Integer size;
 
-	//bi-directional many-to-one association to ProductDetail
-	@OneToMany(mappedBy="size")
-	private List<ProductDetail> productDetails;
+    @Column(name = "Type")
+    private Integer type;
 
-	public Size() {
-	}
-         @PrePersist
-        @PreUpdate
-        public void pre() {
-            if(type==null){
-                type=1;
-            }
+    //bi-directional many-to-one association to ProductDetail
+    @OneToMany(mappedBy = "size")
+    private List<ProductDetail> productDetails;
+
+    public Size() {
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void pre() {
+        if (type == null) {
+            type = 1;
         }
+    }
 
-	public UUID getId() {
-		return this.id;
-	}
+    public UUID getId() {
+        return this.id;
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public String getCode() {
-		return this.code;
-	}
+    public String getCode() {
+        return this.code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public Integer getSize() {
-		return this.size;
-	}
+    public Integer getSize() {
+        return this.size;
+    }
 
-	public void setSize(Integer size) {
-		this.size = size;
-	}
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 
-	public Integer getType() {
-		return this.type;
-	}
+    public Integer getType() {
+        return this.type;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	public List<ProductDetail> getProductDetails() {
-		return this.productDetails;
-	}
+    public List<ProductDetail> getProductDetails() {
+        return this.productDetails;
+    }
 
-	public void setProductDetails(List<ProductDetail> productDetails) {
-		this.productDetails = productDetails;
-	}
+    public void setProductDetails(List<ProductDetail> productDetails) {
+        this.productDetails = productDetails;
+    }
 
-	public ProductDetail addProductDetail(ProductDetail productDetail) {
-		getProductDetails().add(productDetail);
-		productDetail.setSize(this);
+    public ProductDetail addProductDetail(ProductDetail productDetail) {
+        getProductDetails().add(productDetail);
+        productDetail.setSize(this);
 
-		return productDetail;
-	}
+        return productDetail;
+    }
 
-	public ProductDetail removeProductDetail(ProductDetail productDetail) {
-		getProductDetails().remove(productDetail);
-		productDetail.setSize(null);
+    public ProductDetail removeProductDetail(ProductDetail productDetail) {
+        getProductDetails().remove(productDetail);
+        productDetail.setSize(null);
 
-		return productDetail;
-	}
+        return productDetail;
+    }
+
+    @Override
+    public String toString() {
+        return size + "";
+    }
 
 }

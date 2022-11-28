@@ -52,6 +52,11 @@ public class RoleServiceImpl implements RoleService{
     public void setType(UUID id, int type) throws Exception {
         roleRepository.setType(id, type);
     }
+
+    @Override
+    public List<Role> findByNameLike(String key) {
+        return roleRepository.findByNameLike(key);
+    }
         
 	
 }

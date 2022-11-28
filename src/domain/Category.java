@@ -49,7 +49,6 @@ public class Category implements Serializable {
 	public Category() {
 	}
          @PrePersist
-        @PreUpdate
         public void pre() {
             if(type==null){
                 type=1;
@@ -110,4 +109,10 @@ public class Category implements Serializable {
 		return productDetail;
 	}
 
+    @Override
+    public String toString() {
+       return name;
+    }
+
+        
 }

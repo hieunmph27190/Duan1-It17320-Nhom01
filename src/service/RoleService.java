@@ -7,24 +7,26 @@ import domain.Role;
 
 public interface RoleService {
 
-	Long count();
+    Long count();
 
-	void remove(UUID key) throws Exception;
+    void remove(UUID key) throws Exception;
 
-	void update(Role entity) throws Exception;
+    void update(Role entity) throws Exception;
 
-	void insert(Role entity) throws Exception;
+    void insert(Role entity) throws Exception;
 
-	Role findByID(UUID key);
+    Role findByID(UUID key);
 
-	List<Role> findAll(int first, int size);
+    List<Role> findAll(int first, int size);
 
-	List<Role> findAll();
+    List<Role> findAll();
 
     List<Role> findByTypeEqual(int i);
 
     List<Role> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
-	
+
+    List<Role> findByNameLike(String key);
+
 }

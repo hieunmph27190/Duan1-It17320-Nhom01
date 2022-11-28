@@ -53,5 +53,10 @@ public class CategoryServiceImpl implements CategoryService {
     public void setType(UUID id, int type) throws Exception {
         categoryRepository.setType(id, type);
     }
+
+    @Override
+    public List<Category> findByNameLike(String key) {
+       return categoryRepository.findByNameLike(key);
+    }
 	
 }

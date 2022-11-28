@@ -1,38 +1,32 @@
 package utils;
 
 import domain.Employee;
+import service.EmployeeService;
+import service.impl.EmployeeServiceImpl;
 
 public class AuthUtil {
-	private static Employee employee;
+    static {
+        user = new EmployeeServiceImpl().findAll().get(0);
+    }
+	private static Object user;
 
 	public static Employee getEmployee() {
-		return employee;
+        if (user instanceof  Employee) {
+            return (Employee) user;
+        }
+		return null;
 	}
 
 	public static void setEmployee(Employee employee) {
-		AuthUtil.employee = employee;
+		AuthUtil.user = employee;
 	}
 
-	public static boolean isNhanVien() {
-		if (employee != null) {
-			if (employee.getRole().equals("NV")) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
-	public static boolean isQuanLi() {
-		if (employee != null) {
-			if (employee.getRole().equals("QL")) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
 	public static boolean isLogin() {
-		if (employee != null) {
+		if (user != null) {
 			return true;
 		}
 		return false;

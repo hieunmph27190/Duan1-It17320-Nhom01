@@ -225,6 +225,11 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 134, 72, -1));
 
         cbxCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCategoryActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbxCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 131, 216, -1));
 
         jLabel6.setText("Brand");
@@ -503,6 +508,10 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddAvataActionPerformed
 
+    private void cbxCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCategoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -527,11 +536,11 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnSize;
     private javax.swing.JButton btnSole;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cbxBrand;
-    private javax.swing.JComboBox<String> cbxCategory;
-    private javax.swing.JComboBox<String> cbxColor;
-    private javax.swing.JComboBox<String> cbxSize;
-    private javax.swing.JComboBox<String> cbxSole;
+    public javax.swing.JComboBox<String> cbxBrand;
+    public javax.swing.JComboBox<String> cbxCategory;
+    public javax.swing.JComboBox<String> cbxColor;
+    public javax.swing.JComboBox<String> cbxSize;
+    public javax.swing.JComboBox<String> cbxSole;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;

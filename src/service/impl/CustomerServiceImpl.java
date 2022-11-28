@@ -66,5 +66,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public Long count() {
 		return customerRepository.count();
 	}
+
+    public Customer findBySDT(String sdt) {
+        return customerRepository.findBySDT(sdt);
+    }
+        
 	
 }

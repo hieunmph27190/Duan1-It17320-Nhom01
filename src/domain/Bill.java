@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -33,7 +35,7 @@ public class Bill implements Serializable {
 	private UUID id;
 
 	@Column(name="CreateDate")
-	private Timestamp createDate;
+	private Date createDate;
 
 	@Column(name="Type")
 	private Integer type;
@@ -58,6 +60,12 @@ public class Bill implements Serializable {
 
 	public Bill() {
 	}
+         @PrePersist
+        public void pre() {
+            if(type==null){
+                type=1;
+            }
+        }
 
 	public UUID getId() {
 		return this.id;
@@ -67,11 +75,11 @@ public class Bill implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCreateDate() {
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(Timestamp createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 

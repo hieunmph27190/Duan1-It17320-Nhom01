@@ -21,25 +21,27 @@ import service.impl.BrandServiceImpl;
  * @author admin
  */
 public class ViewBrand extends javax.swing.JDialog {
+
     private Brand brandSelected;
     private List<Brand> list;
-    private BrandService trademarkService;
+    private BrandService brandService;
     private DefaultTableModel defaultTableModel;
     private java.awt.Frame parent;
+
     public ViewBrand(java.awt.Frame parent, boolean modal) {
-       super(parent, modal);
-       this.parent=parent;
+        super(parent, modal);
+        this.parent = parent;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        trademarkService = new BrandServiceImpl();
-      
-        loadTable(trademarkService.findAll());
+        brandService = new BrandServiceImpl();
+
+        loadTable(brandService.findByTypeNotEqual(0));
     }
 
-    private void loadTable(List<Brand> getList){
-          list= getList;
-        defaultTableModel = (DefaultTableModel) tblTrademark.getModel();
+    private void loadTable(List<Brand> getList) {
+        list = getList;
+        defaultTableModel = (DefaultTableModel) tblBrand.getModel();
         defaultTableModel.setRowCount(0);
         defaultTableModel.setColumnIdentifiers(new String[]{"Id", "Code", "Name"});
         for (Brand trademark : getList) {
@@ -48,6 +50,7 @@ public class ViewBrand extends javax.swing.JDialog {
             });
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,15 +58,18 @@ public class ViewBrand extends javax.swing.JDialog {
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTrademark = new javax.swing.JTable();
+        tblBrand = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblid = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
-        txtTradamrkName = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,7 +89,7 @@ public class ViewBrand extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("B?ng Trademark");
 
-        tblTrademark.setModel(new javax.swing.table.DefaultTableModel(
+        tblBrand.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -94,18 +100,18 @@ public class ViewBrand extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblTrademark.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblBrand.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblTrademarkMouseClicked(evt);
+                tblBrandMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblTrademark);
+        jScrollPane1.setViewportView(tblBrand);
 
         jLabel2.setText("Id");
 
         jLabel3.setText("Code");
 
-        jLabel4.setText("TradamarkName");
+        jLabel4.setText("BrandName");
 
         lblid.setText("-");
 
@@ -120,6 +126,20 @@ public class ViewBrand extends javax.swing.JDialog {
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Tìm ki?m");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -147,14 +167,25 @@ public class ViewBrand extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtCode)
-                                    .addComponent(txtTradamrkName, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                                    .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                                 .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(377, 377, 377)
+                                .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,11 +205,17 @@ public class ViewBrand extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTradamrkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete))
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOk)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -187,107 +224,163 @@ public class ViewBrand extends javax.swing.JDialog {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Brand trademark = getFormData();
-        if(trademark == null){
+        if (trademark == null) {
             return;
-        }else{
+        } else {
             try {
-             
-                trademarkService.insert(trademark);
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-                loadTable(trademarkService.findAll());
+
+                brandService.insert(trademark);
+                JOptionPane.showMessageDialog(this, "Them thanh cong");
+                loadTable(brandService.findByTypeNotEqual(0));
                 clearForm();
+//                QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+//                qlsp.loadBrand();
             } catch (Exception ex) {
-                Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxBrand.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxBrand.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        int row = tblTrademark.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "ch?n dòng c?n s?a");
+        int row = tblBrand.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "chon dong can sua");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "B?n có mu?n s?a không");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon sua khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         Brand trademark = getFormData();
-        
+
         trademark.setId(UUID.fromString(lblid.getText()));
         try {
-            trademarkService.update(trademark);
-            JOptionPane.showMessageDialog(this, "S?a thành công");
-            loadTable(trademarkService.findAll());
+            brandService.update(trademark);
+            JOptionPane.showMessageDialog(this, "Sua thanh cong");
+            loadTable(brandService.findByTypeNotEqual(0));
             clearForm();
         } catch (Exception ex) {
-            Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewBrand.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxBrand.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxBrand.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int row = tblTrademark.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "ch?n dòng c?n xóa");
+        int row = tblBrand.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "chon dong can xoa");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "B?n có mu?n xóa không");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         try {
-            trademarkService.remove(UUID.fromString(lblid.getText()));
-            JOptionPane.showMessageDialog(this, "Xóa thành công");
-            loadTable(trademarkService.findAll());
+            brandService.setType(UUID.fromString(lblid.getText()), 0);
+            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
+            loadTable(brandService.findByTypeNotEqual(0));
             clearForm();
-            
+
         } catch (Exception ex) {
-            Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewBrand.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxBrand.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxBrand.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void tblTrademarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrademarkMouseClicked
+    private void tblBrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBrandMouseClicked
         // TODO add your handling code here:
-          int row = tblTrademark.getSelectedRow();
-        if(row >=0){
-            brandSelected=list.get(row);
-            lblid.setText(tblTrademark.getValueAt(row, 0).toString());
-            txtCode.setText(tblTrademark.getValueAt(row, 1).toString());
-            txtTradamrkName.setText(tblTrademark.getValueAt(row, 2).toString());
+        int row = tblBrand.getSelectedRow();
+        if (row >= 0) {
+            brandSelected = list.get(row);
+            lblid.setText(tblBrand.getValueAt(row, 0).toString());
+            txtCode.setText(tblBrand.getValueAt(row, 1).toString());
+            txtBrand.setText(tblBrand.getValueAt(row, 2).toString());
         }
-        
-    }//GEN-LAST:event_tblTrademarkMouseClicked
+
+    }//GEN-LAST:event_tblBrandMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        ((QuanLiSanPham)this.parent).loadBrand();
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxBrand.getSelectedItem();
+
+            qlsp.cbxBrand.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    private void clearForm(){
-        brandSelected=null;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<Brand> list = brandService.findByNameLike("%" + txtTimKiem.getText() + "%");
+        loadTable(list);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            if (brandSelected != null) {
+                qlsp.cbxBrand.setSelectedItem(brandSelected);
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void clearForm() {
+        brandSelected = null;
         lblid.setText("");
         txtCode.setText("");
-        txtTradamrkName.setText("");
+        txtBrand.setText("");
     }
-    private Brand getFormData(){
-           if(txtCode.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Code Null");
-                    return null;
-                }
-                 if(txtTradamrkName.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Tradamrkname Null");
-                    return null;
-                }
-                 
+
+    private Brand getFormData() {
+        if (txtCode.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Code Null");
+            return null;
+        }
+        if (txtBrand.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tradamrkname Null");
+            return null;
+        }
+
         Brand trademark = new Brand();
-        if (brandSelected!=null) {
+        if (brandSelected != null) {
             trademark.setType(brandSelected.getType());
         }
         trademark.setCode(txtCode.getText());
-        trademark.setName(txtTradamrkName.getText());
+        trademark.setName(txtBrand.getText());
         return trademark;
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -310,17 +403,8 @@ public class ViewBrand extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewBrand.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ViewBrand dialog = new ViewBrand(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -336,16 +420,19 @@ public class ViewBrand extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblid;
-    private javax.swing.JTable tblTrademark;
+    private javax.swing.JTable tblBrand;
+    private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtCode;
-    private javax.swing.JTextField txtTradamrkName;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

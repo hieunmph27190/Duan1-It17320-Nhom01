@@ -60,6 +60,21 @@ public class CustomerRepository extends JpaRespository<Customer, UUID> {
         return typedQuery.getResultList();
     }
         
+    public Customer findBySDT(String sdt){
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Customer> query = criteriaBuilder.createQuery(Customer.class);
+        Root root = query.from(Customer.class);
+        query.select(root);
+        query.where(criteriaBuilder.equal(root.get("phoneNumber"), sdt));
+        TypedQuery<Customer> typedQuery = entityManager.createQuery(query);
+        Customer customer = null;
+        try {
+            customer = typedQuery.getSingleResult();
+        } catch (Exception e) {
+        }
+        return customer;
+    }
     
 
 }

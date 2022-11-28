@@ -5,6 +5,7 @@
 package view;
 
 import domain.Role;
+import domain.Sole;
 import domain.Size;
 import java.util.List;
 import java.util.UUID;
@@ -21,21 +22,25 @@ import service.impl.SizeServiceImpl;
  */
 public class ViewSize extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ViewSize
-     */
+    private Size sizeSelected;
+    private List<Size> list;
     private SizeService sizeService;
-    DefaultTableModel defaultTableModel;
+    private DefaultTableModel defaultTableModel;
+    private java.awt.Frame parent;
+
     public ViewSize(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         sizeService = new SizeServiceImpl();
-        loadTable(sizeService.findAll());
+
+        loadTable(sizeService.findByTypeNotEqual(0));
     }
 
-    private void loadTable(List<Size> getList){
+    private void loadTable(List<Size> getList) {
+        list = getList;
         defaultTableModel = (DefaultTableModel) tblSize.getModel();
         defaultTableModel.setRowCount(0);
         defaultTableModel.setColumnIdentifiers(new String[]{"Id", "Code", "Size"});
@@ -45,7 +50,7 @@ public class ViewSize extends javax.swing.JDialog {
             });
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,8 +67,16 @@ public class ViewSize extends javax.swing.JDialog {
         txtSize = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -87,10 +100,9 @@ public class ViewSize extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-         tblSize.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblSize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblColorsMouseClicked(evt);
-               
+                tblSizeMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblSize);
@@ -116,9 +128,21 @@ public class ViewSize extends javax.swing.JDialog {
                 btnUpdateActionPerformed(evt);
             }
         });
- 
-        
-        
+
+        btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Tìm ki?m");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,13 +156,14 @@ public class ViewSize extends javax.swing.JDialog {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtCode)
@@ -148,8 +173,19 @@ public class ViewSize extends javax.swing.JDialog {
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(377, 377, 377)
+                                .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,118 +207,180 @@ public class ViewSize extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete))
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOk)
+                .addGap(44, 44, 44))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-        private void tblColorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblColorsMouseClicked
-        // TODO add your handling code here:
-        int row = tblSize.getSelectedRow();
-        if(row >=0){
-            lblid.setText(tblSize.getValueAt(row, 0).toString());
-            txtCode.setText(tblSize.getValueAt(row, 1).toString());
-            txtSize.setText(tblSize.getValueAt(row, 2).toString());
-        }
-    }//GEN-LAST:event_tblColorsMouseClicked
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Size size = getFormData();
-        if(size == null){
+        if (size == null) {
             return;
-        }else{
+        } else {
             try {
-                 if(size.getCode().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Code Null");
-                    return;
-                }
-                 if(txtSize.getText().trim().length()==0) {
-                    JOptionPane.showMessageDialog(this, "Size Null");
-                    return;
-                }
-                 
+
                 sizeService.insert(size);
-                JOptionPane.showMessageDialog(this, "Them thanh cong");
-                loadTable(sizeService.findAll());
+                JOptionPane.showMessageDialog(this, "Them Thanh Cong");
+                loadTable(sizeService.findByTypeNotEqual(0));
                 clearForm();
+//                QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+//                qlsp.loadSize();
             } catch (Exception ex) {
-                Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSize.getSelectedItem();
+            qlsp.loadSize();
+            qlsp.cbxSize.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         int row = tblSize.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "chon dong can sua");
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Chon Dong Can Sua");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon sua khong");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban Co Muon Sua Khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         Size size = getFormData();
-        
+
         size.setId(UUID.fromString(lblid.getText()));
         try {
             sizeService.update(size);
-            JOptionPane.showMessageDialog(this, "Sua thanh cong");
-            loadTable(sizeService.findAll());
+            JOptionPane.showMessageDialog(this, "Sua Thanh Cong");
+            loadTable(sizeService.findByTypeNotEqual(0));
             clearForm();
         } catch (Exception ex) {
-            Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewSize.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSize.getSelectedItem();
+            qlsp.loadSize();
+            qlsp.cbxSize.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int row = tblSize.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "chon dong can xoa");
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "CHon Dong Can Sua");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Bna Co Muon Sua Khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         try {
-            sizeService.remove(UUID.fromString(lblid.getText()));
-            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-            loadTable(sizeService.findAll());
+            sizeService.setType(UUID.fromString(lblid.getText()), 0);
+            JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
+            loadTable(sizeService.findByTypeNotEqual(0));
             clearForm();
-            
+
         } catch (Exception ex) {
-            Logger.getLogger(ViewRoles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewSize.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSize.getSelectedItem();
+            qlsp.loadSize();
+            qlsp.cbxSize.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void clearForm(){
-        
+    private void tblSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSizeMouseClicked
+        // TODO add your handling code here:
+        int row = tblSize.getSelectedRow();
+        if (row >= 0) {
+            sizeSelected = list.get(row);
+            lblid.setText(tblSize.getValueAt(row, 0).toString());
+            txtCode.setText(tblSize.getValueAt(row, 1).toString());
+            txtSize.setText(tblSize.getValueAt(row, 2).toString());
+        }
+
+    }//GEN-LAST:event_tblSizeMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSize.getSelectedItem();
+
+            qlsp.cbxSize.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<Size> list = sizeService.findByNameLike((txtTimKiem.getText()));
+        loadTable(list);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            if (sizeSelected != null) {
+                qlsp.cbxSize.setSelectedItem(sizeSelected);
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void clearForm() {
+        sizeSelected = null;
         lblid.setText("");
         txtCode.setText("");
         txtSize.setText("");
     }
-    
-    private Size getFormData(){
-       if (txtCode.getText().isEmpty()) {
+
+    private Size getFormData() {
+        if (txtCode.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Code Null");
             return null;
         }
-         if (txtSize.getText().trim().length()==0) {
+        if (txtSize.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Size Null");
             return null;
         }
-         
+
         Size size = new Size();
+        if (sizeSelected != null) {
+            size.setType(sizeSelected.getType());
+        }
         size.setCode(txtCode.getText());
         size.setSize(Integer.parseInt(txtSize.getText()));
         return size;
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -305,11 +403,9 @@ public class ViewSize extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewSize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
+      
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ViewSize dialog = new ViewSize(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -325,8 +421,10 @@ public class ViewSize extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -336,5 +434,6 @@ public class ViewSize extends javax.swing.JDialog {
     private javax.swing.JTable tblSize;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtSize;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

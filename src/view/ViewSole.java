@@ -4,7 +4,7 @@
  */
 package view;
 
-import domain.Role;
+
 import domain.Sole;
 import java.util.List;
 import java.util.UUID;
@@ -21,27 +21,35 @@ import service.impl.SoleServiceImpl;
  */
 public class ViewSole extends javax.swing.JDialog {
 
+    private Sole soleSelected;
+    private List<Sole> list;
     private SoleService soleService;
-    DefaultTableModel defaultTableModel;
+    private DefaultTableModel defaultTableModel;
+    private java.awt.Frame parent;
+
     public ViewSole(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         soleService = new SoleServiceImpl();
-        loadTable(soleService.findAll());
+
+        loadTable(soleService.findByTypeNotEqual(0));
     }
 
-    private void loadTable(List<Sole> getList){
+    private void loadTable(List<Sole> getList) {
+        list = getList;
         defaultTableModel = (DefaultTableModel) tblSole.getModel();
         defaultTableModel.setRowCount(0);
         defaultTableModel.setColumnIdentifiers(new String[]{"Id", "Code", "Name"});
-        for (Sole role : getList) {
+        for (Sole sole : getList) {
             defaultTableModel.addRow(new Object[]{
-                role.getId(), role.getCode(), role.getName()
+                sole.getId(), sole.getCode(), sole.getName()
             });
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,8 +66,16 @@ public class ViewSole extends javax.swing.JDialog {
         txtName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +128,20 @@ public class ViewSole extends javax.swing.JDialog {
             }
         });
 
+        btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Tìm ki?m");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,8 +172,19 @@ public class ViewSole extends javax.swing.JDialog {
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(377, 377, 377)
+                                .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +206,15 @@ public class ViewSole extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete))
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOk)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -175,97 +222,164 @@ public class ViewSole extends javax.swing.JDialog {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Sole role = getFormData();
-        if(role == null){
+        Sole sole = getFormData();
+        if (sole == null) {
             return;
-        }else{
+        } else {
             try {
-                 if(role.getCode().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Code Null");
-                    return;
-                }
-                 if(role.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Name Null");
-                    return;
-                }
-                soleService.insert(role);
-                JOptionPane.showMessageDialog(this, "Them thanh cong");
-                loadTable(soleService.findAll());
+
+                soleService.insert(sole);
+                JOptionPane.showMessageDialog(this, "Them Thanh Cong");
+                loadTable(soleService.findByTypeNotEqual(0));
                 clearForm();
+//                QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+//                qlsp.loadSole();
             } catch (Exception ex) {
-              ex.printStackTrace();
+                ex.printStackTrace();
             }
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSole.getSelectedItem();
+            qlsp.loadSole();
+            qlsp.cbxSole.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         int row = tblSole.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "chon dong can sua");
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Chon Dong Can Sua");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon sua khong");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban Co Muon Sua Khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
-        Sole role = getFormData();
-        
-        role.setId(UUID.fromString(lblid.getText()));
+        Sole sole = getFormData();
+
+        sole.setId(UUID.fromString(lblid.getText()));
         try {
-            soleService.update(role);
-            JOptionPane.showMessageDialog(this, "Sua thanh cong");
-            loadTable(soleService.findAll());
+            soleService.update(sole);
+            JOptionPane.showMessageDialog(this, "Sua Thanh Cong");
+            loadTable(soleService.findByTypeNotEqual(0));
             clearForm();
         } catch (Exception ex) {
-         ex.printStackTrace();
+            Logger.getLogger(ViewSole.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSole.getSelectedItem();
+            qlsp.loadSole();
+            qlsp.cbxSole.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int row = tblSole.getSelectedRow();
-        if(row <0){
-            JOptionPane.showMessageDialog(this, "chon dong can xoa");
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Chon Dong Can Xoa");
             return;
         }
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong");
-        if(confirm != JOptionPane.YES_OPTION){
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban Co Muon Xoa Khong");
+        if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         try {
-            soleService.remove(UUID.fromString(lblid.getText()));
-            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-            loadTable(soleService.findAll());
+            soleService.setType(UUID.fromString(lblid.getText()), 0);
+            JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
+            loadTable(soleService.findByTypeNotEqual(0));
             clearForm();
-            
+
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Logger.getLogger(ViewSole.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSole.getSelectedItem();
+            qlsp.loadSole();
+            qlsp.cbxSole.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblSoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSoleMouseClicked
         // TODO add your handling code here:
-         int row = tblSole.getSelectedRow();
-        if(row >=0){
+        int row = tblSole.getSelectedRow();
+        if (row >= 0) {
+            soleSelected = list.get(row);
             lblid.setText(tblSole.getValueAt(row, 0).toString());
             txtCode.setText(tblSole.getValueAt(row, 1).toString());
             txtName.setText(tblSole.getValueAt(row, 2).toString());
         }
-        
+
     }//GEN-LAST:event_tblSoleMouseClicked
-    private void clearForm(){
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxSole.getSelectedItem();
+
+            qlsp.cbxSole.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<Sole> list = soleService.findByNameLike("%" + txtTimKiem.getText() + "%");
+        loadTable(list);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            if (soleSelected != null) {
+                qlsp.cbxSole.setSelectedItem(soleSelected);
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void clearForm() {
+        soleSelected = null;
         lblid.setText("");
         txtCode.setText("");
         txtName.setText("");
     }
-    
-    private Sole getFormData(){
-        Sole role = new Sole();
-        role.setCode(txtCode.getText());
-        role.setName(txtName.getText());
-        return role;
+
+    private Sole getFormData() {
+        if (txtCode.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Code Null");
+            return null;
+        }
+        if (txtName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name Null");
+            return null;
+        }
+
+        Sole sole = new Sole();
+        if (soleSelected != null) {
+            sole.setType(soleSelected.getType());
+        }
+        sole.setCode(txtCode.getText());
+        sole.setName(txtName.getText());
+        return sole;
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,9 +402,6 @@ public class ViewSole extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewSole.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -308,8 +419,10 @@ public class ViewSole extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,5 +432,6 @@ public class ViewSole extends javax.swing.JDialog {
     private javax.swing.JTable tblSole;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

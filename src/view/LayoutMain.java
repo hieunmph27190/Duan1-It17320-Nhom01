@@ -42,9 +42,7 @@ public class LayoutMain extends JFrame {
 	private JPanel panelContent;
 	private CardLayout cardLayout;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,26 +65,26 @@ public class LayoutMain extends JFrame {
 		cardLayout = (CardLayout) panelContent.getLayout();
 		mapChucNang = new ArrayList<ChucNangItem>();
 		
-//		mapChucNang.add(new ChucNangItem("Trang Chu",
-//						new ImageIcon(
-//								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
-//						new JPanel()));
-//		mapChucNang.add(new ChucNangItem("Nhan vien",
-//				new ImageIcon(
-//						LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyNhanVien().getContentPane()));
-//		mapChucNang.add(new ChucNangItem("San pham",
-//				new ImageIcon(
-//						LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiSanPham().getContentPane()));
-//		mapChucNang.add(new ChucNangItem("Khach Hang",
-//						new ImageIcon(
-//								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
-//						new JPanel()));
-//		mapChucNang.add(new ChucNangItem("Trang Chu",
-//						new ImageIcon(
-//								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
-//						new JPanel()));
-//        
-                
+		mapChucNang.add(new ChucNangItem("Trang Chu",
+						new ImageIcon(
+								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
+						new JPanel()));
+		mapChucNang.add(new ChucNangItem("Nhan vien",
+				new ImageIcon(
+						LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyNhanVien().getContentPane()));
+		mapChucNang.add(new ChucNangItem("San pham",
+				new ImageIcon(
+						LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiSanPham().getContentPane()));
+		mapChucNang.add(new ChucNangItem("Khach Hang",
+						new ImageIcon(
+								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
+						new JPanel()));
+		mapChucNang.add(new ChucNangItem("Trang Chu",
+						new ImageIcon(
+								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
+						new JPanel()));
+        
+             
 		
 		initChucNang();
 	}

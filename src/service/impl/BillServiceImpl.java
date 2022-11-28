@@ -44,5 +44,17 @@ public class BillServiceImpl implements BillService {
     public Long count() {
         return billRepository.count();
     }
+
+    public List<Bill> findByTypeEqual(int i) {
+        return billRepository.findByTypeEqual(i);
+    }
+
+    public List<Bill> findByTypeNotEqual(int i) {
+        return billRepository.findByTypeNotEqual(i);
+    }
+
+    public void setType(UUID id, int type) throws Exception {
+        billRepository.setType(id, type);
+    }
 	
 }

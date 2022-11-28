@@ -27,5 +27,7 @@ public interface CustomerService {
         void setType(UUID id, int type) throws Exception;
 
     List<Customer> getKH();
+
+    Customer findBySDT(String sdt);
 	
 }

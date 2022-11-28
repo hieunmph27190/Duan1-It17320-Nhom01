@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import domain.Category;
+import domain.Color;
 
 public interface CategoryService {
 
@@ -27,5 +28,7 @@ public interface CategoryService {
     List<Category> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
+    
+       List<Category> findByNameLike(String key);
 
 }
