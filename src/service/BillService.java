@@ -1,6 +1,7 @@
 package service;
 
 import domain.Bill;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -26,6 +27,10 @@ public interface BillService {
     List<Bill> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
+
+    BigDecimal getSumMoney(Bill bill);
+
+    Long getQuantity(Bill bill);
 	
    
 }
