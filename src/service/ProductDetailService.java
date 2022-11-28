@@ -26,5 +26,7 @@ public interface ProductDetailService {
     List<ProductDetail> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
+
+    void changeAmount(UUID id, Integer amountChange) throws Exception;
 	
 }

@@ -16,6 +16,10 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public List<ProductDetail> findAll() {
 		return productDetailRepository.findAll();
 	}
+
+    public void changeAmount(UUID id, Integer amountChange) throws Exception {
+        productDetailRepository.changeAmount(id, amountChange);
+    }
 	@Override
 	public List<ProductDetail> findAll(int first, int size) {
 		return productDetailRepository.findAll(first, size);
