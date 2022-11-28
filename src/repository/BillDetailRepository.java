@@ -38,7 +38,6 @@ public class BillDetailRepository extends JpaRespository<BillDetail, UUID> {
         query.setParameter("prod", productDetail.getId());
         query.setParameter("id", bill.getId());
         Long a = query.getSingleResult();
-        System.out.println(a);
         return a > 0;
     }
 
