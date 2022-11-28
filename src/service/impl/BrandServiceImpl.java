@@ -52,5 +52,10 @@ public class BrandServiceImpl implements BrandService {
     public void setType(UUID id, int type) throws Exception {
         BrandRepository.setType(id, type);
     }
+
+    @Override
+    public List<Brand> findByNameLike(String key) {
+        return  BrandRepository.findByNameLike(key);
+    }
 	
 }

@@ -53,5 +53,10 @@ public class ColorServiceImpl implements ColorService {
     public void setType(UUID id, int type) throws Exception {
         colorRepository.setType(id, type);
     }
+
+    @Override
+    public List<Color> findByNameLike(String key) {
+        return colorRepository.findByNameLike(key);
+    }
 	
 }

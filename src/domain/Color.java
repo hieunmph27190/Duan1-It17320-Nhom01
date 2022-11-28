@@ -50,7 +50,6 @@ public class Color implements Serializable {
 	}
   
         @PrePersist
-        @PreUpdate
         public void pre() {
             if(type==null){
                 type=1;
@@ -110,5 +109,12 @@ public class Color implements Serializable {
 
 		return productDetail;
 	}
+
+    @Override
+    public String toString() {
+      return colorName;
+    }
+        
+        
 
 }

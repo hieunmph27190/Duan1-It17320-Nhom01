@@ -108,4 +108,10 @@ public class Sole implements Serializable {
 		return productDetail;
 	}
 
+    @Override
+    public String toString() {
+       return name;
+    }
+
+        
 }

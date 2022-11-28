@@ -20,5 +20,12 @@ public interface BillService {
     void remove(UUID key) throws Exception;
 
     void update(Bill entity) throws Exception;
+
+    List<Bill> findByTypeEqual(int i);
+
+    List<Bill> findByTypeNotEqual(int i);
+
+    void setType(UUID id, int type) throws Exception;
 	
+   
 }

@@ -5,22 +5,23 @@ import java.util.Map;
 import java.util.UUID;
 
 import domain.Color;
+import domain.Size;
 
 public interface ColorService {
 
-	Long count();
+    Long count();
 
-	void remove(UUID key) throws Exception;
+    void remove(UUID key) throws Exception;
 
-	void update(Color entity) throws Exception;
+    void update(Color entity) throws Exception;
 
-	void insert(Color entity) throws Exception;
+    void insert(Color entity) throws Exception;
 
-	Color findByID(UUID key);
+    Color findByID(UUID key);
 
-	List<Color> findAll(int first, int size);
+    List<Color> findAll(int first, int size);
 
-	List<Color> findAll();
+    List<Color> findAll();
 
     List<Color> findByTypeEqual(int i);
 
@@ -28,4 +29,5 @@ public interface ColorService {
 
     void setType(UUID id, int type) throws Exception;
 
+    List<Color> findByNameLike(String key);
 }

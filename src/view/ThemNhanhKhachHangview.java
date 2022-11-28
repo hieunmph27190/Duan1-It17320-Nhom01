@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
 
@@ -33,10 +33,10 @@ import utils.ImageUtil;
  *
  * @author Administrator
  */
-public class khachhang extends javax.swing.JFrame {
+public class ThemNhanhKhachHangview extends javax.swing.JDialog {
 
     /**
-     * Creates new form khachhang
+     * Creates new form ThemNhanhKhachHangview
      */
     private CustomerService custormer;
     DefaultTableModel model = new DefaultTableModel();
@@ -46,11 +46,12 @@ public class khachhang extends javax.swing.JFrame {
     private Customer cusmoerselect;
     private String duongDanAnh = "";
     private byte[] pertionImage;
-
-    public khachhang() {
+    private java.awt.Frame parent;
+    public ThemNhanhKhachHangview(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        this.parent = parent;
 
-        table.setModel(model);
         String hearch[] = {"id", "FullName", "Gender", "Address", "Email", "PhoneNumber", "Date"};
         model.setColumnIdentifiers(hearch);
         listmodel = custoermpl.getKH();
@@ -58,17 +59,18 @@ public class khachhang extends javax.swing.JFrame {
         doddate(custormer.getKH());
         datechooer = new DateChooser();
         datechooer.setTextRefernce(jTextField1);
-        setSize(1060, 610);
         setLocationRelativeTo(null);
-
     }
-
-    public void doddate(List<Customer> listshow) {
+      public void doddate(List<Customer> listshow) {
         model.setRowCount(0);
         for (Customer a : listshow) {
             model.addRow(a.toaddrow());
         }
     }
+      
+      
+      
+      
 
     public void clear() {
         txtaddress.setText("");
@@ -193,9 +195,8 @@ public class khachhang extends javax.swing.JFrame {
         }
         
     }
+    
 
-    // Date datee = (Date) table.getValueAt(row, 8);
-//            datechooer.setSelectedDate(datee);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -206,27 +207,14 @@ public class khachhang extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jToolBar1 = new javax.swing.JToolBar();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         male = new javax.swing.JRadioButton();
         female = new javax.swing.JRadioButton();
         ADD = new javax.swing.JButton();
-        Delete = new javax.swing.JButton();
-        Clear = new javax.swing.JButton();
-        Update = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         txtfirtname = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
         txtbuffername = new javax.swing.JTextField();
-        LichSuXoa = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -243,26 +231,24 @@ public class khachhang extends javax.swing.JFrame {
         lblanh = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        jToolBar1.setRollover(true);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 145));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Quan Ly Khach Hang");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 238, -1));
+        jLabel2.setText("Khach Hang");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 140, -1));
 
         jLabel3.setText("Id: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel4.setText("Ho: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         male.setSelected(true);
         male.setText("Nam");
-        getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, -1));
+        getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
         female.setText("Nu");
         female.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +256,7 @@ public class khachhang extends javax.swing.JFrame {
                 femaleActionPerformed(evt);
             }
         });
-        getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, -1, -1));
+        getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, -1));
 
         ADD.setText("ADD");
         ADD.addActionListener(new java.awt.event.ActionListener() {
@@ -278,120 +264,51 @@ public class khachhang extends javax.swing.JFrame {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, 70, -1));
-
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 77, -1));
-
-        Clear.setText("Clear");
-        Clear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClearActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 210, 74, -1));
-
-        Update.setText("Update");
-        Update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
-
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(table);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 626, 156));
-
-        jButton9.setText("|<");
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 89, -1));
-
-        jButton10.setText(">>");
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 88, -1));
-
-        jButton11.setText("<<");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 85, -1));
-        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 250, -1));
-
-        jButton12.setText("|>");
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 510, 102, -1));
-        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 247, -1));
-
-        LichSuXoa.setText("Lich Su Xoa KH");
-        LichSuXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LichSuXoaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(LichSuXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, -1, 30));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 185, 80, 30));
+        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 250, -1));
+        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 247, -1));
 
         jLabel5.setText("Ten Dem: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel10.setText("So Dien Thoai: ");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 84, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 84, -1));
 
         jLabel6.setText("Ten: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
-        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 247, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 247, -1));
 
         jLabel7.setText("Gioi Tinh: ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 20));
-        getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 230, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, 20));
+        getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 230, -1));
 
         jLabel9.setText("Email: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 37, -1));
-        getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 230, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 37, -1));
+        getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 230, -1));
 
         jLabel11.setText("Ngay Sinh: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 60, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 247, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 247, -1));
 
         jLabel12.setText("Dia Chi: ");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 58, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 58, -1));
 
         txtaddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtaddressActionPerformed(evt);
             }
         });
-        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 247, -1));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 240, 20));
+        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 247, -1));
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 240, 20));
 
         lblanh.setText("Anh");
-        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 120, 150));
+        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 120, 150));
 
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -399,7 +316,7 @@ public class khachhang extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 80, 30));
 
         jButton2.setText("XoaAvata");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -407,10 +324,18 @@ public class khachhang extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 90, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 80, 30));
+
+        jButton3.setText("OK");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 70, 30));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_femaleActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
         // TODO add your handling code here:
@@ -459,89 +384,18 @@ public class khachhang extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Them thanh cong");
                 listmodel = custormer.getKH();
                 doddate(listmodel);
+                try {
+                   BanHangJDialog bhdiag= (BanHangJDialog) this.parent;
+                   bhdiag.selecttedcustomor(cuss);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                 this.dispose();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
-
     }//GEN-LAST:event_ADDActionPerformed
-
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        // TODO add your handling code here:
-        
-        int row = table.getSelectedRow();
-        if(row < 0) {
-            return;
-        }
-        
-        click(row);
-
-    }//GEN-LAST:event_tableMouseClicked
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void LichSuXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LichSuXoaActionPerformed
-        // TODO add your handling code here:
-        LichSuXoaKH kh = new LichSuXoaKH(this, true);
-        kh.setVisible(true);
-    }//GEN-LAST:event_LichSuXoaActionPerformed
-
-    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        // TODO add your handling code here:
-        int row = table.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "chon dong can sua");
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban có muon sua khong");
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-        Customer cus = getform();
-
-        cus.setId(UUID.fromString(txtid.getText()));
-        try {
-
-            custormer.update(cus);
-            JOptionPane.showMessageDialog(this, "Sua thanh công");
-            listmodel = custormer.getKH();
-            doddate(listmodel);
-            //   clearForm();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_UpdateActionPerformed
-
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        // TODO add your handling code here:
-        int row = table.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "chon dong can xoa");
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa không");
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-        try {
-            custormer.setType(UUID.fromString(txtid.getText()), 0);
-            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-            doddate(custormer.getKH());
-
-        } catch (Exception ex) {
-          ex.printStackTrace();
-        }
-
-    }//GEN-LAST:event_DeleteActionPerformed
-
-    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
-        // TODO add your handling code here:
-        clear();
-    }//GEN-LAST:event_ClearActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -550,10 +404,6 @@ public class khachhang extends javax.swing.JFrame {
     private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtaddressActionPerformed
-
-    private void femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_femaleActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -588,19 +438,17 @@ public class khachhang extends javax.swing.JFrame {
                 }
                 lblanh.setIcon(imageIcon);
             } else {
-                JOptionPane.showMessageDialog(this, "File không Ton Tai");
+                JOptionPane.showMessageDialog(this, "File không t?n t?i");
             }
         } else {
             return;
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         pertionImage = null;
         lblanh.setIcon(null);
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -620,50 +468,39 @@ public class khachhang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemNhanhKhachHangview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemNhanhKhachHangview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemNhanhKhachHangview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemNhanhKhachHangview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new khachhang().setVisible(true);
+                ThemNhanhKhachHangview dialog = new ThemNhanhKhachHangview(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
-    private ImageIcon resizeImage(String imagePath) {
-        ImageIcon myImage = new ImageIcon(imagePath);
-        Image img = myImage.getImage();
-        Image newImg = img.getScaledInstance(130, 140, Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImg);
-        return image;
-    }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
-    private javax.swing.JButton Clear;
-    private javax.swing.JButton Delete;
-    private javax.swing.JButton LichSuXoa;
-    private javax.swing.JButton Update;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButton female;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -674,12 +511,9 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblanh;
     private javax.swing.JRadioButton male;
-    private javax.swing.JTable table;
     private javax.swing.JTextField txtaddress;
     private javax.swing.JTextField txtbuffername;
     private javax.swing.JTextField txtemail;

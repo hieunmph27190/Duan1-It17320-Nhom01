@@ -52,5 +52,10 @@ public class SoleServiceImpl implements SoleService{
     public void setType(UUID id, int type) throws Exception {
         soleRepository.setType(id, type);
     }
+
+    @Override
+    public List<Sole> findByNameLike(String key) {
+        return soleRepository.findByNameLike(key);
+    }
 	
 }

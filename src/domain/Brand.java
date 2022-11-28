@@ -95,8 +95,9 @@ public class Brand implements Serializable {
 	
         @Override
     public String toString() {
-        return code+" - "+name;
+        return name;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Brand) {
@@ -107,5 +108,9 @@ public class Brand implements Serializable {
         }
         return false;
     }
+    
+       
+  
+    
 
 }

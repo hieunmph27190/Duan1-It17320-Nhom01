@@ -21,136 +21,136 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the Employees database table.
- * 
+ *
  */
 @Entity
-@Table(name="Employees")
-@NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
+@Table(name = "Employees")
+@NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
 public class Employee implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="Id")
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="Password")
-	private String password;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Type")
-	private Integer type;
+    @Column(name = "Password")
+    private String password;
 
-	@Column(name="Username")
-	private String username;
+    @Column(name = "Type")
+    private Integer type;
 
-	//bi-directional many-to-one association to Bill
-	@OneToMany(mappedBy="employee")
-	private List<Bill> bills;
+    @Column(name = "Username")
+    private String username;
 
-	//bi-directional many-to-one association to Person
-	@Column(name="Address")
-	private String address;
+    //bi-directional many-to-one association to Bill
+    @OneToMany(mappedBy = "employee")
+    private List<Bill> bills;
 
-	@Column(name="DateOfBirth")
-	private Date dateOfBirth;
+    //bi-directional many-to-one association to Person
+    @Column(name = "Address")
+    private String address;
 
-	@Column(name="Email")
-	private String email;
+    @Column(name = "DateOfBirth")
+    private Date dateOfBirth;
 
-	@Column(name="Gender")
-	private Boolean gender;
+    @Column(name = "Email")
+    private String email;
 
-	@Lob
-	@Column(name="Image")
-	private Blob image;
+    @Column(name = "Gender")
+    private Boolean gender;
 
-	@Column(name="LastName")
-	private String name;
+    @Lob
+    @Column(name = "Image")
+    private Blob image;
 
-	@Column(name="PhoneNumber")
-	private String phoneNumber;
+    @Column(name = "LastName")
+    private String name;
 
-	@Column(name="FirstName")
-	private String firstName;
-        @Column(name="BufferName")
-	private String bufferName;
-	//bi-directional many-to-one association to Role
-	@ManyToOne
-	@JoinColumn(name="RoleId")
-	private Role role;
+    @Column(name = "PhoneNumber")
+    private String phoneNumber;
 
-	//bi-directional many-to-one association to Exchange
-	@OneToMany(mappedBy="employee")
-	private List<Exchange> exchanges;
+    @Column(name = "FirstName")
+    private String firstName;
+    @Column(name = "BufferName")
+    private String bufferName;
+    //bi-directional many-to-one association to Role
+    @ManyToOne
+    @JoinColumn(name = "RoleId")
+    private Role role;
 
-	public Employee() {
-	}
-        
-          @PrePersist
-          @PreUpdate
-        public void pre() {
-            if(type==null){
-                type=1;
-            }
+    //bi-directional many-to-one association to Exchange
+    @OneToMany(mappedBy = "employee")
+    private List<Exchange> exchanges;
+
+    public Employee() {
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void pre() {
+        if (type == null) {
+            type = 1;
         }
+    }
 
-	public UUID getId() {
-		return this.id;
-	}
+    public UUID getId() {
+        return this.id;
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Integer getType() {
-		return this.type;
-	}
+    public Integer getType() {
+        return this.type;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    public String getUsername() {
+        return this.username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public List<Bill> getBills() {
-		return this.bills;
-	}
+    public List<Bill> getBills() {
+        return this.bills;
+    }
 
-	public void setBills(List<Bill> bills) {
-		this.bills = bills;
-	}
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
 
-	public Bill addBill(Bill bill) {
-		getBills().add(bill);
-		bill.setEmployee(this);
+    public Bill addBill(Bill bill) {
+        getBills().add(bill);
+        bill.setEmployee(this);
 
-		return bill;
-	}
+        return bill;
+    }
 
-	public Bill removeBill(Bill bill) {
-		getBills().remove(bill);
-		bill.setEmployee(null);
+    public Bill removeBill(Bill bill) {
+        getBills().remove(bill);
+        bill.setEmployee(null);
 
-		return bill;
-	}
+        return bill;
+    }
 
     public String getAddress() {
         return address;
@@ -220,43 +220,51 @@ public class Employee implements Serializable {
         return bufferName;
     }
 
+    public String getFullName() {
+        return firstName + " " + bufferName + " " + name;
+    }
+
     public void setBufferName(String bufferName) {
         this.bufferName = bufferName;
     }
 
-	
+    public Role getRole() {
+        return this.role;
+    }
 
-	public Role getRole() {
-		return this.role;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public List<Exchange> getExchanges() {
+        return this.exchanges;
+    }
 
-	public List<Exchange> getExchanges() {
-		return this.exchanges;
-	}
+    public void setExchanges(List<Exchange> exchanges) {
+        this.exchanges = exchanges;
+    }
 
-	public void setExchanges(List<Exchange> exchanges) {
-		this.exchanges = exchanges;
-	}
+    public Exchange addExchange(Exchange exchange) {
+        getExchanges().add(exchange);
+        exchange.setEmployee(this);
 
-	public Exchange addExchange(Exchange exchange) {
-		getExchanges().add(exchange);
-		exchange.setEmployee(this);
+        return exchange;
+    }
 
-		return exchange;
-	}
+    public Exchange removeExchange(Exchange exchange) {
+        getExchanges().remove(exchange);
+        exchange.setEmployee(null);
 
-	public Exchange removeExchange(Exchange exchange) {
-		getExchanges().remove(exchange);
-		exchange.setEmployee(null);
+        return exchange;
+    }
 
-		return exchange;
-	}
-        public Object[] toaddrow() {
-            return new Object[] {id,firstName+bufferName+name,gender,phoneNumber,password,username,email,address,image,type};
-        }
+    public Object[] toaddrow() {
+        return new Object[]{id, firstName + bufferName + name, gender, phoneNumber, password, username, email, address, image, type};
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }
