@@ -47,7 +47,7 @@ public class Sole implements Serializable {
 	public Sole() {
 	}
          @PrePersist
-        @PreUpdate
+        
         public void pre() {
             if(type==null){
                 type=1;

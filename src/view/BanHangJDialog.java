@@ -5,6 +5,7 @@
 package view;
 
 import domain.Bill;
+import domain.BillDetail;
 import domain.Customer;
 import domain.ProductDetail;import java.sql.Timestamp;
 ;
@@ -27,17 +28,14 @@ import service.impl.CustomerServiceImpl;
 import service.impl.ProductDetailServiceImpl;
 import utils.AuthUtil;
 
-/**
- *
- * @author vanlo
- */
+
 public class BanHangJDialog extends javax.swing.JFrame {
     private Bill billSelected;
     private List<Bill> hdcs = new ArrayList<Bill>();
     private ProductDetail productDetailSelected;
     private ProductDetailService productDetailService;
-    private List<ProductDetail> productDetails;
-    private List<ProductDetail> productDetailGHs = new ArrayList<>();
+    private List<ProductDetail> productDetails =new ArrayList<>();
+    private List<BillDetail> billDEtailGHs = new ArrayList<>();
     private BillService billService = new BillServiceImpl();
     private BillDetailService billDetailService = new BillDetailServiceImpl() {};
     
@@ -335,10 +333,24 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (tblSP.getSelectedRow() >= 0) {
-            if (!productDetailGHs.contains(productDetails.get(tblSP.getSelectedRow()))) {
-                productDetailGHs.add(productDetails.get(tblSP.getSelectedRow()));
+            if (!billDetailService.containsProductDetail(billSelected,productDetailSelected)) { 
+                BillDetail billDetail = new BillDetail();
+                billDetail.setBill(billSelected);
+                billDetail.setProductDetail(productDetails.get(tblSP.getSelectedRow()));
+                billDetail.setPrice(productDetails.get(tblSP.getSelectedRow()).getPrice());
+                billDetail.setQuantity(1);
+                try {
+                    billDetailService.insert(billDetail);
+                    productDetailService.changeAmount(billDetail.getProductDetail().getId(),0-billDetail.getQuantity());
+                    billDEtailGHs = billDetailService.findByBill(billSelected);
+                    loadTableGH(billDEtailGHs);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Lou");
+                }
+                
             }
-            loadTableGH(productDetailGHs);
+            
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -371,12 +383,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_txttienkhachhangActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
-        if (tblSP.getSelectedRow() >= 0) {
-            if (!productDetailGHs.contains(productDetails.get(tblSP.getSelectedRow()))) {
-                productDetailGHs.add(productDetails.get(tblSP.getSelectedRow()));
-            }
-            loadTableGH(productDetailGHs);
-        }
+       productDetailSelected = productDetails.get(tblSP.getSelectedRow());
     }//GEN-LAST:event_tblSPMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -411,6 +418,8 @@ public class BanHangJDialog extends javax.swing.JFrame {
         int i = tblHDC.getSelectedRow();
         if (i>=0) {
           billSelected = hdcs.get(i);
+          billDEtailGHs = billDetailService.findByBill(billSelected);
+          loadTableGH(billDEtailGHs);
         }
     }//GEN-LAST:event_tblHDCMouseClicked
 
@@ -519,30 +528,23 @@ public class BanHangJDialog extends javax.swing.JFrame {
           
     }
 
-    private void loadTableGH(List<ProductDetail> productDetailGHs) {
+    private void loadTableGH(List<BillDetail> billDetails) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblGH.getModel();
         defaultTableModel.setRowCount(0);
 
-        for (ProductDetail productDetail : this.productDetailGHs) {
+        for (BillDetail billDetail : billDetails) {
+            ProductDetail productDetail = billDetail.getProductDetail();
             JSpinner spinner = new JSpinner();
             spinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
             JButton button = new JButton("Xóa");
-            button.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    if (JOptionPane.showConfirmDialog(null, "Ban co chac chan muon xoa khong ?") == JOptionPane.OK_OPTION) {
-                        productDetailGHs.remove(productDetail);
-                        loadTableGH(productDetailGHs);
-                    }
-
-                }
-            });
+            System.out.println("view.BanHangJDialog.loadTableGH()");
             defaultTableModel.addRow(
                     new Object[]{
                         productDetail.getId(),
                         productDetail.getProduct() == null ? null : productDetail.getProduct().getProductName(),
                         productDetail.getPrice(),
-                        1,
-                        productDetail.getPrice(),
+                        billDetail.getQuantity(),
+                        billDetail.getPrice(),
                         button
 
                     }

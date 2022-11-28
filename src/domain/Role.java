@@ -49,7 +49,7 @@ public class Role implements Serializable {
 	public Role() {
 	}
  @PrePersist
-        @PreUpdate
+        
         public void pre() {
             if(type==null){
                 type=1;
