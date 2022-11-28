@@ -21,5 +21,7 @@ public interface EmployeeService {
 	List<Employee> findAll(int first, int size);
 
 	List<Employee> findAll();
+public Employee findUserNamePassWord(String username,String password);
 
+    public Employee getByUsername(String username);
 }
