@@ -6,6 +6,8 @@ package view;
 
 import domain.Employee;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import service.EmployeeService;
 import service.impl.EmployeeServiceImpl;
@@ -173,7 +175,12 @@ public class Dangnhap extends javax.swing.JFrame {
                 return;
             }
             
-            Employee employee = employeeService.findUserNamePassWord(username, password);
+            Employee employee = null;
+        try {
+            employee = employeeService.findByUserNamePassWord(username, password);
+        } catch (Exception ex) {
+          
+        }
              
             if (employee != null ) {
                 if (employee.getRole().getCode().equals("nv")) {

@@ -4,13 +4,17 @@
  */
 package view;
 
-
-
-
 import domain.Employee;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import service.EmployeeService;
 import service.impl.EmployeeServiceImpl;
+import utils.SendEmailUtil;
 
 /**
  *
@@ -18,11 +22,14 @@ import service.impl.EmployeeServiceImpl;
  */
 public class QuenMatKhau extends javax.swing.JFrame {
 
-    /**
-     * Creates new form QuenMatKhau
-     */
+    private Timer timerReSendEmail;
+    private Timer timerCode;
+
+    private String code;
+
     private Employee employee = null;
     private EmployeeService employeeService = new EmployeeServiceImpl();
+
     public QuenMatKhau() {
         initComponents();
         setLocationRelativeTo(null);
@@ -120,17 +127,17 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                        .addComponent(txtEmail))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(txtEmail))
-                        .addGap(21, 21, 21)
-                        .addComponent(btnSendCode))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtVerification, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(4, 4, 4))
+                            .addComponent(txtVerification, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(txtConfirmPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSendCode)))
+                .addGap(13, 13, 13))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -158,12 +165,12 @@ public class QuenMatKhau extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSendCode))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSendCode))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -185,17 +192,95 @@ public class QuenMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnChangeThePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeThePasswordActionPerformed
-       Dangnhap dn = new Dangnhap();
-       dn.setVisible(true);
+
+        String newPass = txtNewPassword.getText().trim();
+        String confirmPass = txtConfirmPassword.getText().trim();
+
+        if (newPass.equals(confirmPass)) {
+            String code = txtVerification.getText().trim();
+            if (code.equals(this.code)) {
+                if (employee != null) {
+                    try {
+                        employeeService.changePassword(employee.getId(), newPass);
+                        Dangnhap dn = new Dangnhap();
+                        dn.setVisible(true);
+                        this.dispose();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "Loi ");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Chua nhap Username ");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ma xac nhan khong chinh xac");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Confirm Password khong hop le");
+        }
+
+
     }//GEN-LAST:event_btnChangeThePasswordActionPerformed
 
     private void btnSendCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendCodeActionPerformed
-      try{
-          String username = txtUserName.getText().trim();
-          employee = employeeService.getByUsername(username);
-      }catch(Exception e){
-          JOptionPane.showMessageDialog(this, e);
-      }
+
+        String username = txtUserName.getText().trim();
+        try {
+            employee = employeeService.findByUserName(username);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Username khong ton tai ");
+        }
+        String email = txtEmail.getText().trim();
+        if (email.equals(employee.getEmail())) {
+            int codeInt = (int) Math.ceil(Math.random() * 1000000);
+            String codeString = String.valueOf(codeInt);
+            for (int i = codeString.length(); i < 6; i++) {
+                codeString = "0" + codeString;
+            }
+            code = codeString;
+            String content = "Ma xac nhan lay lai mat khau\n Code: " + code + "\n Vui long khong cung cap ma cho nguoi khac";
+
+            txtUserName.setEditable(false);
+            txtEmail.setEditable(false);
+
+            if (timerReSendEmail != null) {
+                if (timerReSendEmail.isRunning()) {
+                    JOptionPane.showMessageDialog(this, "Vui long cho 30s ");
+                } else {
+                    try {
+                        SendEmailUtil.Send(SendEmailUtil.USERNAMEDEFAULT, SendEmailUtil.PASSWORDDEFAULT, email, "Xac nhan Email", content);
+
+                        timerReSendEmail.start();
+                        JOptionPane.showMessageDialog(this, "Da gui ma toi " + email);
+                    } catch (RuntimeException ex) {
+                        JOptionPane.showMessageDialog(this, "Loi gui Email ");
+                    } catch (MessagingException ex) {
+                        JOptionPane.showMessageDialog(this, "Loi gui Email ");
+                    }
+                }
+            } else {
+                timerReSendEmail = new Timer(30000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+                timerReSendEmail.setRepeats(false);
+                try {
+                    SendEmailUtil.Send(SendEmailUtil.USERNAMEDEFAULT, SendEmailUtil.PASSWORDDEFAULT, email, "Xac nhan Email", content);
+
+                    timerReSendEmail.start();
+                    JOptionPane.showMessageDialog(this, "Da gui ma toi " + email);
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(this, "Loi gui Email ");
+                } catch (MessagingException ex) {
+                    JOptionPane.showMessageDialog(this, "Loi gui Email ");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "UserName hoac Email khong hop le");
+        }
+
+
     }//GEN-LAST:event_btnSendCodeActionPerformed
 
     /**

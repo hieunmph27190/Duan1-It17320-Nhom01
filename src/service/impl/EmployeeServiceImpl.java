@@ -49,14 +49,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Long count() {
 		return employeeRepository.count();
 	}
+
+    public Employee findByUserName(String UserName) throws Exception {
+        return employeeRepository.findByUserName(UserName);
+    }
         
-        @Override
-	 public Employee findUserNamePassWord(String username,String password) {
-        return employeeRepository.findUserNamePassWord(username,password);
+    
+
+   
+
+    public void changePassword(UUID id, String newPass) throws Exception {
+        employeeRepository.changePassword(id, newPass);
     }
 
-    @Override
-    public Employee getByUsername(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Employee findByUserNamePassWord(String UserName, String PassWord) throws Exception {
+        return employeeRepository.findByUserNamePassWord(UserName, PassWord);
     }
 }

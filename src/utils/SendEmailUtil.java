@@ -24,7 +24,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class SendEmailUtil {
-   
+   public static String USERNAMEDEFAULT = "quanghdph08157@fpt.edu.vn";
+   public static String PASSWORDDEFAULT = "deocanbiet3720";
+           
 	public static void Send(String userName,String password,String to,String title,String message,String ccEmail,String bccEmail,String uriFile) throws RuntimeException, MessagingException  {
 		File file = new File(uriFile);
 		MimeBodyPart bodyPart = new MimeBodyPart();
