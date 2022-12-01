@@ -279,7 +279,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 110, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 110, -1));
 
         jButton1.setText("Tao Hoa Don");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
