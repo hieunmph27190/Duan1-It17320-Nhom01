@@ -452,7 +452,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
-        productDetailSelected = productDetails.get(tblSP.getSelectedRow());
+       productDetailSelected = productDetails.get(tblSP.getSelectedRow());
     }//GEN-LAST:event_tblSPMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
