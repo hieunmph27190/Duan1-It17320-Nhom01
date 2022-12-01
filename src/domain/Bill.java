@@ -18,137 +18,150 @@ import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the Bill database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Bill.findAll", query="SELECT b FROM Bill b")
+@NamedQuery(name = "Bill.findAll", query = "SELECT b FROM Bill b")
 public class Bill implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="Id")
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="CreateDate")
-	private Date createDate;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Type")
-	private Integer type;
+    @Column(name = "CreateDate")
+    private Date createDate;
 
-	//bi-directional many-to-one association to Customer
-	@ManyToOne
-	@JoinColumn(name="CustomerId")
-	private Customer customer;
+    @Column(name = "Type")
+    private Integer type;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="EmployeeId")
-	private Employee employee;
+    //bi-directional many-to-one association to Customer
+    @ManyToOne
+    @JoinColumn(name = "CustomerId")
+    private Customer customer;
 
-	//bi-directional many-to-one association to BillDetail
-	@OneToMany(mappedBy="bill")
-	private List<BillDetail> billDetails;
+    //bi-directional many-to-one association to Employee
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId")
+    private Employee employee;
 
-	//bi-directional many-to-one association to Exchange
-	@OneToMany(mappedBy="bill")
-	private List<Exchange> exchanges;
+    //bi-directional many-to-one association to BillDetail
+    @OneToMany(mappedBy = "bill")
+    private List<BillDetail> billDetails;
 
-	public Bill() {
-	}
-         @PrePersist
-        public void pre() {
-            if(type==null){
-                type=1;
+    //bi-directional many-to-one association to Exchange
+    @OneToMany(mappedBy = "bill")
+    private List<Exchange> exchanges;
+
+    public Bill() {
+    }
+
+    @PrePersist
+    public void pre() {
+        if (type == null) {
+            type = 1;
+        }
+    }
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return this.createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Integer getType() {
+        return this.type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Employee getEmployee() {
+        return this.employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public List<BillDetail> getBillDetails() {
+        return this.billDetails;
+    }
+
+    public void setBillDetails(List<BillDetail> billDetails) {
+        this.billDetails = billDetails;
+    }
+
+    public BillDetail addBillDetail(BillDetail billDetail) {
+        getBillDetails().add(billDetail);
+        billDetail.setBill(this);
+
+        return billDetail;
+    }
+
+    public BillDetail removeBillDetail(BillDetail billDetail) {
+        getBillDetails().remove(billDetail);
+        billDetail.setBill(null);
+
+        return billDetail;
+    }
+
+    public List<Exchange> getExchanges() {
+        return this.exchanges;
+    }
+
+    public void setExchanges(List<Exchange> exchanges) {
+        this.exchanges = exchanges;
+    }
+
+    public Exchange addExchange(Exchange exchange) {
+        getExchanges().add(exchange);
+        exchange.setBill(this);
+
+        return exchange;
+    }
+
+    public Exchange removeExchange(Exchange exchange) {
+        getExchanges().remove(exchange);
+        exchange.setBill(null);
+
+        return exchange;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Bill) {
+            Bill bill = (Bill) obj;
+            if (bill.getId().toString().equals(this.getId().toString())) {
+                return true;
             }
         }
 
-	public UUID getId() {
-		return this.id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Integer getType() {
-		return this.type;
-	}
-
-	public void setType(Integer type) {
-		this.type = type;
-	}
-
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public Employee getEmployee() {
-		return this.employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public List<BillDetail> getBillDetails() {
-		return this.billDetails;
-	}
-
-	public void setBillDetails(List<BillDetail> billDetails) {
-		this.billDetails = billDetails;
-	}
-
-	public BillDetail addBillDetail(BillDetail billDetail) {
-		getBillDetails().add(billDetail);
-		billDetail.setBill(this);
-
-		return billDetail;
-	}
-
-	public BillDetail removeBillDetail(BillDetail billDetail) {
-		getBillDetails().remove(billDetail);
-		billDetail.setBill(null);
-
-		return billDetail;
-	}
-
-	public List<Exchange> getExchanges() {
-		return this.exchanges;
-	}
-
-	public void setExchanges(List<Exchange> exchanges) {
-		this.exchanges = exchanges;
-	}
-
-	public Exchange addExchange(Exchange exchange) {
-		getExchanges().add(exchange);
-		exchange.setBill(this);
-
-		return exchange;
-	}
-
-	public Exchange removeExchange(Exchange exchange) {
-		getExchanges().remove(exchange);
-		exchange.setBill(null);
-
-		return exchange;
-	}
+        return false;
+    }
 
 }
