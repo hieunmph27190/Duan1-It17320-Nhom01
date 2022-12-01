@@ -15,6 +15,25 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import service.BillDetailService;
+import service.BillService;
+import service.ProductDetailService;
+import service.impl.BillDetailServiceImpl;
+import service.impl.BillServiceImpl;
+import service.impl.CustomerServiceImpl;
+import service.impl.ProductDetailServiceImpl;
+import utils.AuthUtil;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -423,8 +442,8 @@ public class BanHangJDialog extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
-            }else{
-                JOptionPane.showMessageDialog(this,"San pham da co trong gio hang");
+            } else {
+                JOptionPane.showMessageDialog(this, "San pham da co trong gio hang");
             }
 
         }
@@ -452,7 +471,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
-       productDetailSelected = productDetails.get(tblSP.getSelectedRow());
+        productDetailSelected = productDetails.get(tblSP.getSelectedRow());
     }//GEN-LAST:event_tblSPMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -494,9 +513,9 @@ public class BanHangJDialog extends javax.swing.JFrame {
             textHoaDon.setText(billSelected.getId().toString());
             billDEtailGHs = billDetailService.findByBill(billSelected);
             loadTableGH(billDEtailGHs);
-            tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+               tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
             textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
-            textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
+              textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
             Customer customer = billSelected.getCustomer();
             if (customer != null) {
                 textName.setText(customer.getFullName());
@@ -564,36 +583,36 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         int i = tblGH.getSelectedRow();;
-        if (i>=0) {
+        if (i >= 0) {
             String slStr = JOptionPane.showInputDialog(this, "Nhap so luong");
-            Integer sl=null;
+            Integer sl = null;
             try {
-                sl = Integer.parseInt(slStr); 
+                sl = Integer.parseInt(slStr);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Nhap sai");
             }
-            if (sl!=null) {
-                if (sl>=0) {
+            if (sl != null) {
+                if (sl >= 0) {
                     try {
-                    BillDetail billDetail = billDEtailGHs.get(i);
-                    Integer slChange = billDetail.getQuantity()-sl;
-                    productDetailService.changeAmount(billDetail.getProductDetail().getId(), slChange);
-                    billDetail.setQuantity(sl);
-                    billDetailService.update(billDetail);
-                    billDEtailGHs = billDetailService.findByBill(billSelected);
-                    loadTableGH(billDEtailGHs);
-                    productDetails = productDetailService.findByTypeNotEqual(0);
-                    loadTable(productDetails);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, ex.getMessage());
-                }
-                }else{
+                        BillDetail billDetail = billDEtailGHs.get(i);
+                        Integer slChange = billDetail.getQuantity() - sl;
+                        productDetailService.changeAmount(billDetail.getProductDetail().getId(), slChange);
+                        billDetail.setQuantity(sl);
+                        billDetailService.update(billDetail);
+                        billDEtailGHs = billDetailService.findByBill(billSelected);
+                        loadTableGH(billDEtailGHs);
+                        productDetails = productDetailService.findByTypeNotEqual(0);
+                        loadTable(productDetails);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(this, ex.getMessage());
+                    }
+                } else {
                     JOptionPane.showMessageDialog(this, "So luong phai la so nguyen duong");
                 }
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Vui long chon san pham can sua");
         }
     }//GEN-LAST:event_jButton10ActionPerformed

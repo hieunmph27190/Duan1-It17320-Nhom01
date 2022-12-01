@@ -4,7 +4,6 @@
  */
 package view;
 
-
 import domain.Category;
 import java.util.List;
 import java.util.UUID;
@@ -238,6 +237,17 @@ public class ViewCategories extends javax.swing.JDialog {
                 ex.printStackTrace();
             }
         }
+
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxCategory.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxCategory.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -262,6 +272,17 @@ public class ViewCategories extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(ViewCategories.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxCategory.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxCategory.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -284,6 +305,17 @@ public class ViewCategories extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(ViewCategories.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxCategory.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxCategory.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoryMouseClicked
@@ -316,9 +348,12 @@ public class ViewCategories extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+
         try {
             QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
-            qlsp.cbxCategory.setSelectedItem(categorySelected);
+            if (categorySelected != null) {
+                qlsp.cbxCategory.setSelectedItem(categorySelected);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
