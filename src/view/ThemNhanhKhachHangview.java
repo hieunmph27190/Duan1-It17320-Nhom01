@@ -231,7 +231,6 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         lblanh = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -258,13 +257,13 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         });
         getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, -1));
 
-        ADD.setText("ADD");
+        ADD.setText("OK");
         ADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 185, 80, 30));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 80, 30));
         getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 250, -1));
         getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 247, -1));
 
@@ -308,7 +307,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 240, 20));
 
         lblanh.setText("Anh");
-        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 120, 150));
+        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 120, 150));
 
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +315,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 80, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 80, 30));
 
         jButton2.setText("XoaAvata");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -324,10 +323,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 80, 30));
-
-        jButton3.setText("OK");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 70, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 80, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -500,7 +496,6 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     private javax.swing.JRadioButton female;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

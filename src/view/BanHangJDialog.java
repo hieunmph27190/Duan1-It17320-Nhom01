@@ -10,6 +10,7 @@ import domain.Customer;
 import domain.ProductDetail;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 ;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,13 +96,16 @@ public class BanHangJDialog extends javax.swing.JFrame {
         textTienTra = new javax.swing.JTextField();
         textTongTien = new javax.swing.JTextField();
         textName = new javax.swing.JTextField();
-        textGiamGia1 = new javax.swing.JTextField();
+        textGiamGia = new javax.swing.JTextField();
         sprinerTienDua = new javax.swing.JSpinner();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblGH = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -219,6 +223,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         textSoLuong.setEditable(false);
+        textSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         textSoLuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 310, -1));
 
@@ -247,7 +252,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 110, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, -1));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +274,12 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
 
         jButton4.setText("Xuat FDF");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 110, -1));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 110, -1));
 
         jButton1.setText("Tao Hoa Don");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +287,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 110, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 110, -1));
 
         textHoaDon.setEditable(false);
         textHoaDon.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -292,14 +302,16 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 150, -1));
 
         textTongTien.setEditable(false);
+        textTongTien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textTongTien.setForeground(new java.awt.Color(255, 153, 51));
         textTongTien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 410, -1));
+        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 400, -1));
 
         textName.setEditable(false);
         jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 310, -1));
 
-        textGiamGia1.setEditable(false);
-        jPanel1.add(textGiamGia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 410, -1));
+        textGiamGia.setEditable(false);
+        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 400, -1));
 
         sprinerTienDua.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
         sprinerTienDua.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -346,7 +358,23 @@ public class BanHangJDialog extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tblGH);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 490, 130));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 440, 130));
+
+        jButton9.setText("X");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 50, -1));
+
+        jButton10.setText("U");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 50, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 530, 160));
 
@@ -357,6 +385,14 @@ public class BanHangJDialog extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 80, -1));
+
+        jButton7.setText("Huy HD");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 80, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,17 +411,20 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 billDetail.setPrice(productDetails.get(tblSP.getSelectedRow()).getPrice());
                 billDetail.setQuantity(1);
                 try {
-                    billDetailService.insert(billDetail);
                     productDetailService.changeAmount(billDetail.getProductDetail().getId(), 0 - billDetail.getQuantity());
+                    billDetailService.insert(billDetail);
                     billDEtailGHs = billDetailService.findByBill(billSelected);
                     loadTableGH(billDEtailGHs);
                     productDetails = productDetailService.findByTypeNotEqual(0);
-                    textTongTien.setText(billService.getSumMoney(billSelected).toString());
+                    loadTable(productDetails);
+                    productDetails = productDetailService.findByTypeNotEqual(0);
+                    textTongTien.setText(billService.getSumMoney(billSelected) == null ? null : billService.getSumMoney(billSelected).toString());
                 } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Lou");
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
+            }else{
+                JOptionPane.showMessageDialog(this,"San pham da co trong gio hang");
             }
 
         }
@@ -405,6 +444,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 billService.update(billSelected);
                 hdcs = billService.findByTypeEqual(1);
                 loadTableHDC(hdcs);
+                focusRowTableHDC(billSelected);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Loi");
             }
@@ -425,7 +465,10 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 billService.insert(bill);
                 hdcs = billService.findByTypeEqual(1);
                 loadTableHDC(hdcs);
-//                billSelected=bill;
+                billSelected = bill;
+                focusRowTableHDC(billSelected);
+                clearForm();
+                textHoaDon.setText(billSelected.getId().toString());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "L?i");
                 ex.printStackTrace();
@@ -439,20 +482,30 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         new ThemNhanhKhachHangview(this, true).setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tblHDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDCMouseClicked
         int i = tblHDC.getSelectedRow();
         if (i >= 0) {
+            DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
+            clearForm();
             billSelected = hdcs.get(i);
             textHoaDon.setText(billSelected.getId().toString());
             billDEtailGHs = billDetailService.findByBill(billSelected);
             loadTableGH(billDEtailGHs);
-            tongTien = billService.getSumMoney(billSelected);
-            textTongTien.setText(tongTien.toString());
-            textSoLuong.setText(billService.getQuantity(billSelected).toString());
+            tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+            textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
+            textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
+            Customer customer = billSelected.getCustomer();
+            if (customer != null) {
+                textName.setText(customer.getFullName());
+                textSDT.setText(customer.getPhoneNumber());
+
+            } else {
+                textName.setText("");
+                textSDT.setText("");
+            }
         }
     }//GEN-LAST:event_tblHDCMouseClicked
 
@@ -473,13 +526,77 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void sprinerTienDuaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sprinerTienDuaPropertyChange
-       
+
     }//GEN-LAST:event_sprinerTienDuaPropertyChange
 
     private void sprinerTienDuaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sprinerTienDuaStateChanged
         Double tienDua = (Double) sprinerTienDua.getValue();
-        textTienTra.setText(String.valueOf(tienDua-tongTien.doubleValue()));
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
+        textTienTra.setText(decimalFormat.format(new BigDecimal(tienDua - tongTien.doubleValue())));
     }//GEN-LAST:event_sprinerTienDuaStateChanged
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        int i = tblGH.getSelectedRow();
+        if (i >= 0) {
+            try {
+                billDetailService.remove(billDEtailGHs.get(i).getId());
+                billDEtailGHs = billDetailService.findByBill(billSelected);
+                loadTableGH(billDEtailGHs);
+                DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
+                tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+                textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
+                textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
+                Double tienDua = (Double) sprinerTienDua.getValue();
+                textTienTra.setText(decimalFormat.format(String.valueOf(tienDua - tongTien.doubleValue())));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Loi");
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        int i = tblGH.getSelectedRow();;
+        if (i>=0) {
+            String slStr = JOptionPane.showInputDialog(this, "Nhap so luong");
+            Integer sl=null;
+            try {
+                sl = Integer.parseInt(slStr); 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Nhap sai");
+            }
+            if (sl!=null) {
+                if (sl>=0) {
+                    try {
+                    BillDetail billDetail = billDEtailGHs.get(i);
+                    Integer slChange = billDetail.getQuantity()-sl;
+                    productDetailService.changeAmount(billDetail.getProductDetail().getId(), slChange);
+                    billDetail.setQuantity(sl);
+                    billDetailService.update(billDetail);
+                    billDEtailGHs = billDetailService.findByBill(billSelected);
+                    loadTableGH(billDEtailGHs);
+                    productDetails = productDetailService.findByTypeNotEqual(0);
+                    loadTable(productDetails);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                }
+                }else{
+                    JOptionPane.showMessageDialog(this, "So luong phai la so nguyen duong");
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Vui long chon san pham can sua");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,12 +639,15 @@ public class BanHangJDialog extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -553,7 +673,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
     private javax.swing.JTable tblSP;
-    private javax.swing.JTextField textGiamGia1;
+    private javax.swing.JTextField textGiamGia;
     private javax.swing.JTextField textHoaDon;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSDT;
@@ -582,16 +702,25 @@ public class BanHangJDialog extends javax.swing.JFrame {
         }
     }
 
-    public void selecttedcustomor(Customer cs) {
-        textHoaDon.setText(cs.getFullName());
-        textSDT.setText(cs.getPhoneNumber());
+    public void selecttedcustomor(Customer cus) {
+        try {
+            billSelected.setCustomer(cus);
+            billService.update(billSelected);
+            hdcs = billService.findByTypeEqual(1);
+            loadTableHDC(hdcs);
+            textName.setText(cus.getFirstName() + " " + cus.getBufferName() + " " + cus.getName());
+            textSDT.setText(cus.getPhoneNumber());
+            focusRowTableHDC(billSelected);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Loi");
+        }
 
     }
 
     private void loadTableGH(List<BillDetail> billDetails) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblGH.getModel();
         defaultTableModel.setRowCount(0);
-
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
         for (BillDetail billDetail : billDetails) {
             ProductDetail productDetail = billDetail.getProductDetail();
             JSpinner spinner = new JSpinner();
@@ -602,9 +731,9 @@ public class BanHangJDialog extends javax.swing.JFrame {
                     new Object[]{
                         productDetail.getId(),
                         productDetail.getProduct() == null ? null : productDetail.getProduct().getProductName(),
-                        productDetail.getPrice(),
+                        decimalFormat.format(billDetail.getPrice()),
                         billDetail.getQuantity(),
-                        billDetail.getPrice(),
+                        decimalFormat.format((billDetail.getPrice().doubleValue() * billDetail.getQuantity())),
                         button
 
                     }
@@ -657,5 +786,23 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         });
+    }
+
+    private void focusRowTableHDC(Bill billSelected) {
+        int i = hdcs.indexOf(billSelected);
+        if (i != -1) {
+            tblHDC.setRowSelectionInterval(i, i);
+        }
+    }
+
+    private void clearForm() {
+        textHoaDon.setText("");
+        textName.setText("");
+        textSoLuong.setText("");
+        textSDT.setText("");
+        textTongTien.setText("");
+        textTienTra.setText("");
+        textGiamGia.setText("");
+        sprinerTienDua.setValue(0D);
     }
 }

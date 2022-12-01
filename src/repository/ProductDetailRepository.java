@@ -20,8 +20,11 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         EntityManager entityManager = JpaUtil.getEntityManager();
         ProductDetail productDetail = entityManager.find(ProductDetail.class, id);
         Long newAmount = productDetail.getAmount() + amountChange;
+        if (newAmount<0) {
+            throw new Exception("So luong khong du");
+        }
         try {
-            Query query=    entityManager.createQuery(jpql);
+            Query query = entityManager.createQuery(jpql);
             query.setParameter("amount", newAmount);
             query.setParameter("id", id);
             entityManager.getTransaction().begin();
