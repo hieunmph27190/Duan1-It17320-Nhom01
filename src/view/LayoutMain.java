@@ -92,6 +92,7 @@ public class LayoutMain extends JFrame {
 		initChucNang();
 	}
 
+        
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1295, 680);

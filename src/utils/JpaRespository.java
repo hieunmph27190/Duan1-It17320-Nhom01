@@ -182,7 +182,10 @@ public class JpaRespository<E, K> {
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw e;
+        }finally{
+            entityManager.close();
         }
+        
 
     }
 

@@ -297,7 +297,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên", "Lo?i2", "Màu", "Size", "Hãng5", "D?", "S? l??ng", "Giá", "B?o hành (tháng)", "Mô t?"
+                "TÃªn", "Lo?i2", "MÃ u", "Size", "HÃ£ng5", "D?", "S? l??ng", "GiÃ¡", "B?o hÃ nh (thÃ¡ng)", "MÃ´ t?"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -365,13 +365,10 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnSole, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "Ngày sinh" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 71, 20));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TÃªn", "NgÃ y sinh" }));
+
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 80, 20));
+
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton12.setText(">");
@@ -391,7 +388,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 40, 50));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("Hình");
+        jLabel10.setText("HÃ¬nh");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 70, 70));
 
         btnAddAvata1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
@@ -413,6 +410,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 110, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
@@ -426,21 +424,21 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         } else {
             String meseage = "";
             if (productDetail.getProduct().getId() == null) {
-                meseage = "B?n có ch?c ch?n mu?n thêm m?t s?n ph?m v?i tên :" + productDetail.getProduct().getProductName();
+                meseage = "B?n cÃ³ ch?c ch?n mu?n thÃªm m?t s?n ph?m v?i tÃªn :" + productDetail.getProduct().getProductName();
             } else {
-                meseage = "B?n có ch?c ch?n mu?n thêm l?a ch?n chó s?n ph?m (" + productDetail.getProduct().getProductName() + ")";
+                meseage = "B?n cÃ³ ch?c ch?n mu?n thÃªm l?a ch?n chÃ³ s?n ph?m (" + productDetail.getProduct().getProductName() + ")";
             }
-            if (JOptionPane.showConfirmDialog(this, meseage, "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, meseage, "XÃ¡c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
              
                     productDetail.setId(null);
                     productDetailService.insert(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    JOptionPane.showMessageDialog(this, "ThÃªm thÃ nh cÃ´ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Thêm th?t b?i");
+                    JOptionPane.showMessageDialog(this, "ThÃªm th?t b?i");
                 }
             }
         }
@@ -475,12 +473,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (productDetail == null) {
 
         } else {
-            if (JOptionPane.showConfirmDialog(this, "Xác nh?n c?p nh?t", "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "XÃ¡c nh?n c?p nh?t", "XÃ¡c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.update(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t thành công");
+                    JOptionPane.showMessageDialog(this, "C?p nh?t thÃ nh cÃ´ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
@@ -492,12 +490,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         ProductDetail productDetail = getFormData();
         if (productDetail != null) {
-            if (JOptionPane.showConfirmDialog(this, "Xác nh?n xóa", "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "XÃ¡c nh?n xÃ³a", "XÃ¡c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.setType(productDetail.getId(),0);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t thành công");
+                    JOptionPane.showMessageDialog(this, "C?p nh?t thÃ nh cÃ´ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
@@ -590,6 +588,22 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private ProductDetail getFormData() {
+        
+        if(textName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name Null");
+            return null;
+        }
+        
+        if(textNote.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Note Null");
+            return null;
+        }
+        
+        if(textPrice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Price Null");
+            return null;
+        }
+        
         ProductDetail productDetail = productDetailSelected;
         if (productDetail == null) {
             productDetail = new ProductDetail();

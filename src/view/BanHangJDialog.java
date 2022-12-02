@@ -9,54 +9,30 @@ import domain.BillDetail;
 import domain.Customer;
 import domain.ProductDetail;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.table.DefaultTableModel;
+import service.BillDetailService;
+import service.BillService;
+import service.ProductDetailService;
+import service.impl.BillDetailServiceImpl;
+import service.impl.BillServiceImpl;
+import service.impl.CustomerServiceImpl;
+import service.impl.ProductDetailServiceImpl;
+import utils.AuthUtil;
 ;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import service.BillDetailService;
-import service.BillService;
-import service.ProductDetailService;
-import service.impl.BillDetailServiceImpl;
-import service.impl.BillServiceImpl;
-import service.impl.CustomerServiceImpl;
-import service.impl.ProductDetailServiceImpl;
-import utils.AuthUtil;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import service.BillDetailService;
-import service.BillService;
-import service.ProductDetailService;
-import service.impl.BillDetailServiceImpl;
-import service.impl.BillServiceImpl;
-import service.impl.CustomerServiceImpl;
-import service.impl.ProductDetailServiceImpl;
-import utils.AuthUtil;
-
-
 
 public class BanHangJDialog extends javax.swing.JFrame {
 
     private BigDecimal tongTien;
     private Bill billSelected;
     private List<Bill> hdcs = new ArrayList<Bill>();
+    private List<Bill> hddhs = new ArrayList<Bill>();
     private ProductDetail productDetailSelected;
     private ProductDetailService productDetailService;
     private List<ProductDetail> productDetails = new ArrayList<>();
@@ -70,7 +46,9 @@ public class BanHangJDialog extends javax.swing.JFrame {
         initComponents();
         init();
         hdcs = billService.findByTypeEqual(1);
+        hddhs = billService.findByTypeEqual(0);
         loadTableHDC(hdcs);
+        loadTableHDDH(hddhs);
         this.productDetailService = new ProductDetailServiceImpl();
         setLocationRelativeTo(null);
         productDetails = productDetailService.findByTypeNotEqual(0);
@@ -86,9 +64,13 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHDC = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblHDH = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
@@ -109,7 +91,6 @@ public class BanHangJDialog extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         textHoaDon = new javax.swing.JTextField();
         textTienTra = new javax.swing.JTextField();
@@ -123,8 +104,6 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblGH = new javax.swing.JTable();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,6 +111,8 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bán Hàng");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,20 +132,29 @@ public class BanHangJDialog extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblHDC);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-        );
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 384, 130));
+
+        jButton7.setText("Huy HD");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, 30));
+
+        jButton2.setText("Tao HD");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 80, 30));
 
         jTabbedPane1.addTab("Hoa Don Cho", jPanel3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblHDH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -175,27 +165,34 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblHDH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                tblHDHMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(tblHDH);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-        );
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 378, 130));
+
+        jButton4.setText("Xoa");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 80, 30));
+
+        jButton11.setText("Tao HD");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 80, 30));
 
         jTabbedPane1.addTab("Hoa Don Da Huy", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 400, 160));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 500, 150));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("San pham")));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -271,7 +268,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 110, 50));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -292,23 +289,15 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jLabel15.setText("Ma HD: ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
 
-        jButton4.setText("Xuat FDF");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 110, -1));
+        jButton1.setText("Thanh Toan");
 
-
-        jButton1.setText("Tao Hoa Don");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 110, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 110, 50));
 
         textHoaDon.setEditable(false);
         textHoaDon.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -398,22 +387,6 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 50, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 530, 160));
-
-        jButton2.setText("Tao HD");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 80, -1));
-
-        jButton7.setText("Huy HD");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 80, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -518,10 +491,9 @@ public class BanHangJDialog extends javax.swing.JFrame {
             billDEtailGHs = billDetailService.findByBill(billSelected);
             loadTableGH(billDEtailGHs);
 
-               tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+            tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
             textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
-              textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
-
+            textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
 
             Customer customer = billSelected.getCustomer();
             if (customer != null) {
@@ -539,12 +511,23 @@ public class BanHangJDialog extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textTienTraActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void tblHDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDHMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_tblHDHMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+     
+        try {
+            billService.setType(billSelected.getId(), 2);
+            JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
+             hdcs = billService.findByTypeEqual(1);
+             loadTableHDC(hdcs);
+             billDEtailGHs = new ArrayList<>();
+             loadTableGH(billDEtailGHs);
+             clearForm();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -562,12 +545,31 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_sprinerTienDuaStateChanged
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        List<BillDetail> billDetails = billDetailService.findByBill(billSelected);
+        for (BillDetail billDetail : billDetails) {
+            ProductDetail productDetail = billDetail.getProductDetail();
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+            Integer slChange = billDetail.getQuantity() - 0;
+            try {
+                productDetailService.changeAmount(productDetail.getId(), slChange);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
+        try {
+            billService.setType(billSelected.getId(), 0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        hdcs = billService.findByTypeEqual(1);
+        loadTableHDC(hdcs);
+        productDetails = productDetailService.findByTypeNotEqual(0);
+        loadTable(productDetails);
+        loadTableGH(new ArrayList<>());
+        hddhs = billService.findByTypeEqual(0);
+        loadTableHDDH(hddhs);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         int i = tblGH.getSelectedRow();
@@ -626,6 +628,21 @@ public class BanHangJDialog extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            billService.remove(hddhs.get(tblHDH.getSelectedRow()).getId());
+            hddhs = billService.findByTypeEqual(0);
+            loadTableHDDH(hddhs);
+            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Loi");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -668,6 +685,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -695,11 +713,11 @@ public class BanHangJDialog extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner sprinerTienDua;
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
+    private javax.swing.JTable tblHDH;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField textGiamGia;
     private javax.swing.JTextField textHoaDon;
@@ -722,6 +740,18 @@ public class BanHangJDialog extends javax.swing.JFrame {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDC.getModel();
         defaultTableModel.setRowCount(0);
         for (Bill bill : hdcs) {
+            defaultTableModel.addRow(
+                    new Object[]{
+                        bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName()
+                    }
+            );
+        }
+    }
+
+    private void loadTableHDDH(List<Bill> hddhs) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDH.getModel();
+        defaultTableModel.setRowCount(0);
+        for (Bill bill : hddhs) {
             defaultTableModel.addRow(
                     new Object[]{
                         bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName()
