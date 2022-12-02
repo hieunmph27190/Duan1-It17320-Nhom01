@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -39,6 +41,14 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy="product")
 	private List<ProductDetail> productDetails;
 
+         @PrePersist
+        @PreUpdate
+        public void pre() {
+            if(type==null){
+                type=1;
+            }
+        }
+        
 	public Product() {
 	}
 

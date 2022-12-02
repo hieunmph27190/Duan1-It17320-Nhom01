@@ -32,6 +32,7 @@ import service.impl.ProductDetailServiceImpl;
 import service.impl.ProductServiceImpl;
 import service.impl.SizeServiceImpl;
 import service.impl.SoleServiceImpl;
+import utils.Constant;
 
 /**
  *
@@ -52,7 +53,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private ProductDetail productDetailSelected;
     private ProductDetailService productDetailService;
     private List<ProductDetail> productDetails;
-    private List<Image>images;
+    private List<Image> images;
     private int indexImg;
 
     public QuanLiSanPham() {
@@ -127,9 +128,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         textID = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         cbxSole = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -143,13 +142,11 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         cbxColor = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
-        spinBH = new javax.swing.JSpinner();
         textPrice = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textNote = new javax.swing.JTextArea();
         textName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         spinAmount = new javax.swing.JSpinner();
@@ -163,13 +160,22 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         btnSize = new javax.swing.JButton();
         btnBrand = new javax.swing.JButton();
         btnSole = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton12 = new javax.swing.JButton();
         btnAddAvata = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         btnAddAvata1 = new javax.swing.JButton();
         btnAddAvata2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        txt_search_productname = new javax.swing.JTextField();
+        txt_search_category = new javax.swing.JTextField();
+        txt_search_color = new javax.swing.JTextField();
+        txt_search_size = new javax.swing.JTextField();
+        txt_search_brand = new javax.swing.JTextField();
+        txt_search_sole = new javax.swing.JTextField();
+        txt_search_quantity = new javax.swing.JTextField();
+        txt_search_price = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -189,7 +195,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         jButton7.setText("San Pham Da Xoa");
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 141, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 192, 20));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
@@ -200,10 +205,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
+
         jButton1.setText("SEACH");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, -1, 20));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
+
         btnAdd.setText("ADD");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,10 +264,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
+
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 100, -1));
 
         spinBH.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         getContentPane().add(spinBH, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 197, -1));
+
         getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 198, -1));
 
         jLabel11.setText("Gia");
@@ -270,8 +279,9 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         textNote.setRows(5);
         jScrollPane2.setViewportView(textNote);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, 198, 70));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 198, 110));
         getContentPane().add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 198, -1));
+
 
         jLabel5.setText("Bao hanh (thang)");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 98, 20));
@@ -291,31 +301,46 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên", "Lo?i2", "Màu", "Size", "Hãng5", "D?", "S? l??ng", "Giá", "B?o hành (tháng)", "Mô t?"
+
+                "T�n", "Lo?i", "M�u", "Size", "H�ng", "??", "S? l??ng", "Gi�", "M� t?"
+
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        table.setColumnSelectionAllowed(true);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(table);
+        table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(2).setResizable(false);
+            table.getColumnModel().getColumn(3).setResizable(false);
+            table.getColumnModel().getColumn(4).setResizable(false);
+            table.getColumnModel().getColumn(5).setResizable(false);
+            table.getColumnModel().getColumn(6).setResizable(false);
+            table.getColumnModel().getColumn(7).setResizable(false);
+            table.getColumnModel().getColumn(8).setResizable(false);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 790, 253));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 790, 110));
 
         jLabel15.setBackground(new java.awt.Color(255, 0, 0));
         jLabel15.setForeground(new java.awt.Color(255, 51, 102));
@@ -323,7 +348,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 110, 140));
 
         jLabel14.setText("Decription: ");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, -1, -1));
 
         btnCategory.setText("+");
         btnCategory.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +395,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 80, 20));
 
 
+
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton12.setText(">");
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, 40, 50));
@@ -409,6 +435,32 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 110, -1));
 
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+
+        txt_search_productname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_search_productnameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_search_productname);
+        jPanel1.add(txt_search_category);
+        jPanel1.add(txt_search_color);
+        jPanel1.add(txt_search_size);
+        jPanel1.add(txt_search_brand);
+        jPanel1.add(txt_search_sole);
+        jPanel1.add(txt_search_quantity);
+        jPanel1.add(txt_search_price);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 700, -1));
+
+        jButton1.setText("SEACH");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 580, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -430,7 +482,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             }
             if (JOptionPane.showConfirmDialog(this, meseage, "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
-             
+
                     productDetail.setId(null);
                     productDetailService.insert(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
@@ -492,7 +544,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (productDetail != null) {
             if (JOptionPane.showConfirmDialog(this, "Xác nh?n xóa", "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
-                    productDetailService.setType(productDetail.getId(),0);
+                    productDetailService.setType(productDetail.getId(), 0);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
                     JOptionPane.showMessageDialog(this, "C?p nh?t thành công");
@@ -522,9 +574,38 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCategoryActionPerformed
 
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//        if (txt_search.getText() == null || txt_search.getText().isBlank()) {
+//            productDetails = productDetailService.findByTypeNotEqual(0);
+//        } else {
+//            int indexCbb = combo_search.getSelectedIndex();
+//            String type = "";
+//            if (indexCbb == 0) {
+//                type = Constant.PRODUCT_NAME;
+//            } else if (indexCbb == 1) {
+//                type = Constant.CATEGORY;
+//            } else if (indexCbb == 2) {
+//                type = Constant.SIZE;
+//            } else if (indexCbb == 3) {
+//                type = Constant.BRAND;
+//            } else if (indexCbb == 4) {
+//                type = Constant.COLOR;
+//            }
+
+        productDetails = productDetailService.searchProductDetail(txt_search_productname.getText(), txt_search_category.getText(), txt_search_color.getText(), txt_search_size.getText(), txt_search_brand.getText(), txt_search_sole.getText(), txt_search_quantity.getText(), txt_search_price.getText());
+//        }
+        loadTable(productDetails);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_search_productnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_search_productnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_search_productnameActionPerformed
+
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -560,7 +641,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -570,21 +650,27 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JSpinner spinAmount;
-    private javax.swing.JSpinner spinBH;
     private javax.swing.JTable table;
     private javax.swing.JLabel textID;
     private javax.swing.JTextField textName;
     private javax.swing.JTextArea textNote;
     private javax.swing.JTextField textPrice;
+    private javax.swing.JTextField txt_search_brand;
+    private javax.swing.JTextField txt_search_category;
+    private javax.swing.JTextField txt_search_color;
+    private javax.swing.JTextField txt_search_price;
+    private javax.swing.JTextField txt_search_productname;
+    private javax.swing.JTextField txt_search_quantity;
+    private javax.swing.JTextField txt_search_size;
+    private javax.swing.JTextField txt_search_sole;
     // End of variables declaration//GEN-END:variables
 
     private ProductDetail getFormData() {
@@ -621,8 +707,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         productDetail.setPrice(priceBigDecimal);
         Long amount = (Long) spinAmount.getValue();
         productDetail.setAmount(amount);
-        Integer thangBH = (Integer) spinBH.getValue();
-        productDetail.setWarrantyTime(thangBH);
         String description = textNote.getText();
         productDetail.setDescription(description);
         Color color = (Color) cbxColor.getSelectedItem();
@@ -660,7 +744,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             textName.setText(pd.getProduct().getProductName());
             textPrice.setText(pd.getPrice().toString());
             spinAmount.setValue(pd.getAmount());
-            spinBH.setValue(pd.getWarrantyTime());
             textNote.setText(pd.getDescription());
             productDetailSelected = pd;
         }
@@ -686,7 +769,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         textName.setText("");
         textPrice.setText("");
         spinAmount.setValue(0);
-        spinBH.setValue(0);
         textNote.setText("");
         productDetailSelected = null;
 
