@@ -12,15 +12,13 @@ import javax.persistence.criteria.Root;
 import utils.JpaRespository;
 import utils.JpaUtil;
 
+public class ProductRepository extends JpaRespository<Product, UUID> {
 
+    public ProductRepository() {
+        super(Product.class);
+    }
 
-public class ProductRepository extends JpaRespository<Product, UUID>{
-
-	public ProductRepository() {
-		super(Product.class);
-	}
-	
-           public Product FindByNameEqual(String name) {
+    public Product FindByNameEqual(String name) {
         EntityManager entityManager = JpaUtil.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> query = criteriaBuilder.createQuery(Product.class);
@@ -28,11 +26,11 @@ public class ProductRepository extends JpaRespository<Product, UUID>{
         query.select(root);
         query.where(criteriaBuilder.equal(root.get("productName"), name));
         TypedQuery<Product> typedQuery = entityManager.createQuery(query);
-        Product product =null;
+        Product product = null;
         try {
-            product=typedQuery.getSingleResult();
+            product = typedQuery.getSingleResult();
         } catch (NoResultException e) {
-            
+
         }
         return product;
     }
