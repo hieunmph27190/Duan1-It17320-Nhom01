@@ -362,7 +362,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(btnSole, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "Ngày sinh" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 71, 20));
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 80, 20));
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton12.setText(">");
@@ -401,6 +401,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 70, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed

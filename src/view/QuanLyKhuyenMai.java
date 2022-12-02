@@ -22,8 +22,8 @@ import service.impl.ProductDetailServiceImpl;
  *
  * @author Administrator
  */
- 
 public class QuanLyKhuyenMai extends javax.swing.JFrame {
+
     private BigDecimal tongTien;
     private Bill billSelected;
     private List<Bill> hdcs = new ArrayList<Bill>();
@@ -34,32 +34,32 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
     private BillService billService = new BillServiceImpl();
     private BillDetailService billDetailService = new BillDetailServiceImpl() {
     };
+
     /**
      * Creates new form KhuyenMai
      */
     public QuanLyKhuyenMai() {
         initComponents();
         setLocationRelativeTo(null);
-            init();
+        init();
         hdcs = billService.findByTypeEqual(1);
         loadTable(productDetails);
         this.productDetailService = new ProductDetailServiceImpl();
         setLocationRelativeTo(null);
         productDetails = productDetailService.findByTypeNotEqual(0);
         loadTable(productDetails);;
-         
+
     }
-    
-        private void loadTable(List<ProductDetail> productDetails) {
+
+    private void loadTable(List<ProductDetail> productDetails) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) Tblsp.getModel();
         defaultTableModel.setRowCount(0);
         for (ProductDetail productDetail : productDetails) {
             defaultTableModel.addRow(productDetail.toRow());
         }
     }
-        
-          
-          private void init() {
+
+    private void init() {
         Tblsp.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -74,7 +74,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         });
-          }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -260,7 +260,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-   
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

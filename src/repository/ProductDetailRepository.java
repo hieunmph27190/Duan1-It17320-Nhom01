@@ -33,6 +33,8 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw e;
+        }finally{
+            entityManager.close();
         }
     }
 }
