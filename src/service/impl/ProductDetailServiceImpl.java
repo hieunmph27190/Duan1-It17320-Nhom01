@@ -70,4 +70,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         return productDetailRepository.searchProductDetail(productName, category, color, size, brand, soles, amount, price);
     }
 
+    @Override
+    public void changeAmount(UUID id, Integer amountChange) throws Exception {
+       productDetailRepository.changeAmount(id, amountChange);
+    }
+
 }
