@@ -238,6 +238,17 @@ public class ViewColors extends javax.swing.JDialog {
                 ex.printStackTrace();
             }
         }
+        
+           try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxColor.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxColor.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+           
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -262,6 +273,17 @@ public class ViewColors extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(ViewColors.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxColor.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxColor.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -284,6 +306,16 @@ public class ViewColors extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(ViewColors.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            try {
+            QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
+            Object obj = qlsp.cbxColor.getSelectedItem();
+            qlsp.loadBrand();
+            qlsp.cbxColor.setSelectedItem(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblColorMouseClicked
@@ -316,9 +348,12 @@ public class ViewColors extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+
         try {
             QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
-            qlsp.cbxColor.setSelectedItem(colorSelected);
+            if(colorSelected !=null) {
+                qlsp.cbxColor.setSelectedItem(colorSelected);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -305,4 +305,16 @@ public class ProductDetail implements Serializable {
         return new Object[]{this.getProduct()==null?null:this.getProduct().getProductName(),category,color,size,brand,sole,amount,price,warrantyTime,description};
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProductDetail) {
+            ProductDetail productDetail = (ProductDetail) obj;
+            if (this.getId().toString().equals(productDetail.getId().toString())) {
+                return true;
+            }
+        }
+         return false;
+    }
+    
+
 }
