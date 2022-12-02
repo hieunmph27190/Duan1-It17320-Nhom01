@@ -85,12 +85,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         } else {
             rdbtnFemale.setSelected(true);
         }
-        
+
         long avataLenght = 0;
-        
+
         try {
-            if(em.getImage() !=null) {
-             avataLenght = em.getImage().length();
+            if (em.getImage() != null) {
+                avataLenght = em.getImage().length();
             }
         } catch (SQLException ex) {
             avataLenght = 0;
@@ -118,7 +118,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
     }
 
-    
     public Employee getform() {
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         Employee empoly = null;
@@ -294,6 +293,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(btnXoaAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 60, 30));
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         jButton3.setText("Update");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,6 +302,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 99, 30));
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_exit.png"))); // NOI18N
         jButton4.setText("Exit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,6 +311,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 99, 29));
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +333,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jPanel3.add(txtaddres, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 230, 180, -1));
         jPanel3.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 188, 22));
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,7 +357,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Tim Kiem"));
 
-        jButton1.setText("Tìm ");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_search.png"))); // NOI18N
+        jButton1.setText("Search");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -365,11 +368,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField9)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -402,19 +405,19 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(153, 255, 102));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton7.setText(">|");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_last.png"))); // NOI18N
 
         jButton8.setBackground(new java.awt.Color(153, 255, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton8.setText("|<");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/first_button.png"))); // NOI18N
 
         jButton9.setBackground(new java.awt.Color(153, 255, 102));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton9.setText(">>");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
 
         jButton10.setBackground(new java.awt.Color(153, 255, 102));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton10.setText("<<");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
 
         jButton13.setText("Nhan Vien Da Xoa");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -436,7 +439,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel11)
                         .addGap(166, 166, 166))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -445,7 +448,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(49, 49, 49)
@@ -457,7 +459,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(160, 160, 160)
                                         .addComponent(jButton13)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(184, 184, 184))
         );
         jPanel4Layout.setVerticalGroup(
@@ -536,38 +539,38 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         empoly.setId(UUID.fromString(txtid.getText()));
         try {
-              if(empoly.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-                if(empoly.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-                if(empoly.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-                if(empoly.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Name Null");
-                    return;
-                }
-                if(empoly.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-                if(empoly.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
-                    return;
-                }
-                if(empoly.getUsername().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
-                    return;
-                }
-                  if(empoly.getPassword().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Mat Khau Null");
-                    return;
-                }
+            if (empoly.getAddress().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Dia Chi Null");
+                return;
+            }
+            if (empoly.getBufferName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ho Null");
+                return;
+            }
+            if (empoly.getFirstName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ten Dem Null");
+                return;
+            }
+            if (empoly.getName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Name Null");
+                return;
+            }
+            if (empoly.getPhoneNumber().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
+                return;
+            }
+            if (empoly.getEmail().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Email Null");
+                return;
+            }
+            if (empoly.getUsername().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
+                return;
+            }
+            if (empoly.getPassword().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mat Khau Null");
+                return;
+            }
             empoyeesvier.update(empoly);
             JOptionPane.showMessageDialog(this, "Sua thanh công");
             listmodel = empoyeesvier.findAll();
@@ -584,47 +587,45 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaAvataActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    
-        
-        
+
         Employee empoly = getform();
         if (empoly == null) {
             return;
         } else {
             try {
-                if(empoly.getAddress().isEmpty()) {
+                if (empoly.getAddress().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Dia Chi Null");
                     return;
                 }
-                if(empoly.getBufferName().isEmpty()) {
+                if (empoly.getBufferName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ho Null");
                     return;
                 }
-                if(empoly.getFirstName().isEmpty()) {
+                if (empoly.getFirstName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ten Dem Null");
                     return;
                 }
-                if(empoly.getName().isEmpty()) {
+                if (empoly.getName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Name Null");
                     return;
                 }
-                if(empoly.getPhoneNumber().isEmpty()) {
+                if (empoly.getPhoneNumber().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
                     return;
                 }
-                if(empoly.getEmail().isEmpty()) {
+                if (empoly.getEmail().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Email Null");
                     return;
                 }
-                if(empoly.getUsername().isEmpty()) {
+                if (empoly.getUsername().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
                     return;
                 }
-                  if(empoly.getPassword().isEmpty()) {
+                if (empoly.getPassword().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Mat Khau Null");
                     return;
                 }
-                  
+
                 empoly.setId(null);
                 empoyeesvier.insert(empoly);
                 JOptionPane.showMessageDialog(this, "Them thanh cong");

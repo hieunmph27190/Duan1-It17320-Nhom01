@@ -49,5 +49,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Long count() {
 		return employeeRepository.count();
 	}
-	
+
+    public Employee findByUserName(String UserName) throws Exception {
+        return employeeRepository.findByUserName(UserName);
+    }
+        
+    
+
+   
+
+    public void changePassword(UUID id, String newPass) throws Exception {
+        employeeRepository.changePassword(id, newPass);
+    }
+
+    public Employee findByUserNamePassWord(String UserName, String PassWord) throws Exception {
+        return employeeRepository.findByUserNamePassWord(UserName, PassWord);
+    }
 }

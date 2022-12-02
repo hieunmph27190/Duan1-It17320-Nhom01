@@ -47,7 +47,6 @@ public class Size implements Serializable {
     }
 
     @PrePersist
-    @PreUpdate
     public void pre() {
         if (type == null) {
             type = 1;

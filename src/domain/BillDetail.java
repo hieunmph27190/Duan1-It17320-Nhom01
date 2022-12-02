@@ -11,95 +11,116 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the BillDetails database table.
- * 
+ *
  */
 @Entity
-@Table(name="BillDetails")
-@NamedQuery(name="BillDetail.findAll", query="SELECT b FROM BillDetail b")
+@Table(name = "BillDetails")
+@NamedQuery(name = "BillDetail.findAll", query = "SELECT b FROM BillDetail b")
 public class BillDetail implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="Id")
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="Price")
-	private BigDecimal price;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Quantity")
-	private Integer quantity;
+    @Column(name = "Price")
+    private BigDecimal price;
 
-	@Column(name="Type")
-	private Integer type;
+    @Column(name = "Quantity")
+    private Integer quantity;
 
-	//bi-directional many-to-one association to Bill
-	@ManyToOne
-	@JoinColumn(name="BillId")
-	private Bill bill;
+    @Column(name = "Type")
+    private Integer type;
 
-	//bi-directional many-to-one association to ProductDetail
-	@ManyToOne
-	@JoinColumn(name="ProductDetailId")
-	private ProductDetail productDetail;
+    //bi-directional many-to-one association to Bill
+    @ManyToOne
+    @JoinColumn(name = "BillId")
+    private Bill bill;
 
-	public BillDetail() {
-	}
+    //bi-directional many-to-one association to ProductDetail
+    @ManyToOne
+    @JoinColumn(name = "ProductDetailId")
+    private ProductDetail productDetail;
 
-	public UUID getId() {
-		return this.id;
-	}
+    public BillDetail() {
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    @PrePersist
+    public void pre() {
+        if (type == null) {
+            type = 1;
+        }
+    }
 
-	public BigDecimal getPrice() {
-		return this.price;
-	}
+    public UUID getId() {
+        return this.id;
+    }
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public Integer getQuantity() {
-		return this.quantity;
-	}
+    public BigDecimal getPrice() {
+        return this.price;
+    }
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
-	public Integer getType() {
-		return this.type;
-	}
+    public Integer getQuantity() {
+        return this.quantity;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
-	public Bill getBill() {
-		return this.bill;
-	}
+    public Integer getType() {
+        return this.type;
+    }
 
-	public void setBill(Bill bill) {
-		this.bill = bill;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	public ProductDetail getProductDetail() {
-		return this.productDetail;
-	}
+    public Bill getBill() {
+        return this.bill;
+    }
 
-	public void setProductDetail(ProductDetail productDetail) {
-		this.productDetail = productDetail;
-	}
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public ProductDetail getProductDetail() {
+        return this.productDetail;
+    }
+
+    public void setProductDetail(ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BillDetail) {
+            BillDetail billDetail = (BillDetail) obj;            
+            if (this.getId().toString().equals(billDetail.getId().toString())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
 
 }
