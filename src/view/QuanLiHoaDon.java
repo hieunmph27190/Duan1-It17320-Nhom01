@@ -49,21 +49,22 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         init();
         loadTableHDC(hdcs);
         loadTableHDDH(hdcs);
-        hdcs = billService.findByTypeEqual(1);
+        hdcs = billService.findAll();
         loadTableHDC(hdcs);
+
         this.productDetailService = new ProductDetailServiceImpl();
         setLocationRelativeTo(null);
         productDetails = productDetailService.findByTypeNotEqual(0);
-        //     loadTable(productDetails);;
     }
 
     private void loadTableHDC(List<Bill> hdcs) {
+        String[] type = new String[]{"Da Huy", "Dang Cho", "Da Thanh Toan"};
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDC.getModel();
         defaultTableModel.setRowCount(0);
         for (Bill bill : hdcs) {
             defaultTableModel.addRow(
                     new Object[]{
-                        bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName()
+                        bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName(), type[bill.getType()]
                     }
             );
         }
@@ -88,7 +89,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Mã HDC", "Tgian tao", "Nhan vien", "Khach hang"
+                    "Ma HDC", "Tgian tao", "Nhan vien", "Khach hang", "Type"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -125,7 +126,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         }
     }
 
-        private void loadTableHDDH(List<Bill> hddhs) {
+    private void loadTableHDDH(List<Bill> hddhs) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDC.getModel();
         defaultTableModel.setRowCount(0);
         for (Bill bill : hddhs) {
@@ -136,7 +137,16 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
             );
         }
     }
-        
+    // loc
+//        private void loadTable(List<ProductDetail> productDetails) {
+//        DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDC.getModel();
+//        defaultTableModel.setRowCount(0);
+//        for (ProductDetail productDetail : productDetails) {
+//            defaultTableModel.addRow(productDetail.toRow());
+//        }
+//
+//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,23 +164,24 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         tblGH = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbb = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        txtlocnhanvien = new javax.swing.JTextField();
+        txtlockhachhang = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Quan Ly Hoa Don");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 209, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 209, -1));
 
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,10 +201,10 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblHDC);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 590, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 590, 140));
 
         jLabel2.setText("Hoa Don");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -208,41 +219,46 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblGH);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 590, 150));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 590, 150));
 
         jLabel3.setText("Hoa Don Chi Tiet ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
         jLabel4.setText("Trang Thai: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Thanh Toan", "Hoa Don Cho", "Hoa Don Da Huy" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 180, -1));
+        cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Thanh Toan", "Hoa Don Cho", "Hoa Don Da Huy" }));
+        cbb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 180, -1));
 
         jLabel5.setText("Bo Loc: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 50, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 140, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
         jLabel6.setText("Tim Kiem : ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 180, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 180, -1));
 
         jButton1.setText("SEACH");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 140, -1));
+        jButton2.setText("IN FDF");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 110, -1));
+        getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 110, -1));
+        getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 120, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 110, -1));
 
-        jLabel7.setText("Bo Loc: ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 50, -1));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 130, -1));
-
-        jLabel8.setText("Bo Loc: ");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 50, -1));
+        jButton3.setText("SEACH");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 80, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -253,13 +269,34 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         int i = tblHDC.getSelectedRow();
         if (i >= 0) {
             billSelected = hdcs.get(i);
-//            billDEtailGHs = billDetailService.findByBill(billSelected);
-//            loadTableGH(billDEtailGHs);
-            hdcs = billService.findByTypeNotEqual(1);
-        //    billDEtailGHs = billDetailService.findByBill(billSelected);
-            loadTableHDDH(hdcs);
+            billDEtailGHs = billDetailService.findByBill(billSelected);
+            loadTableGH(billDEtailGHs);
+//            hdcs = billService.findByTypeNotEqual(1);
+//        //    billDEtailGHs = billDetailService.findByBill(billSelected);
+//            loadTableHDDH(hdcs);
         }
     }//GEN-LAST:event_tblHDCMouseClicked
+
+    private void cbbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbActionPerformed
+        // TODO add your handling code here:
+        int cbbtt = cbb.getSelectedIndex();
+        if (cbbtt > 0) {
+            hdcs = billService.findByTypeEqual(cbbtt - 1);
+            loadTableHDC(hdcs);
+        } else {
+            hdcs = billService.findAll();
+            loadTableHDC(hdcs);
+        }
+
+    }//GEN-LAST:event_cbbActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        hdcs = billService.seachlochdc(txtlockhachhang.getText(), txtlocnhanvien.getText());
+//            loadTable(hdcs);
+        loadTableHDC(hdcs);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,23 +334,24 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbb;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
+    private javax.swing.JTextField txtlockhachhang;
+    private javax.swing.JTextField txtlocnhanvien;
     // End of variables declaration//GEN-END:variables
 }

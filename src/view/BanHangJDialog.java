@@ -109,7 +109,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("BÃ¡n HÃ ng");
+        jLabel1.setText("Ban Hang");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -222,7 +222,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("ThÃªm");
+        btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -232,7 +232,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("HÃ³a ??n"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa ??n"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Ten Khach Hang: ");
@@ -289,9 +289,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jLabel15.setText("Ma HD: ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
 
-
         jButton1.setText("Thanh Toan");
-
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -347,7 +345,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 530, 390));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hÃ ng"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(

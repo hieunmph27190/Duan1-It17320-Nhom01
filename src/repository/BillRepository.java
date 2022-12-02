@@ -5,6 +5,7 @@ import java.util.UUID;
 import domain.Bill;
 import domain.ProductDetail;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import utils.JpaRespository;
@@ -24,6 +25,7 @@ public class BillRepository extends JpaRespository<Bill, UUID> {
         BigDecimal sum = query.getSingleResult();
         return sum;
     }
+
     public Long getQuantity(Bill bill) {
         String jpql = "select sum(bx.quantity) from Bill b join b.billDetails bx where b.id = :id";
         EntityManager em = JpaUtil.getEntityManager();
@@ -31,6 +33,16 @@ public class BillRepository extends JpaRespository<Bill, UUID> {
         query.setParameter("id", bill.getId());
         Long sum = query.getSingleResult();
         return sum;
+    }
+
+    public List<Bill> searchcbb(String custormername, String empolyname) {
+        String jdql = "Select B from Bill B inner join B.customer join B.employee where B.customer.firstName+' '+B.customer.bufferName+' '+B.customer.name like :fullcustomor and B.employee.firstName+' '+B.employee.bufferName+' '+B.employee.name like :fullempolyname";
+        EntityManager em = JpaUtil.getEntityManager();
+        TypedQuery<Bill> query = em.createQuery(jdql, Bill.class);
+        query.setParameter("fullcustomor", "%" + custormername + "%");
+        query.setParameter("fullempolyname", "%" + empolyname + "%");
+        List<Bill> lisst = query.getResultList();
+        return lisst;
     }
 
 }

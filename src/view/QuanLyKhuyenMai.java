@@ -223,7 +223,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jLabel10.setText("Danh Sach Khuyen Mai");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chuyen Khoan", "Tien Mat" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 240, 30));
 
         jLabel11.setText("Muc Giam Gia: ");

@@ -302,7 +302,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 99, 30));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_exit.png"))); // NOI18N
         jButton4.setText("Exit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +356,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Tim Kiem"));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_search.png"))); // NOI18N
         jButton1.setText("Search");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -405,19 +403,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(153, 255, 102));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_last.png"))); // NOI18N
 
         jButton8.setBackground(new java.awt.Color(153, 255, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/first_button.png"))); // NOI18N
 
         jButton9.setBackground(new java.awt.Color(153, 255, 102));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
 
         jButton10.setBackground(new java.awt.Color(153, 255, 102));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
 
         jButton13.setText("Nhan Vien Da Xoa");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
