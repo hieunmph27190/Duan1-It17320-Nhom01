@@ -31,7 +31,6 @@ public interface ProductDetailService {
 
     List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price);
 
-}
 
     void changeAmount(UUID id, Integer amountChange) throws Exception;
 	

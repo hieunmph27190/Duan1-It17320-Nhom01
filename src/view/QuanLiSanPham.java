@@ -267,8 +267,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 100, -1));
 
-        spinBH.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        getContentPane().add(spinBH, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 197, -1));
+      
 
         getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 198, -1));
 
@@ -283,8 +282,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 198, -1));
 
 
-        jLabel5.setText("Bao hanh (thang)");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 98, 20));
 
         jLabel2.setText("Id: ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 98, 30, -1));
@@ -390,9 +387,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnSole, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên", "Ngày sinh" }));
-
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 80, 20));
+      
 
 
 
