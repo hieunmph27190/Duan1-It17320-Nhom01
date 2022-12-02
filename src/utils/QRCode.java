@@ -49,7 +49,7 @@ public class QRCode {
     {
  
         // Path where the QR code is saved
-        String path = "C:\\Users\\PC\\OneDrive\\Desktop\\xx\\Duan1-It17320-Nhom01\\demo.png";
+        String path = "C:\\Users\\PC\\OneDrive\\Desktop\\xx\\Duan1-It17320-Nhom01\\demo1.png";
  
         // Encoding charset
         String charset = "UTF-8";
