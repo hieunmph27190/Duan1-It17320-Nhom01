@@ -31,11 +31,12 @@ public class QrCodeUtil {
         BitMatrix matrix = new MultiFormatWriter().encode(
                 new String(data.getBytes(charset), charset),
                 BarcodeFormat.QR_CODE, width, height);
-
+        
         MatrixToImageWriter.writeToFile(
                 matrix,
                 path.substring(path.lastIndexOf('.') + 1),
                 new File(path));
+        
     }
 
     public static String readQR(String path, String charset,
@@ -60,10 +61,10 @@ public class QrCodeUtil {
             NotFoundException {
 
         // The data that the QR code will contain
-        String data = "Hieu pro";
+        String data = "Nhân l??i code";
 
         // The path where the image will get saved
-        String path = "demo.png";
+        String path = "demo.jpg";
 
         // Encoding charset
         String charset = "UTF-8";

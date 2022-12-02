@@ -83,7 +83,10 @@ public class LayoutMain extends JFrame {
 						new ImageIcon(
 								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
 						new JPanel()));
-        
+        mapChucNang.add(new ChucNangItem("Trang Chu",
+						new ImageIcon(
+								LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
+						new JPanel()));
              
 		
 		initChucNang();
