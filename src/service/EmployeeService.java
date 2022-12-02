@@ -22,4 +22,12 @@ public interface EmployeeService {
 
 	List<Employee> findAll();
 
+        
+   
+
+    void changePassword(UUID id, String newPass) throws Exception;
+
+    Employee findByUserName(String UserName) throws Exception;
+
+    Employee findByUserNamePassWord(String UserName, String PassWord) throws Exception;
 }

@@ -4,8 +4,13 @@
  */
 package view;
 
+import domain.Employee;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import service.EmployeeService;
+import service.impl.EmployeeServiceImpl;
 
 /**
  *
@@ -160,42 +165,37 @@ public class Dangnhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-//          if(txtUsername.getText().equals("") || txtPassword.getText().equals("")){
-//              JOptionPane.showMessageDialog(this, "Please enter the information");
-//            return;
-//       }
-//       // EmployeeService employeeService = new EmployeeServiceImpl();
-//
-//        try {
-//            String username = txtUsername.getText().trim();
-//            String password = txtPassword.getText().trim();
-//            if (username.length() <= 0 || password.length() <= 0) {
-//                JOptionPane.showMessageDialog(this, "Please input username and password");
-//                return;
-//            }
-//            employees employee = employeeService.getByUsername(username);
-//            if ((username.equals(employee.getUsename()) == false) && (password.equals(employee.getPassword()) == false)) {
-//                JOptionPane.showMessageDialog(this, "Username or Password incorrect");
-//                return;
-//            } else if (username.equals(employee.getUsename()) == false) {
-//                JOptionPane.showMessageDialog(this, "Username is correct or Account does not exist");
-//                return;
-//            } else if (password.equals(employee.getPassword()) == false) {
-//                JOptionPane.showMessageDialog(this, "Password is incorrect");
-//                return;
-//            } else if (employee.getAvaliable() == false) {
-//                JOptionPane.showMessageDialog(this, "Account has been disabled");
-//                return;
-//            } else {
-//                if (password.equals(employee.getPassword()) && employee.getAvaliable() == true) {
-//                    JOptionPane.showMessageDialog(this, "Login success");
-////                Welcome wl = new Welcome();
-////                wl.setVisible(true);
-//                    HomePage hp = new HomePage(employee);
-//                    hp.setVisible(true);
-//                    this.dispose();
-//                }
+       EmployeeService employeeService = new EmployeeServiceImpl();
+
+       
+            String username = txtUsername.getText().trim();
+            String password = txtPassword.getText().trim();
+            if (username.length() <= 0 || password.length() <= 0) {
+                JOptionPane.showMessageDialog(this, "vui lòng nh?p tài kho?n và m?t kh?u");
+                return;
+            }
+            
+            Employee employee = null;
+        try {
+            employee = employeeService.findByUserNamePassWord(username, password);
+        } catch (Exception ex) {
+          
+        }
+             
+            if (employee != null ) {
+                if (employee.getRole().getCode().equals("nv")) {
+                     JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n nhân viên");
+                } else if (employee.getRole().getCode().equals("ql")) {
+                    JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n qu?n lý");
+                } else {
+                    JOptionPane.showMessageDialog(this, "vai trò không h?p l?");
+                }
+                JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n thành công");           
+               
+            
+            } else {
+                 JOptionPane.showMessageDialog(this, "thông tin tài kho?n m?t kh?u không chính xác");
+            }
          
     }//GEN-LAST:event_jButton1ActionPerformed
 

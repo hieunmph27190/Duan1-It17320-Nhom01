@@ -177,37 +177,40 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1000, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/clear.png"))); // NOI18N
         btnClear.setText("CLEAR");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 75, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 100, -1));
         getContentPane().add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 98, 210, 16));
 
         jButton7.setText("San Pham Da Xoa");
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 141, -1));
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 192, 20));
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 359, -1, -1));
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
         jButton1.setText("SEACH");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, -1, 20));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 359, 71, -1));
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 90, -1));
 
         cbxSole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbxSole, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 221, -1));
@@ -244,22 +247,23 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         cbxColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbxColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 169, 220, -1));
 
-        jLabel13.setText("S? l??ng");
+        jLabel13.setText("So luong");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 57, 20));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
         btnDelete.setText("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 359, -1, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 100, -1));
 
         spinBH.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         getContentPane().add(spinBH, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 197, -1));
         getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 198, -1));
 
-        jLabel11.setText("Gi·");
+        jLabel11.setText("Gia");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 57, -1));
 
         textNote.setColumns(20);
@@ -269,7 +273,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, 198, 70));
         getContentPane().add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 198, -1));
 
-        jLabel5.setText("B?o h‡nh (th·ng)");
+        jLabel5.setText("Bao hanh (thang)");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 98, 20));
 
         jLabel2.setText("Id: ");
@@ -293,7 +297,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "TÍn", "Lo?i2", "M‡u", "Size", "H„ng5", "D?", "S? l??ng", "Gi·", "B?o h‡nh (th·ng)", "MÙ t?"
+                "T√™n", "Lo?i2", "M√†u", "Size", "H√£ng5", "D?", "S? l??ng", "Gi√°", "B?o h√†nh (th√°ng)", "M√¥ t?"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -361,44 +365,49 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnSole, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TÍn", "Ng‡y sinh" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T√™n", "Ng√†y sinh" }));
+
         getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 80, 20));
+
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton12.setText(">");
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, 40, 50));
 
-        btnAddAvata.setText("XÛa");
+        btnAddAvata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
+        btnAddAvata.setText("DELETE");
         btnAddAvata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddAvataActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAddAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 70, -1));
+        getContentPane().add(btnAddAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, 100, -1));
 
         jButton14.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton14.setText("<");
         getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 40, 50));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("HÏnh");
+        jLabel10.setText("H√¨nh");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 70, 70));
 
-        btnAddAvata1.setText("ThÍm");
+        btnAddAvata1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
+        btnAddAvata1.setText("ADD");
         btnAddAvata1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddAvata1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAddAvata1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 70, -1));
+        getContentPane().add(btnAddAvata1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 90, -1));
 
-        btnAddAvata2.setText("S?a");
+        btnAddAvata2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
+        btnAddAvata2.setText("UPDATE");
         btnAddAvata2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddAvata2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 70, -1));
+        getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 110, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -415,21 +424,21 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         } else {
             String meseage = "";
             if (productDetail.getProduct().getId() == null) {
-                meseage = "B?n cÛ ch?c ch?n mu?n thÍm m?t s?n ph?m v?i tÍn :" + productDetail.getProduct().getProductName();
+                meseage = "B?n c√≥ ch?c ch?n mu?n th√™m m?t s?n ph?m v?i t√™n :" + productDetail.getProduct().getProductName();
             } else {
-                meseage = "B?n cÛ ch?c ch?n mu?n thÍm l?a ch?n chÛ s?n ph?m (" + productDetail.getProduct().getProductName() + ")";
+                meseage = "B?n c√≥ ch?c ch?n mu?n th√™m l?a ch?n ch√≥ s?n ph?m (" + productDetail.getProduct().getProductName() + ")";
             }
-            if (JOptionPane.showConfirmDialog(this, meseage, "X·c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, meseage, "X√°c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
              
                     productDetail.setId(null);
                     productDetailService.insert(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "ThÍm th‡nh cÙng");
+                    JOptionPane.showMessageDialog(this, "Th√™m th√†nh c√¥ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "ThÍm th?t b?i");
+                    JOptionPane.showMessageDialog(this, "Th√™m th?t b?i");
                 }
             }
         }
@@ -464,12 +473,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (productDetail == null) {
 
         } else {
-            if (JOptionPane.showConfirmDialog(this, "X·c nh?n c?p nh?t", "X·c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "X√°c nh?n c?p nh?t", "X√°c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.update(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t th‡nh cÙng");
+                    JOptionPane.showMessageDialog(this, "C?p nh?t th√†nh c√¥ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
@@ -481,12 +490,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         ProductDetail productDetail = getFormData();
         if (productDetail != null) {
-            if (JOptionPane.showConfirmDialog(this, "X·c nh?n xÛa", "X·c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "X√°c nh?n x√≥a", "X√°c nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.setType(productDetail.getId(),0);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t th‡nh cÙng");
+                    JOptionPane.showMessageDialog(this, "C?p nh?t th√†nh c√¥ng");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
@@ -512,6 +521,10 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private void cbxCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCategoryActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
