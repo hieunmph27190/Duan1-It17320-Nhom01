@@ -39,6 +39,20 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE126</version>
         </dependency>
+
+        
+        <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.sun.activation</groupId>
+    <artifactId>javax.activation</artifactId>
+    <version>1.2.0</version>
+</dependency>
+
       
        
         <dependency>
@@ -53,5 +67,6 @@
         </dependency>
         
    
+
     </dependencies>
 </project>
