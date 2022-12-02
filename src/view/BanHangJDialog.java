@@ -130,7 +130,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Bán Hàng");
+        jLabel1.setText("BÃ¡n HÃ ng");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
@@ -225,7 +225,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Thêm");
+        btnThem.setText("ThÃªm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -235,7 +235,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa ??n"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("HÃ³a ??n"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Ten Khach Hang: ");
@@ -298,7 +298,9 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 110, -1));
+
 
         jButton1.setText("Tao Hoa Don");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +358,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 530, 390));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hÃ ng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
@@ -442,8 +444,10 @@ public class BanHangJDialog extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
+
             } else {
                 JOptionPane.showMessageDialog(this, "San pham da co trong gio hang");
+
             }
 
         }
@@ -513,9 +517,12 @@ public class BanHangJDialog extends javax.swing.JFrame {
             textHoaDon.setText(billSelected.getId().toString());
             billDEtailGHs = billDetailService.findByBill(billSelected);
             loadTableGH(billDEtailGHs);
+
                tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
             textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
               textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
+
+
             Customer customer = billSelected.getCustomer();
             if (customer != null) {
                 textName.setText(customer.getFullName());
@@ -583,6 +590,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         int i = tblGH.getSelectedRow();;
+
         if (i >= 0) {
             String slStr = JOptionPane.showInputDialog(this, "Nhap so luong");
             Integer sl = null;
@@ -613,6 +621,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
             }
 
         } else {
+
             JOptionPane.showMessageDialog(this, "Vui long chon san pham can sua");
         }
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -744,7 +753,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
             ProductDetail productDetail = billDetail.getProductDetail();
             JSpinner spinner = new JSpinner();
             spinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
-            JButton button = new JButton("Xóa");
+            JButton button = new JButton("XÃ³a");
 
             defaultTableModel.addRow(
                     new Object[]{
@@ -764,7 +773,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Tên", "Lo?i2", "Màu", "Size", "Hãng5", "D?", "S? l??ng", "Giá", "B?o hành (tháng)", "Mô t?"
+                    "TÃªn", "Lo?i2", "MÃ u", "Size", "HÃ£ng5", "D?", "S? l??ng", "GiÃ¡", "B?o hÃ nh (thÃ¡ng)", "MÃ´ t?"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -779,7 +788,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{"ID",
-                    "Tên", "Gia", "So luong", "Thanh tien", ""
+                    "TÃªn", "Gia", "So luong", "Thanh tien", ""
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -794,7 +803,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Mã HDC", "Tgian tao", "Nhan vien", "Khach hang"
+                    "MÃ£ HDC", "Tgian tao", "Nhan vien", "Khach hang"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
