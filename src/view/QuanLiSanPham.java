@@ -574,6 +574,22 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private ProductDetail getFormData() {
+        
+        if(textName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name Null");
+            return null;
+        }
+        
+        if(textNote.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Note Null");
+            return null;
+        }
+        
+        if(textPrice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Price Null");
+            return null;
+        }
+        
         ProductDetail productDetail = productDetailSelected;
         if (productDetail == null) {
             productDetail = new ProductDetail();

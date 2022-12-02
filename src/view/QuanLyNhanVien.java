@@ -85,12 +85,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         } else {
             rdbtnFemale.setSelected(true);
         }
-        
+
         long avataLenght = 0;
-        
+
         try {
-            if(em.getImage() !=null) {
-             avataLenght = em.getImage().length();
+            if (em.getImage() != null) {
+                avataLenght = em.getImage().length();
             }
         } catch (SQLException ex) {
             avataLenght = 0;
@@ -118,7 +118,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
     }
 
-    
     public Employee getform() {
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         Employee empoly = null;
@@ -536,38 +535,38 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         empoly.setId(UUID.fromString(txtid.getText()));
         try {
-              if(empoly.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-                if(empoly.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-                if(empoly.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-                if(empoly.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Name Null");
-                    return;
-                }
-                if(empoly.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-                if(empoly.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
-                    return;
-                }
-                if(empoly.getUsername().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
-                    return;
-                }
-                  if(empoly.getPassword().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Mat Khau Null");
-                    return;
-                }
+            if (empoly.getAddress().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Dia Chi Null");
+                return;
+            }
+            if (empoly.getBufferName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ho Null");
+                return;
+            }
+            if (empoly.getFirstName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ten Dem Null");
+                return;
+            }
+            if (empoly.getName().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Name Null");
+                return;
+            }
+            if (empoly.getPhoneNumber().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
+                return;
+            }
+            if (empoly.getEmail().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Email Null");
+                return;
+            }
+            if (empoly.getUsername().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
+                return;
+            }
+            if (empoly.getPassword().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mat Khau Null");
+                return;
+            }
             empoyeesvier.update(empoly);
             JOptionPane.showMessageDialog(this, "Sua thanh công");
             listmodel = empoyeesvier.findAll();
@@ -584,47 +583,45 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaAvataActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    
-        
-        
+
         Employee empoly = getform();
         if (empoly == null) {
             return;
         } else {
             try {
-                if(empoly.getAddress().isEmpty()) {
+                if (empoly.getAddress().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Dia Chi Null");
                     return;
                 }
-                if(empoly.getBufferName().isEmpty()) {
+                if (empoly.getBufferName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ho Null");
                     return;
                 }
-                if(empoly.getFirstName().isEmpty()) {
+                if (empoly.getFirstName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ten Dem Null");
                     return;
                 }
-                if(empoly.getName().isEmpty()) {
+                if (empoly.getName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Name Null");
                     return;
                 }
-                if(empoly.getPhoneNumber().isEmpty()) {
+                if (empoly.getPhoneNumber().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
                     return;
                 }
-                if(empoly.getEmail().isEmpty()) {
+                if (empoly.getEmail().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Email Null");
                     return;
                 }
-                if(empoly.getUsername().isEmpty()) {
+                if (empoly.getUsername().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
                     return;
                 }
-                  if(empoly.getPassword().isEmpty()) {
+                if (empoly.getPassword().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Mat Khau Null");
                     return;
                 }
-                  
+
                 empoly.setId(null);
                 empoyeesvier.insert(empoly);
                 JOptionPane.showMessageDialog(this, "Them thanh cong");

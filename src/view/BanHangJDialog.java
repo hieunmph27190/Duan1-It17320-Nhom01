@@ -604,8 +604,8 @@ public class BanHangJDialog extends javax.swing.JFrame {
                         productDetails = productDetailService.findByTypeNotEqual(0);
                         loadTable(productDetails);
                     } catch (Exception ex) {
-                        ex.printStackTrace();
-                        JOptionPane.showMessageDialog(this, ex.getMessage());
+//                        ex.printStackTrace();
+//                        JOptionPane.showMessageDialog(this, ex.getMessage());
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "So luong phai la so nguyen duong");
