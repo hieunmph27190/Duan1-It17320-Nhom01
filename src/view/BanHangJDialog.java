@@ -510,10 +510,15 @@ public class BanHangJDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHDHMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     
         try {
             billService.setType(billSelected.getId(), 2);
             JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
-
+             hdcs = billService.findByTypeEqual(1);
+             loadTableHDC(hdcs);
+             billDEtailGHs = new ArrayList<>();
+             loadTableGH(billDEtailGHs);
+             clearForm();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
