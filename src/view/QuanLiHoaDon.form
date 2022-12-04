@@ -182,9 +182,9 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="Tat Ca"/>
-            <StringItem index="1" value="Da Thanh Toan"/>
+            <StringItem index="1" value="Da Huy"/>
             <StringItem index="2" value="Hoa Don Cho"/>
-            <StringItem index="3" value="Hoa Don Da Huy"/>
+            <StringItem index="3" value="Da Thanh Toan"/>
           </StringArray>
         </Property>
       </Properties>
@@ -234,16 +234,6 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="450" y="50" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="IN FDF"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="830" y="350" width="110" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

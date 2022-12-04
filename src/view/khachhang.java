@@ -290,7 +290,6 @@ public class khachhang extends javax.swing.JFrame {
         });
         getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 170, 90, -1));
 
-        Clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/clear.png"))); // NOI18N
         Clear.setText("Clear");
         Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,14 +326,9 @@ public class khachhang extends javax.swing.JFrame {
         jScrollPane2.setViewportView(table);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 626, 156));
-
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/first_button.png"))); // NOI18N
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 89, -1));
-
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
         getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 88, -1));
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_previous.png"))); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -343,7 +337,6 @@ public class khachhang extends javax.swing.JFrame {
         getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 85, -1));
         getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 240, -1));
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_last.png"))); // NOI18N
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -402,7 +395,6 @@ public class khachhang extends javax.swing.JFrame {
         lblanh.setText("Anh");
         getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 120, 90));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/choose.png"))); // NOI18N
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +409,7 @@ public class khachhang extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 280, 90, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, 90, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

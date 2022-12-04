@@ -169,7 +169,6 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         txtlocnhanvien = new javax.swing.JTextField();
         txtlockhachhang = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -227,7 +226,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         jLabel4.setText("Trang Thai: ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
-        cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Thanh Toan", "Hoa Don Cho", "Hoa Don Da Huy" }));
+        cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Huy", "Hoa Don Cho", "Da Thanh Toan" }));
         cbb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbActionPerformed(evt);
@@ -244,9 +243,6 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
 
         jButton1.setText("SEACH");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
-
-        jButton2.setText("IN FDF");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 110, -1));
         getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 110, -1));
         getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, -1));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 120, -1));
@@ -336,7 +332,6 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbb;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

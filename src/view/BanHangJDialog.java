@@ -583,7 +583,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 Double tienDua = (Double) sprinerTienDua.getValue();
                 textTienTra.setText(decimalFormat.format(String.valueOf(tienDua - tongTien.doubleValue())));
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Loi");
+              //  JOptionPane.showMessageDialog(this, "Loi");
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -801,7 +801,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Tên", "Lo?i2", "Màu", "Size", "Hãng5", "D?", "S? l??ng", "Giá", "B?o hành (tháng)", "Mô t?"
+                    "Ten", "Loai", "Mau", "Size", "Hang", "De", "So luong", "Gia", "Bao hanh (thang)", "Mo ta"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -816,7 +816,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{"ID",
-                    "Tên", "Gia", "So luong", "Thanh tien", ""
+                    "Ten", "Gia", "So luong", "Thanh tien", ""
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -831,7 +831,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Mã HDC", "Tgian tao", "Nhan vien", "Khach hang"
+                    "Ma HDC", "Tgian tao", "Nhan vien", "Khach hang"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
