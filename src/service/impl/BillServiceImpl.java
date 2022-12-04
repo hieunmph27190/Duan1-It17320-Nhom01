@@ -1,7 +1,7 @@
 package service.impl;
 
-
 import domain.Bill;
+import domain.ProductDetail;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,6 @@ public class BillServiceImpl implements BillService {
     public BillServiceImpl() {
         billRepository = new BillRepository();
     }
-
 
     public List<Bill> findAll() {
         return billRepository.findAll();
@@ -65,5 +64,10 @@ public class BillServiceImpl implements BillService {
     public Long getQuantity(Bill bill) {
         return billRepository.getQuantity(bill);
     }
-	
+
+    @Override
+    public List<Bill> seachlochdc(String customorsname, String empolyename) {
+        return billRepository.searchcbb(customorsname, empolyename);
+    }
+
 }

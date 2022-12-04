@@ -109,7 +109,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Bán Hàng");
+        jLabel1.setText("Ban Hang");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -222,7 +222,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Thêm");
+        btnThem.setText("Th�m");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -232,7 +232,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa ??n"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("H�a ??n"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Ten Khach Hang: ");
@@ -289,9 +289,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         jLabel15.setText("Ma HD: ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
 
-
         jButton1.setText("Thanh Toan");
-
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -347,7 +345,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 530, 390));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? h�ng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
@@ -585,7 +583,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
                 Double tienDua = (Double) sprinerTienDua.getValue();
                 textTienTra.setText(decimalFormat.format(String.valueOf(tienDua - tongTien.doubleValue())));
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Loi");
+              //  JOptionPane.showMessageDialog(this, "Loi");
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -803,7 +801,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Tên", "Lo?i2", "Màu", "Size", "Hãng5", "D?", "S? l??ng", "Giá", "B?o hành (tháng)", "Mô t?"
+                    "Ten", "Loai", "Mau", "Size", "Hang", "De", "So luong", "Gia", "Bao hanh (thang)", "Mo ta"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -818,7 +816,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{"ID",
-                    "Tên", "Gia", "So luong", "Thanh tien", ""
+                    "Ten", "Gia", "So luong", "Thanh tien", ""
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -833,7 +831,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Mã HDC", "Tgian tao", "Nhan vien", "Khach hang"
+                    "Ma HDC", "Tgian tao", "Nhan vien", "Khach hang"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
