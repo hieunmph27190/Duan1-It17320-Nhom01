@@ -33,6 +33,9 @@ public interface ProductDetailService {
 
 
     void changeAmount(UUID id, Integer amountChange) throws Exception;
+
+    
+
 	
 }
 

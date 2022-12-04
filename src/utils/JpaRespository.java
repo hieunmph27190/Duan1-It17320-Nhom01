@@ -87,6 +87,7 @@ public class JpaRespository<E, K> {
         EntityManager entityManager = JpaUtil.getEntityManager();
         return entityManager.find(entityClass, key);
     }
+  
 
     public void insert(E entity) throws Exception {
         EntityManager entityManager = JpaUtil.getEntityManager();

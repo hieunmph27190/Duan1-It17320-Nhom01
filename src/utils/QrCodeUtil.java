@@ -61,7 +61,7 @@ public class QrCodeUtil {
             NotFoundException {
 
         // The data that the QR code will contain
-        String data = "Nhân l??i code";
+        String data = "e2f63911-4609-44d5-a768-0c8817574dbd";
 
         // The path where the image will get saved
         String path = "demo.jpg";

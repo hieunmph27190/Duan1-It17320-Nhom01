@@ -158,7 +158,7 @@ public class KhuyenMai extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, 250));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, 250));
 
         pack();
         setLocationRelativeTo(null);

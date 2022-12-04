@@ -5,9 +5,13 @@ import java.util.UUID;
 
 import domain.ProductDetail;
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import repository.ProductDetailRepository;
 import service.ProductDetailService;
-
+import utils.JpaUtil;
 
 public class ProductDetailServiceImpl implements ProductDetailService {
 
@@ -52,7 +56,6 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         return productDetailRepository.count();
     }
 
-
     public List<ProductDetail> findByTypeEqual(int i) {
         return productDetailRepository.findByTypeEqual(i);
     }
@@ -72,7 +75,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     @Override
     public void changeAmount(UUID id, Integer amountChange) throws Exception {
-       productDetailRepository.changeAmount(id, amountChange);
+        productDetailRepository.changeAmount(id, amountChange);
     }
 
 }
