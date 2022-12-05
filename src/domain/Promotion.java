@@ -2,7 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,134 +15,164 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the Promotion database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Promotion.findAll", query="SELECT p FROM Promotion p")
+@NamedQuery(name = "Promotion.findAll", query = "SELECT p FROM Promotion p")
 public class Promotion implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="Id")
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="Description")
-	private String description;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Discount")
-	private Double discount;
+    @Column(name = "Description")
+    private String description;
 
-	@Column(name="EndDate")
-	private Timestamp endDate;
+    @Column(name = "Discount")
+    private Double discount;
 
-	@Column(name="MinimumPrice")
-	private BigDecimal minimumPrice;
+    @Column(name = "EndDate")
+    private Date endDate;
 
-	@Column(name="PromotionName")
-	private String promotionName;
+    @Column(name = "CreateDate")
+    private Date createDate;
 
-	@Column(name="StartDate")
-	private Timestamp startDate;
+    @Column(name = "MinimumPrice")
+    private BigDecimal minimumPrice;
 
-	@Column(name="Type")
-	private Integer type;
+    @Column(name = "PromotionName")
+    private String promotionName;
 
-	//bi-directional many-to-one association to Promotion_Product
-	@OneToMany(mappedBy="promotion")
-	private List<Promotion_Product> promotionProducts;
+    @Column(name = "StartDate")
+    private Date startDate;
 
-	public Promotion() {
-	}
+    @Column(name = "Type")
+    private Integer type;
 
-	public UUID getId() {
-		return this.id;
-	}
+    //bi-directional many-to-one association to Promotion_Product
+    @OneToMany(mappedBy = "promotion")
+    private List<Promotion_Product> promotionProducts;
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public Promotion() {
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public UUID getId() {
+        return this.id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public Double getDiscount() {
-		return this.discount;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDiscount(Double discount) {
-		this.discount = discount;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Timestamp getEndDate() {
-		return this.endDate;
-	}
+    public Double getDiscount() {
+        return this.discount;
+    }
 
-	public void setEndDate(Timestamp endDate) {
-		this.endDate = endDate;
-	}
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
-	public BigDecimal getMinimumPrice() {
-		return this.minimumPrice;
-	}
+    public Date getEndDate() {
+        return this.endDate;
+    }
 
-	public void setMinimumPrice(BigDecimal minimumPrice) {
-		this.minimumPrice = minimumPrice;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public String getPromotionName() {
-		return this.promotionName;
-	}
+    public BigDecimal getMinimumPrice() {
+        return this.minimumPrice;
+    }
 
-	public void setPromotionName(String promotionName) {
-		this.promotionName = promotionName;
-	}
+    public void setMinimumPrice(BigDecimal minimumPrice) {
+        this.minimumPrice = minimumPrice;
+    }
 
-	public Timestamp getStartDate() {
-		return this.startDate;
-	}
+    public String getPromotionName() {
+        return this.promotionName;
+    }
 
-	public void setStartDate(Timestamp startDate) {
-		this.startDate = startDate;
-	}
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+    }
 
-	public Integer getType() {
-		return this.type;
-	}
+    public Date getStartDate() {
+        return this.startDate;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public List<Promotion_Product> getPromotionProducts() {
-		return this.promotionProducts;
-	}
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-	public void setPromotionProducts(List<Promotion_Product> promotionProducts) {
-		this.promotionProducts = promotionProducts;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public Promotion_Product addPromotionProduct(Promotion_Product promotionProduct) {
-		getPromotionProducts().add(promotionProduct);
-		promotionProduct.setPromotion(this);
+    public Integer getType() {
+        return this.type;
+    }
 
-		return promotionProduct;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	public Promotion_Product removePromotionProduct(Promotion_Product promotionProduct) {
-		getPromotionProducts().remove(promotionProduct);
-		promotionProduct.setPromotion(null);
+    public List<Promotion_Product> getPromotionProducts() {
+        return this.promotionProducts;
+    }
 
-		return promotionProduct;
-	}
+    public void setPromotionProducts(List<Promotion_Product> promotionProducts) {
+        this.promotionProducts = promotionProducts;
+    }
+
+    public Promotion_Product addPromotionProduct(Promotion_Product promotionProduct) {
+        getPromotionProducts().add(promotionProduct);
+        promotionProduct.setPromotion(this);
+
+        return promotionProduct;
+    }
+
+    public Promotion_Product removePromotionProduct(Promotion_Product promotionProduct) {
+        getPromotionProducts().remove(promotionProduct);
+        promotionProduct.setPromotion(null);
+
+        return promotionProduct;
+    }
+
+    public String getTrangThai() {
+        Date date = new Date();
+        if (date.before(startDate)) {
+            return "Chua ap dung";
+        } else {
+            if (date.after(endDate)) {
+                return "Ngung ap dung";
+            } else {
+                return "Dang ap dung";
+            }
+        }
+    }
+
+    public Object[] toRow() {
+        return new Object[]{
+            id,promotionName,type,minimumPrice,discount,getTrangThai()
+        };
+    }
 
 }

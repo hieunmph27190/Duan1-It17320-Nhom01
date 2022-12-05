@@ -4,19 +4,31 @@
  */
 package view;
 
+import com.raven.datechooser.DateBetween;
+import com.raven.datechooser.DateChooser;
 import domain.Bill;
 import domain.BillDetail;
 import domain.ProductDetail;
+import domain.Promotion;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import service.BillDetailService;
 import service.BillService;
 import service.ProductDetailService;
+import service.PromotionService;
 import service.impl.BillDetailServiceImpl;
 import service.impl.BillServiceImpl;
 import service.impl.ProductDetailServiceImpl;
+import service.impl.PromotionServiceImpl;
 
 /**
  *
@@ -24,46 +36,78 @@ import service.impl.ProductDetailServiceImpl;
  */
 public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
-    private BigDecimal tongTien;
-    private Bill billSelected;
-    private List<Bill> hdcs = new ArrayList<Bill>();
-    private ProductDetail productDetailSelected;
     private ProductDetailService productDetailService;
     private List<ProductDetail> productDetails = new ArrayList<>();
-    private List<BillDetail> billDEtailGHs = new ArrayList<>();
-    private BillService billService = new BillServiceImpl();
-    private BillDetailService billDetailService = new BillDetailServiceImpl() {
-    };
+    private PromotionService promotionService;
+    private List<Promotion> promotions = new ArrayList<>();
+    private DateChooser dateChooser = new DateChooser();
+    private Promotion promotionSelected;
 
-    /**
-     * Creates new form KhuyenMai
-     */
     public QuanLyKhuyenMai() {
         initComponents();
         setLocationRelativeTo(null);
         init();
-        hdcs = billService.findByTypeEqual(1);
-        loadTable(productDetails);
         this.productDetailService = new ProductDetailServiceImpl();
-        setLocationRelativeTo(null);
         productDetails = productDetailService.findByTypeNotEqual(0);
         loadTable(productDetails);;
+        this.promotionService = new PromotionServiceImpl();
+        promotions = promotionService.findByTypeNotEqual(0);
+        loadTableKM(promotions);;
 
     }
 
     private void loadTable(List<ProductDetail> productDetails) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) Tblsp.getModel();
         defaultTableModel.setRowCount(0);
-        for (ProductDetail productDetail : productDetails) {
-            defaultTableModel.addRow(productDetail.toRow());
+        for (ProductDetail p : productDetails) {
+            defaultTableModel.addRow(
+                    new Object[]{p.getProduct() == null ? null : p.getProduct().getProductName(), p.getCategory() == null ? null : p.getCategory().getCategoryName(), p.getColor(), p.getSize(), p.getBrand(), p.getSole(), p.getAmount(), p.getPrice(), p.getDescription(), true}
+            );
+        }
+    }
+
+    private void loadTableKM(List<Promotion> promotions) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblKhuyenMai.getModel();
+        defaultTableModel.setRowCount(0);
+        for (Promotion promotion : promotions) {
+            defaultTableModel.addRow(promotion.toRow());
         }
     }
 
     private void init() {
-        Tblsp.setModel(new javax.swing.table.DefaultTableModel(
+        //Headers for JTable
+        String[] columns = new String[]{
+            "Ten", "Loai", "Mau", "Size", "hang", "D?", "So luonng", "Gia", "Mo ta", ""};
+        //data for JTable in a 2D table
+
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        Tblsp = new JTable(model) {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                int max = getColumnCount();
+                if (column == max - 1) {
+                    return Boolean.class;
+                } else {
+                    return Object.class;
+                }
+            }
+
+        };
+        jScrollPane1.setViewportView(Tblsp);
+
+        tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Ten", "Loai", "Mau", "Size", "hang", "D?", "So luonng", "Gia", "Bao hanh (thng)", "Mo ta"
+                    "Ma", "Ten", "Loai", "Gia tri min", "Gia tri KM", "Trang Thai"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -74,120 +118,162 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         });
+        dateChooser.setDateSelectionMode(DateChooser.DateSelectionMode.BETWEEN_DATE_SELECTED);
+        dateChooser.setTextField(textNgayHieuLuc);
+
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        textID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        textName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        textNgayHieuLuc = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textNote = new javax.swing.JTextArea();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        cbxLoaiKhuyenMai = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        spinerGiaToiThieu = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        spinerMucGiamGia = new javax.swing.JSpinner();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblKhuyenMai = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tblsp = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Code Khuyen Mai: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 100, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 240, 30));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 240, 30));
-
-        jLabel2.setText("Ten Khuyen Mai: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 240, 30));
-
-        jLabel3.setText("Ngay Bat Dau: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 84, -1));
-
-        jLabel4.setText("Ngay Ket Thuc: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 240, 30));
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Quan Li Khuyen Mai ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
-        jLabel6.setText("Gia Toi Thieu: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 80, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, 240, 30));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setText("Type: ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, -1, 20));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 340, 240, 30));
+        jLabel1.setText("Code Khuyen Mai: ");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 100, -1));
 
-        jButton1.setText("ADD");
+        textID.setEditable(false);
+        jPanel2.add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 58, 270, 20));
 
-        jButton4.setText("Update");
+        jLabel2.setText("Ten Khuyen Mai: ");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel2.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 98, 270, 20));
 
-        jButton2.setText("Delete");
+        jLabel3.setText("Ngay hieu luc");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 84, 20));
+        jPanel2.add(textNgayHieuLuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 270, -1));
+
+        jLabel11.setText("Muc Giam Gia: ");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        jLabel7.setText("N?i dung");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 100, 20));
+
+        textNote.setColumns(20);
+        textNote.setRows(5);
+        jScrollPane3.setViewportView(textNote);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 270, 60));
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
+
+        btnAdd.setText("ADD");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 67, -1));
 
         jButton3.setText("New");
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 71, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(24, 24, 24))
-        );
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, 210, 120));
+        cbxLoaiKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo san pham", "Hoa don chua san pham", "Tat ca hoa don", "Tat ca" }));
+        cbxLoaiKhuyenMai.setToolTipText("");
+        jPanel2.add(cbxLoaiKhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 270, 30));
+
+        jLabel8.setText("Khuyen mãi theo");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
+
+        spinerGiaToiThieu.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
+        jPanel2.add(spinerGiaToiThieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 260, -1));
+
+        jLabel12.setText("Gia Toi Thieu: ");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 80, 20));
+
+        jLabel13.setText("%");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 20, 20));
+
+        spinerMucGiamGia.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 100.0d, 1.0d));
+        jPanel2.add(spinerMucGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 230, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 410, 540));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhuyenMaiMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblKhuyenMai);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 510, 180));
+
+        jLabel10.setText("Danh Sach Khuyen Mai");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 530, 230));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tblsp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
-                {null, null, null, null},
+                {null, "cccccccccc", null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
@@ -195,74 +281,93 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tblsp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblspMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tblsp);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 510, 220));
-
-        jLabel8.setText("Hinh Thuc Khuyen Mai: ");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 80, 20));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 540, 250));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 510, 260));
 
         jLabel9.setText("San Pham");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
 
-        jLabel10.setText("Danh Sach Khuyen Mai");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chuyen Khoan", "Tien Mat" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 240, 30));
-
-        jLabel11.setText("Muc Giam Gia: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, -1, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 262, 240, 30));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 530, 300));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        Promotion promotion = getFormDate();
+        if (promotion == null) {
+            JOptionPane.showMessageDialog(this, "Du lieu khong hop le");
+        } else {
+            try {
+                promotionService.insert(promotion);
+                promotions = promotionService.findByTypeNotEqual(0);
+                loadTableKM(promotions);
+                JOptionPane.showMessageDialog(this, "Them thành công");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Loi");
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuanLyKhuyenMai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnAddActionPerformed
 
+    private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
+        if (tblKhuyenMai.getSelectedRow() >= 0) {
+            fillForm(promotions.get(tblKhuyenMai.getSelectedRow()));
+        }
+    }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
-        /* Create and display the form */
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Promotion promotion = getFormDate();
+        if (promotion == null) {
+            JOptionPane.showMessageDialog(this, "Du lieu khong hop le");
+        } else {
+            try {
+                if (textID.getText().length() < 5) {
+                    JOptionPane.showMessageDialog(this, "Phai chon san pham muon sua");
+                    return;
+                }
+                promotion.setId(UUID.fromString(textID.getText().trim()));
+                promotionService.update(promotion);
+                promotions = promotionService.findByTypeNotEqual(0);
+                loadTableKM(promotions);
+                JOptionPane.showMessageDialog(this, "Sua thanh cong");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Loi");
+            }
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        try {
+            if (textID.getText().length() < 5) {
+                JOptionPane.showMessageDialog(this, "Phai chon san pham muon xoa");
+                return;
+            }
+            promotionService.remove(UUID.fromString(textID.getText().trim()));
+            promotions = promotionService.findByTypeNotEqual(0);
+            loadTableKM(promotions);
+            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Loi");
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void TblspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblspMouseClicked
+        int i = Tblsp.getSelectedRow();
+        if (i >= 0) {
+            Boolean b = (Boolean) Tblsp.getValueAt(i, Tblsp.getColumnCount() - 1);
+            JOptionPane.showMessageDialog(this, "abc");
+        }
+    }//GEN-LAST:event_TblspMouseClicked
+
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QuanLyKhuyenMai().setVisible(true);
@@ -272,32 +377,75 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tblsp;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cbxLoaiKhuyenMai;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner spinerGiaToiThieu;
+    private javax.swing.JSpinner spinerMucGiamGia;
+    private javax.swing.JTable tblKhuyenMai;
+    private javax.swing.JTextField textID;
+    private javax.swing.JTextField textName;
+    private javax.swing.JTextField textNgayHieuLuc;
+    private javax.swing.JTextArea textNote;
     // End of variables declaration//GEN-END:variables
+
+    private Promotion getFormDate() {
+        Promotion promotion = new Promotion();
+        promotion.setPromotionName(textName.getText().trim());
+        promotion.setCreateDate(new Date());
+        DateBetween between = dateChooser.getSelectedDateBetween();
+        promotion.setStartDate(between.getFromDate());
+        promotion.setEndDate(between.getToDate());
+        Double km = (Double) spinerMucGiamGia.getValue();
+        promotion.setDiscount(km);
+        BigDecimal bigDecimal = new BigDecimal((Double) spinerGiaToiThieu.getValue());
+        promotion.setMinimumPrice(bigDecimal);
+        String note = textNote.getText();
+        promotion.setDescription(note);
+        promotion.setType(cbxLoaiKhuyenMai.getSelectedIndex() + 1);
+        return promotion;
+    }
+
+    private void fillForm(Promotion p) {
+        promotionSelected = p;
+        textID.setText(p.getId().toString());
+        textName.setText(p.getPromotionName());
+        Date startDate = p.getStartDate();
+        Date endDate = p.getEndDate();
+        DateBetween dateBetween = new DateBetween(startDate, endDate);
+        dateChooser.setSelectedDateBetween(dateBetween);
+        spinerMucGiamGia.setValue(p.getDiscount());
+        spinerGiaToiThieu.setValue(p.getMinimumPrice().doubleValue());
+        textNote.setText(p.getDescription());
+    }
+
+    private void clearForm() {
+        promotionSelected = null;
+        textID.setText("");
+        textName.setText("");
+        dateChooser.toDay();
+        spinerMucGiamGia.setValue(0D);
+        spinerGiaToiThieu.setValue(0D);
+        textNote.setText("");
+        cbxLoaiKhuyenMai.setSelectedIndex(0);
+    }
 }

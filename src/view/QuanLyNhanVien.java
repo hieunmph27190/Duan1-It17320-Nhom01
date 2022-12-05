@@ -5,6 +5,7 @@
 package view;
 
 import com.raven.datechooser.DateChooser;
+import com.raven.datechooser.DateChooserx;
 import domain.Employee;
 import java.awt.Image;
 import java.io.File;
@@ -44,7 +45,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private List<Employee> listmodel = new ArrayList<>();
     private EmployeeServiceImpl empolmpl = new EmployeeServiceImpl();
     private DefaultTableModel model = new DefaultTableModel();
-    private DateChooser datechooer;
+    private DateChooserx datechooer;
     private Employee employeeSelected;
 
     public QuanLyNhanVien() {
@@ -56,7 +57,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         empoyeesvier = new EmployeeServiceImpl();
         listmodel = empolmpl.findAll();
         dodate(listmodel);
-        datechooer = new DateChooser();
+        datechooer = new DateChooserx();
         datechooer.setTextRefernce(txtdate);
         setSize(1060, 610);
     }

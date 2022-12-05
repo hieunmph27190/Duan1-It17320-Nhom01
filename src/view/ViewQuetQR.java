@@ -11,11 +11,15 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import domain.ProductDetail;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.image.BufferedImage;
+import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import service.impl.ProductDetailServiceImpl;
 
 public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -23,9 +27,10 @@ public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFa
     private Webcam webcam = null;
     private static final long serialVersionUID = 6441489157408381878L;
     private Executor executor = Executors.newSingleThreadExecutor(this);
-
-    public ViewQuetQR() {
+    private Frame frame;
+    public ViewQuetQR(Frame frame) {
         initComponents();
+        this.frame =frame;
         initWebcam();
     }
 
@@ -39,7 +44,12 @@ public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFa
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,37 +75,12 @@ public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFa
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewQuetQR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       webcam.close();
+    }//GEN-LAST:event_formWindowClosing
 
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new ViewQuetQR().setVisible(true);
-        });
-    }
+  
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -147,7 +132,16 @@ public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFa
             }
 
             if (result != null) {
-                result_field.setText(result.getText());
+                try {
+                BanHangJDialog  banHangJDialog = (BanHangJDialog) this.frame;
+                    ProductDetail detail = new ProductDetailServiceImpl().findByID(UUID.fromString(result.getText().trim()));
+                    result_field.setText(detail.getProduct().getProductName());     
+                    webcam.close();
+                    this.dispose();
+                    banHangJDialog.addProdToGH(detail);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } while (true);
     }

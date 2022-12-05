@@ -20,5 +20,11 @@ public interface PromotionService {
 	List<Promotion> findAll(int first, int size);
 
 	List<Promotion> findAll();
+
+    List<Promotion> findByTypeEqual(int i);
+
+    List<Promotion> findByTypeNotEqual(int i);
+
+    void setType(UUID id, int type) throws Exception;
 	
 }
