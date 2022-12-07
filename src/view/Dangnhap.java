@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import service.EmployeeService;
 import service.impl.EmployeeServiceImpl;
+import utils.AuthUtil;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Dangnhap extends javax.swing.JFrame {
      * Creates new form Dangnhap
      */
     public Dangnhap() {
-   
+
         initComponents();
 //        setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setLocationRelativeTo(null);
@@ -79,7 +80,7 @@ public class Dangnhap extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 0, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(70, 50, 255));
-        jButton1.setText("??ng Nh?p");
+        jButton1.setText("Login");
         jButton1.setToolTipText("");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 153)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 0, 153))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -88,8 +89,8 @@ public class Dangnhap extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Quên M?t Kh?u");
+        jButton4.setForeground(new java.awt.Color(102, 0, 0));
+        jButton4.setText("Quen mat khau");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,9 +129,9 @@ public class Dangnhap extends javax.swing.JFrame {
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -165,74 +166,48 @@ public class Dangnhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       EmployeeService employeeService = new EmployeeServiceImpl();
+        EmployeeService employeeService = new EmployeeServiceImpl();
 
-       
-            String username = txtUsername.getText().trim();
-            String password = txtPassword.getText().trim();
-            if (username.length() <= 0 || password.length() <= 0) {
-                JOptionPane.showMessageDialog(this, "vui lòng nh?p tài kho?n và m?t kh?u");
-                return;
-            }
-            
-            Employee employee = null;
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
+        if (username.length() <= 0 || password.length() <= 0) {
+            JOptionPane.showMessageDialog(this, "Nhap du tai khoan mat khau");
+            return;
+        }
+
+        Employee employee = null;
         try {
             employee = employeeService.findByUserNamePassWord(username, password);
         } catch (Exception ex) {
-          
+
         }
-             
-            if (employee != null ) {
-                if (employee.getRole().getCode().equals("nv")) {
-                     JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n nhân viên");
-                } else if (employee.getRole().getCode().equals("ql")) {
-                    JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n qu?n lý");
-                } else {
-                    JOptionPane.showMessageDialog(this, "vai trò không h?p l?");
-                }
-                JOptionPane.showMessageDialog(this, "??ng nh?p tài kho?n thành công");           
-               
-            
+
+        if (employee != null) {
+            if (employee.getRole().getCode().equals("nv")) {
+                AuthUtil.setEmployee(employee);
+                new LayoutMain().setVisible(true);
+                this.dispose();
+            } else if (employee.getRole().getCode().equals("ql")) {
+                JOptionPane.showMessageDialog(this, "Ban la quan li");
             } else {
-                 JOptionPane.showMessageDialog(this, "thông tin tài kho?n m?t kh?u không chính xác");
+                JOptionPane.showMessageDialog(this, "Vai tro chua phat trien");
             }
-         
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Thong tin tai khoan mat khau khong chinh xac");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dangnhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+       
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                  new Dangnhap().setVisible(true);
+                new Dangnhap().setVisible(true);
             }
         });
     }

@@ -62,7 +62,7 @@ public class ProductDetail implements Serializable {
     private List<ExchangeDetail> exchangeDetails;
 
     //bi-directional many-to-one association to Image
-    @OneToMany(mappedBy = "productDetail")
+    @OneToMany(mappedBy = "productDetail",cascade = javax.persistence.CascadeType.ALL)
     private List<Image> images;
 
     //bi-directional many-to-one association to Category
