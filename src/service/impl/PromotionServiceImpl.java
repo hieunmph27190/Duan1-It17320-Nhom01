@@ -40,5 +40,17 @@ public class PromotionServiceImpl implements PromotionService {
 	public Long count() {
 		return promotionRepository.count();
 	}
+
+    public List<Promotion> findByTypeEqual(int i) {
+        return promotionRepository.findByTypeEqual(i);
+    }
+
+    public List<Promotion> findByTypeNotEqual(int i) {
+        return promotionRepository.findByTypeNotEqual(i);
+    }
+
+    public void setType(UUID id, int type) throws Exception {
+        promotionRepository.setType(id, type);
+    }
 	
 }

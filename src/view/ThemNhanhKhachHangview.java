@@ -5,6 +5,7 @@
 package view;
 
 import com.raven.datechooser.DateChooser;
+import com.raven.datechooser.DateChooserx;
 import domain.Customer;
 import java.awt.Image;
 import java.io.File;
@@ -42,7 +43,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     DefaultTableModel model = new DefaultTableModel();
     private List<Customer> listmodel = new ArrayList<>();
     private CustomerServiceImpl custoermpl = new CustomerServiceImpl();
-    private DateChooser datechooer;
+    private DateChooserx datechooer;
     private Customer cusmoerselect;
     private String duongDanAnh = "";
     private byte[] pertionImage;
@@ -57,7 +58,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         listmodel = custoermpl.getKH();
         custormer = new CustomerServiceImpl();
         doddate(custormer.getKH());
-        datechooer = new DateChooser();
+        datechooer = new DateChooserx();
         datechooer.setTextRefernce(jTextField1);
         setLocationRelativeTo(null);
     }
