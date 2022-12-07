@@ -92,10 +92,10 @@ public class LichSuXoaKH extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 313, 115, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 100, 30));
 
         jButton2.setText("jButton2");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 321, 103, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 103, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

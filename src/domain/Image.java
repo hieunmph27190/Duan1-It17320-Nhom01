@@ -12,72 +12,82 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * The persistent class for the Images database table.
- * 
+ *
  */
 @Entity
-@Table(name="Images")
-@NamedQuery(name="Image.findAll", query="SELECT i FROM Image i")
+@Table(name = "Images")
+@NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")
 public class Image implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="Id")
-	@GeneratedValue(generator = "genUUID")
-	@GenericGenerator(name = "genUUID",strategy = "uuid2")
-	private UUID id;
+    private static final long serialVersionUID = 1L;
 
-	@Lob
-	@Column(name="Image")
-	private Blob image;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(generator = "genUUID")
+    @GenericGenerator(name = "genUUID", strategy = "uuid2")
+    private UUID id;
 
-	@Column(name="Type")
-	private Integer type;
+    @Lob
+    @Column(name = "Image")
+    private Blob image;
 
-	//bi-directional many-to-one association to ProductDetail
-	@ManyToOne
-	@JoinColumn(name="ProductDetailId")
-	private ProductDetail productDetail;
+    @Column(name = "Type")
+    private Integer type;
 
-	public Image() {
-	}
+    //bi-directional many-to-one association to ProductDetail
+    @ManyToOne
+    @JoinColumn(name = "ProductDetailId")
+    private ProductDetail productDetail;
 
-	public UUID getId() {
-		return this.id;
-	}
+    @PrePersist
+    @PreUpdate
+    public void pre() {
+        if (type == null) {
+            type = 1;
+        }
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public Image() {
+    }
 
-	public Blob getImage() {
-		return this.image;
-	}
+    public UUID getId() {
+        return this.id;
+    }
 
-	public void setImage(Blob image) {
-		this.image = image;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public Integer getType() {
-		return this.type;
-	}
+    public Blob getImage() {
+        return this.image;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    public void setImage(Blob image) {
+        this.image = image;
+    }
 
-	public ProductDetail getProductDetail() {
-		return this.productDetail;
-	}
+    public Integer getType() {
+        return this.type;
+    }
 
-	public void setProductDetail(ProductDetail productDetail) {
-		this.productDetail = productDetail;
-	}
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public ProductDetail getProductDetail() {
+        return this.productDetail;
+    }
+
+    public void setProductDetail(ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
 
 }
