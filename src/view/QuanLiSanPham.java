@@ -127,7 +127,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         btnClear = new javax.swing.JButton();
         textID = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         cbxSole = new javax.swing.JComboBox<>();
@@ -167,15 +166,17 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         btnAddAvata1 = new javax.swing.JButton();
         btnAddAvata2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         txt_search_productname = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         txt_search_category = new javax.swing.JTextField();
         txt_search_color = new javax.swing.JTextField();
         txt_search_size = new javax.swing.JTextField();
         txt_search_brand = new javax.swing.JTextField();
-        txt_search_sole = new javax.swing.JTextField();
-        txt_search_quantity = new javax.swing.JTextField();
-        txt_search_price = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -191,9 +192,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 75, -1));
         getContentPane().add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 98, 210, 16));
-
-        jButton7.setText("San Pham Da Xoa");
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 141, -1));
 
         btnUpdate.setText("UPDATE");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -407,21 +405,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(btnAddAvata2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 70, -1));
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-
-        txt_search_productname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_search_productnameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_search_productname);
-        jPanel1.add(txt_search_category);
-        jPanel1.add(txt_search_color);
-        jPanel1.add(txt_search_size);
-        jPanel1.add(txt_search_brand);
-        jPanel1.add(txt_search_sole);
-        jPanel1.add(txt_search_quantity);
-        jPanel1.add(txt_search_price);
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 700, -1));
 
         jButton1.setText("SEACH");
@@ -430,7 +413,33 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 580, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 500, -1, -1));
+
+        jLabel5.setText("TÊN");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 30, 20));
+
+        jLabel12.setText("LO?I");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 500, 30, 20));
+
+        jLabel16.setText("MÀU");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, -1, 30));
+
+        jLabel17.setText("SIZE");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 30, -1));
+
+        txt_search_productname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_search_productnameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_search_productname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 180, -1));
+
+        jLabel18.setText("HÃNG");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 40, -1));
+        getContentPane().add(txt_search_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, 180, -1));
+        getContentPane().add(txt_search_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, 180, -1));
+        getContentPane().add(txt_search_size, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 180, -1));
+        getContentPane().add(txt_search_brand, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 180, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -562,7 +571,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 //                type = Constant.COLOR;
 //            }
 
-        productDetails = productDetailService.searchProductDetail(txt_search_productname.getText(), txt_search_category.getText(), txt_search_color.getText(), txt_search_size.getText(), txt_search_brand.getText(), txt_search_sole.getText(), txt_search_quantity.getText(), txt_search_price.getText());
+        productDetails = productDetailService.searchProductDetail(txt_search_productname.getText(), txt_search_category.getText(), txt_search_color.getText(), txt_search_size.getText(), txt_search_brand.getText());
 //        }
         loadTable(productDetails);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -603,17 +612,21 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -630,11 +643,8 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField txt_search_brand;
     private javax.swing.JTextField txt_search_category;
     private javax.swing.JTextField txt_search_color;
-    private javax.swing.JTextField txt_search_price;
     private javax.swing.JTextField txt_search_productname;
-    private javax.swing.JTextField txt_search_quantity;
     private javax.swing.JTextField txt_search_size;
-    private javax.swing.JTextField txt_search_sole;
     // End of variables declaration//GEN-END:variables
 
     private ProductDetail getFormData() {

@@ -64,8 +64,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
     }
 
     @Override
-    public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price) {
-        return productDetailRepository.searchProductDetail(productName, category, color, size, brand, soles, amount, price);
+    public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand) {
+        return productDetailRepository.searchProductDetail(productName, category, color, size, brand);
     }
 
 }

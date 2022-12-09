@@ -20,7 +20,7 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         super(ProductDetail.class);
     }
 
-    public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price) {
+    public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand) {
         Map<Integer, Object> mapParam = new HashMap<>();
         int indexParam = 1;
         //        String sql = "select c from Color c where c.name like ?1 and type != 0";
@@ -68,35 +68,6 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
             int index = indexParam++;
             querySql.append(" LIKE ?" + index);
             mapParam.put(index, "%" + brand + "%");
-        }
-
-        if (!"".equals(soles)) {
-            querySql.append(" AND p.sole.name");
-            int index = indexParam++;
-            querySql.append(" LIKE ?" + index);
-            mapParam.put(index, "%" + soles + "%");
-        }
-
-        if (!"".equals(amount)) {
-            try {
-                Long.parseLong(amount);
-                querySql.append(" AND p.amount");
-                int index = indexParam++;
-                querySql.append(" = ?" + index);
-                mapParam.put(index, Long.parseLong(amount));
-            } catch (Exception e) {
-            }
-        }
-
-        if (!"".equals(price)) {
-            try {
-                new BigDecimal(price);
-                querySql.append(" AND p.price");
-                int index = indexParam++;
-                querySql.append(" = ?" + index);
-                mapParam.put(index, new BigDecimal(price));
-            } catch (Exception e) {
-            }
         }
 
         System.out.println(querySql.toString());
