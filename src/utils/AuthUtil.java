@@ -7,7 +7,7 @@ import service.impl.EmployeeServiceImpl;
 public class AuthUtil {
 
     static {
-        user = null;
+        user = new EmployeeServiceImpl().findAll().get(0);
     }
     private static Employee user;
 

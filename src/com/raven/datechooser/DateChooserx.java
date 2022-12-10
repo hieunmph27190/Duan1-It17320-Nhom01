@@ -37,8 +37,8 @@ public final class DateChooserx extends javax.swing.JPanel {
 
     public DateChooserx() {
         initComponents();
-        cmdPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/datechooser/previous.png"))); // NOI18N
-        cmdForward.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/datechooser/forward.png"))); // NOI18N
+//        cmdPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("//com/raven/datechooser/previous.png"))); // NOI18N
+//        cmdForward.setIcon(new javax.swing.ImageIcon(getClass().getResource("//com/raven/datechooser/forward.png"))); // NOI18N
         execute();
     }
 
@@ -307,8 +307,8 @@ public final class DateChooserx extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cmdPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MY, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MY, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdForward, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

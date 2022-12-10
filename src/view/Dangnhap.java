@@ -183,7 +183,7 @@ public class Dangnhap extends javax.swing.JFrame {
         }
 
         if (employee != null) {
-            if (employee.getRole().getCode().equals("nv")) {
+            if (employee.getRole().getCode().equalsIgnoreCase("nv")) {
                 AuthUtil.setEmployee(employee);
                 new LayoutMain().setVisible(true);
                 this.dispose();
