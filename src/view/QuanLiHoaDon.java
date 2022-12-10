@@ -180,7 +180,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Quan Ly Hoa Don");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 209, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 209, -1));
 
         tblHDC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,10 +200,10 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblHDC);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 590, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 970, 140));
 
         jLabel2.setText("Hoa Don");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,13 +218,13 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblGH);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 590, 150));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 970, 190));
 
         jLabel3.setText("Hoa Don Chi Tiet ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         jLabel4.setText("Trang Thai: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
 
         cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Huy", "Hoa Don Cho", "Da Thanh Toan" }));
         cbb.addActionListener(new java.awt.event.ActionListener() {
@@ -232,21 +232,21 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
                 cbbActionPerformed(evt);
             }
         });
-        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 92, 220, 30));
+        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 220, 30));
 
         jLabel5.setText("Bo Loc: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jLabel6.setText("Tim Kiem : ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 170, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 170, -1));
 
         jButton1.setText("SEACH");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
-        getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 110, -1));
-        getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 120, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 120, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 110, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, -1));
+        getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 120, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 120, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 110, -1));
 
         jButton3.setText("SEACH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +254,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 80, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 80, -1));
 
         pack();
         setLocationRelativeTo(null);

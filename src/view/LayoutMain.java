@@ -89,7 +89,7 @@ public class LayoutMain extends JFrame {
 
         mapChucNang.add(new ChucNangItem(" Khuyen Mai",
                 new ImageIcon(
-                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new KhuyenMai().getContentPane()));
+                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyKhuyenMai().getContentPane()));
               //  new JPanel()));
 
         mapChucNang.add(new ChucNangItem(" Doi Tra",
