@@ -357,7 +357,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 30, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 540, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 540, 270));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -398,7 +398,7 @@ public class BanHangJDialog extends javax.swing.JFrame {
         });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 50, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 540, 160));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 540, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
