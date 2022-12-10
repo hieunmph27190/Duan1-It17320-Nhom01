@@ -4,6 +4,7 @@ import domain.Color;
 import java.util.UUID;
 
 import domain.ProductDetail;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,11 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import utils.Constant;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import utils.JpaRespository;
 import utils.JpaUtil;
 
@@ -20,7 +26,12 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         super(ProductDetail.class);
     }
 
+<<<<<<< HEAD
     public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand) {
+=======
+
+    public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price) {
+>>>>>>> 0169e57d0c8f33513a940c7a7922ddd5f89c6d0a
         Map<Integer, Object> mapParam = new HashMap<>();
         int indexParam = 1;
         //        String sql = "select c from Color c where c.name like ?1 and type != 0";
@@ -80,6 +91,30 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
             }
         }
         return ty.getResultList();
+    }
+
+
+    public void changeAmount(UUID id, Integer amountChange) throws Exception {
+        String jpql = "update ProductDetail set amount = :amount where id = :id";
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        ProductDetail productDetail = entityManager.find(ProductDetail.class, id);
+        Long newAmount = productDetail.getAmount() + amountChange;
+        if (newAmount<0) {
+            throw new Exception("So luong khong du");
+        }
+        try {
+            Query query = entityManager.createQuery(jpql);
+            query.setParameter("amount", newAmount);
+            query.setParameter("id", id);
+            entityManager.getTransaction().begin();
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }finally{
+            entityManager.close();
+        }
     }
 
 }

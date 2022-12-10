@@ -255,14 +255,14 @@ public class khachhang extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 238, -1));
 
         jLabel3.setText("Id: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
         jLabel4.setText("Ho: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
         male.setSelected(true);
         male.setText("Nam");
-        getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, -1));
+        getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, -1, -1));
 
         female.setText("Nu");
         female.addActionListener(new java.awt.event.ActionListener() {
@@ -270,39 +270,43 @@ public class khachhang extends javax.swing.JFrame {
                 femaleActionPerformed(evt);
             }
         });
-        getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, -1, -1));
+        getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 200, -1, -1));
 
-        ADD.setText("ADD");
+        ADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
+        ADD.setText("Add");
         ADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, 70, -1));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 90, 90, -1));
 
+        Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Button-Close-icon-16.png"))); // NOI18N
         Delete.setText("Delete");
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 77, -1));
+        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 170, 90, -1));
 
+        Clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/clear.png"))); // NOI18N
         Clear.setText("Clear");
         Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClearActionPerformed(evt);
             }
         });
-        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 210, 74, -1));
+        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 210, 80, -1));
 
+        Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         Update.setText("Update");
         Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
+        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 130, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -324,24 +328,29 @@ public class khachhang extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 626, 156));
 
-        jButton9.setText("|<");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/first_button.png"))); // NOI18N
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 89, -1));
 
-        jButton10.setText(">>");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_next.png"))); // NOI18N
         getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 88, -1));
 
-        jButton11.setText("<<");
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_previous.png"))); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 85, -1));
-        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 250, -1));
+        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 240, -1));
 
-        jButton12.setText("|>");
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/button_last.png"))); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 510, 102, -1));
-        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 247, -1));
+        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 240, -1));
 
         LichSuXoa.setText("Lich Su Xoa KH");
         LichSuXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -349,57 +358,58 @@ public class khachhang extends javax.swing.JFrame {
                 LichSuXoaActionPerformed(evt);
             }
         });
-        getContentPane().add(LichSuXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, -1, 30));
+        getContentPane().add(LichSuXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, 30));
 
         jLabel5.setText("Ten Dem: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
         jLabel10.setText("So Dien Thoai: ");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 84, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 84, -1));
 
         jLabel6.setText("Ten: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
-        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 247, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
+        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 240, -1));
 
         jLabel7.setText("Gioi Tinh: ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, 20));
-        getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 230, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, 20));
+        getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 230, -1));
 
         jLabel9.setText("Email: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 37, -1));
-        getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 230, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 37, -1));
+        getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 230, -1));
 
         jLabel11.setText("Ngay Sinh: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 60, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 80, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 247, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 240, -1));
 
         jLabel12.setText("Dia Chi: ");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 58, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 58, -1));
 
         txtaddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtaddressActionPerformed(evt);
             }
         });
-        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 247, -1));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 240, 20));
+        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 240, -1));
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 240, 20));
 
         lblanh.setText("Anh");
-        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 120, 150));
+        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 120, 90));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/choose.png"))); // NOI18N
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, -1));
 
         jButton2.setText("XoaAvata");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -407,7 +417,7 @@ public class khachhang extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 90, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 280, 90, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -602,6 +612,10 @@ public class khachhang extends javax.swing.JFrame {
         lblanh.setIcon(null);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

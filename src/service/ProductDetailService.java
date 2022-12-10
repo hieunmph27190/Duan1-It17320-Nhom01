@@ -28,6 +28,16 @@ public interface ProductDetailService {
 
     void setType(UUID id, int type) throws Exception;
 
+<<<<<<< HEAD
     List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand);
+=======
+
+    List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price);
+>>>>>>> 0169e57d0c8f33513a940c7a7922ddd5f89c6d0a
 
 }
+
+    void changeAmount(UUID id, Integer amountChange) throws Exception;
+	
+}
+

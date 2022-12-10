@@ -2,6 +2,7 @@ package service.impl;
 
 
 import domain.Bill;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -55,6 +56,14 @@ public class BillServiceImpl implements BillService {
 
     public void setType(UUID id, int type) throws Exception {
         billRepository.setType(id, type);
+    }
+
+    public BigDecimal getSumMoney(Bill bill) {
+        return billRepository.getSumMoney(bill);
+    }
+
+    public Long getQuantity(Bill bill) {
+        return billRepository.getQuantity(bill);
     }
 	
 }

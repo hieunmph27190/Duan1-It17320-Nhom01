@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import repository.ProductDetailRepository;
 import service.ProductDetailService;
 
+
 public class ProductDetailServiceImpl implements ProductDetailService {
 
     private ProductDetailRepository productDetailRepository;
@@ -50,6 +51,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
     public Long count() {
         return productDetailRepository.count();
     }
+
 
     public List<ProductDetail> findByTypeEqual(int i) {
         return productDetailRepository.findByTypeEqual(i);
