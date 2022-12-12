@@ -134,7 +134,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         try {
             cus.setDateOfBirth(date.parse(jTextField1.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(khachhang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             cus.setDateOfBirth(null);
         }
         cus.setEmail(txtemail.getText());
@@ -382,7 +382,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
                 listmodel = custormer.getKH();
                 doddate(listmodel);
                 try {
-                   BanHangJDialog bhdiag= (BanHangJDialog) this.parent;
+                   BanHang bhdiag= (BanHang) this.parent;
                    bhdiag.selecttedcustomor(cuss);
                 } catch (Exception e) {
                     e.printStackTrace();

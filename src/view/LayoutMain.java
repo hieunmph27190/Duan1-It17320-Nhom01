@@ -18,18 +18,14 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.border.BevelBorder;
 
@@ -55,9 +51,7 @@ public class LayoutMain extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
+
     public LayoutMain() {
         setResizable(false);
         initComponents();
@@ -76,11 +70,11 @@ public class LayoutMain extends JFrame {
                         LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiSanPham().getContentPane()));
         mapChucNang.add(new ChucNangItem(" Khach Hang",
                 new ImageIcon(
-                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new khachhang().getContentPane()));
+                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QLKhachHang().getContentPane()));
         //new JPanel()));
         mapChucNang.add(new ChucNangItem(" Ban Hang",
                 new ImageIcon(
-                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHangJDialog().getContentPane()));
+                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHang().getContentPane()));
         //new JPanel()));
         mapChucNang.add(new ChucNangItem(" Hoa Don",
                 new ImageIcon(

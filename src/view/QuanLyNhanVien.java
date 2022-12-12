@@ -141,7 +141,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         try {
             empoly.setDateOfBirth(date.parse(txtdate.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(khachhang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             empoly.setDateOfBirth(null);
         }
 
