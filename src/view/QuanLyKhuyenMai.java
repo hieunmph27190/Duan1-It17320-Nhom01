@@ -6,27 +6,18 @@ package view;
 
 import com.raven.datechooser.DateBetween;
 import com.raven.datechooser.DateChooser;
-import domain.Bill;
-import domain.BillDetail;
 import domain.ProductDetail;
 import domain.Promotion;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import service.BillDetailService;
-import service.BillService;
 import service.ProductDetailService;
 import service.PromotionService;
-import service.impl.BillDetailServiceImpl;
-import service.impl.BillServiceImpl;
 import service.impl.ProductDetailServiceImpl;
 import service.impl.PromotionServiceImpl;
 

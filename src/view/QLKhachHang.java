@@ -34,7 +34,7 @@ import utils.ImageUtil;
  *
  * @author Administrator
  */
-public class khachhang extends javax.swing.JFrame {
+public class QLKhachHang extends javax.swing.JFrame {
 
     /**
      * Creates new form khachhang
@@ -48,7 +48,7 @@ public class khachhang extends javax.swing.JFrame {
     private String duongDanAnh = "";
     private byte[] pertionImage;
 
-    public khachhang() {
+    public QLKhachHang() {
         initComponents();
 
         table.setModel(model);
@@ -132,7 +132,7 @@ public class khachhang extends javax.swing.JFrame {
         try {
             cus.setDateOfBirth(date.parse(jTextField1.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(khachhang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             cus.setDateOfBirth(null);
         }
         cus.setEmail(txtemail.getText());
@@ -322,7 +322,7 @@ public class khachhang extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(table);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 340, 940, 230));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 340, 950, 230));
         getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
         getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
 
@@ -599,21 +599,27 @@ public class khachhang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(khachhang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new khachhang().setVisible(true);
+                new QLKhachHang().setVisible(true);
             }
         });
     }

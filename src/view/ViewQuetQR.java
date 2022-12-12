@@ -133,7 +133,7 @@ public class ViewQuetQR extends javax.swing.JFrame implements Runnable, ThreadFa
 
             if (result != null) {
                 try {
-                BanHangJDialog  banHangJDialog = (BanHangJDialog) this.frame;
+                BanHang  banHangJDialog = (BanHang) this.frame;
                     ProductDetail detail = new ProductDetailServiceImpl().findByID(UUID.fromString(result.getText().trim()));
                     result_field.setText(detail.getProduct().getProductName());     
                     webcam.close();

@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import view.LayoutMain;
 
 public final class DateChooserx extends javax.swing.JPanel {
 
@@ -37,8 +38,8 @@ public final class DateChooserx extends javax.swing.JPanel {
 
     public DateChooserx() {
         initComponents();
-//        cmdPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("//com/raven/datechooser/previous.png"))); // NOI18N
-//        cmdForward.setIcon(new javax.swing.ImageIcon(getClass().getResource("//com/raven/datechooser/forward.png"))); // NOI18N
+        cmdPrevious.setIcon(new javax.swing.ImageIcon(LayoutMain.class.getResource("/resources/image/previous.png"))); // NOI18N
+        cmdForward.setIcon(new javax.swing.ImageIcon(LayoutMain.class.getResource("/resources/image/forward.png"))); // NOI18N
         execute();
     }
 
