@@ -8,6 +8,7 @@ import com.raven.datechooser.DateBetween;
 import com.raven.datechooser.DateChooser;
 import domain.ProductDetail;
 import domain.Promotion;
+import domain.Promotion_Product;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +17,13 @@ import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyledEditorKit;
 import service.ProductDetailService;
 import service.PromotionService;
+import service.Promotion_ProductService;
 import service.impl.ProductDetailServiceImpl;
 import service.impl.PromotionServiceImpl;
+import service.impl.Promotion_ProductServiceImpl;
 
 /**
  *
@@ -27,34 +31,51 @@ import service.impl.PromotionServiceImpl;
  */
 public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
+    private Promotion_ProductService ppService = new Promotion_ProductServiceImpl();
     private ProductDetailService productDetailService;
     private List<ProductDetail> productDetails = new ArrayList<>();
     private PromotionService promotionService;
     private List<Promotion> promotions = new ArrayList<>();
     private DateChooser dateChooser = new DateChooser();
     private Promotion promotionSelected;
+    String[] columnsTblSP = new String[]{
+        "Ten", "Loai", "Mau", "Size", "hang", "D?", "So luonng", "Gia", "Mo ta", ""};
 
     public QuanLyKhuyenMai() {
         initComponents();
         setLocationRelativeTo(null);
         init();
         this.productDetailService = new ProductDetailServiceImpl();
-        productDetails = productDetailService.findByTypeNotEqual(0);
-        loadTable(productDetails);;
         this.promotionService = new PromotionServiceImpl();
         promotions = promotionService.findByTypeNotEqual(0);
         loadTableKM(promotions);;
-
     }
 
     private void loadTable(List<ProductDetail> productDetails) {
+
         DefaultTableModel defaultTableModel = (DefaultTableModel) Tblsp.getModel();
         defaultTableModel.setRowCount(0);
         for (ProductDetail p : productDetails) {
             defaultTableModel.addRow(
-                    new Object[]{p.getProduct() == null ? null : p.getProduct().getProductName(), p.getCategory() == null ? null : p.getCategory().getCategoryName(), p.getColor(), p.getSize(), p.getBrand(), p.getSole(), p.getAmount(), p.getPrice(), p.getDescription(), true}
+                    new Object[]{p.getProduct() == null ? null : p.getProduct().getProductName(), p.getCategory() == null ? null : p.getCategory().getCategoryName(), p.getColor(), p.getSize(), p.getBrand(), p.getSole(), p.getAmount(), p.getPrice(), p.getDescription(), containPdinPr(promotionSelected, p)}
             );
         }
+    }
+
+    private boolean containPdinPr(Promotion promotionSelected, ProductDetail p) {
+        if (promotionSelected != null) {
+            List<Promotion_Product> list = promotionSelected.getPromotionProducts();
+            for (Promotion_Product pp : list) {
+
+                if (pp.getProductDetail().getId().toString().equals(p.getId().toString())) {
+                    return true;
+                } 
+            }
+        } else {
+            return false;
+        }
+        return false;
+
     }
 
     private void loadTableKM(List<Promotion> promotions) {
@@ -67,11 +88,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
     private void init() {
         //Headers for JTable
-        String[] columns = new String[]{
-            "Ten", "Loai", "Mau", "Size", "hang", "D?", "So luonng", "Gia", "Mo ta", ""};
-        //data for JTable in a 2D table
-
-        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+        DefaultTableModel model = new DefaultTableModel(columnsTblSP, 0) {
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false, false, true
             };
@@ -93,6 +110,11 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
             }
 
         };
+        Tblsp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblspMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tblsp);
 
         tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
@@ -156,6 +178,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jLabel5.setText("Quan Li Khuyen Mai ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Code Khuyen Mai: ");
@@ -198,9 +221,14 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 67, -1));
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 67, -1));
 
-        jButton3.setText("New");
+        jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 71, -1));
 
         btnDelete.setText("Delete");
@@ -228,9 +256,9 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 20, 20));
 
         spinerMucGiamGia.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 100.0d, 1.0d));
-        jPanel2.add(spinerMucGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 230, -1));
+        jPanel2.add(spinerMucGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 240, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 410, 540));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 410, 490));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -264,7 +292,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         Tblsp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
-                {null, "cccccccccc", null, null},
+                {null, "", null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
@@ -279,7 +307,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tblsp);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 510, 260));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 510, 240));
 
         jLabel9.setText("San Pham");
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
@@ -299,8 +327,9 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 promotionService.insert(promotion);
                 promotions = promotionService.findByTypeNotEqual(0);
                 loadTableKM(promotions);
-                JOptionPane.showMessageDialog(this, "Them thành công");
+                JOptionPane.showMessageDialog(this, "Them thï¿½nh cï¿½ng");
             } catch (Exception ex) {
+                ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Loi");
             }
         }
@@ -308,7 +337,10 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
         if (tblKhuyenMai.getSelectedRow() >= 0) {
+            promotionSelected = promotions.get(tblKhuyenMai.getSelectedRow());
             fillForm(promotions.get(tblKhuyenMai.getSelectedRow()));
+            productDetails = productDetailService.findByTypeNotEqual(0);
+            loadTable(productDetails);
         }
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
@@ -322,12 +354,13 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Phai chon san pham muon sua");
                     return;
                 }
-                promotion.setId(UUID.fromString(textID.getText().trim()));
                 promotionService.update(promotion);
                 promotions = promotionService.findByTypeNotEqual(0);
                 loadTableKM(promotions);
+                new Promotion_ProductServiceImpl().deletePromotionNull();
                 JOptionPane.showMessageDialog(this, "Sua thanh cong");
             } catch (Exception ex) {
+                ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Loi");
             }
         }
@@ -354,9 +387,34 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         int i = Tblsp.getSelectedRow();
         if (i >= 0) {
             Boolean b = (Boolean) Tblsp.getValueAt(i, Tblsp.getColumnCount() - 1);
-            JOptionPane.showMessageDialog(this, "abc");
+            ProductDetail p = productDetails.get(i);
+            List<Promotion_Product> list = promotionSelected.getPromotionProducts();
+            if (list == null) {
+                list = new ArrayList<>();
+            }
+            if (b) {
+                Promotion_Product pp = ppService.findByProductAndPromotion(p, promotionSelected);
+                if (pp == null) {
+                    Promotion_Product ppAdd = new Promotion_Product();
+                    ppAdd.setProductDetail(p);
+                    ppAdd.setPromotion(promotionSelected);
+                    promotionSelected.addPromotionProduct(ppAdd);
+                }
+            } else {
+                Promotion_Product pp = ppService.findByProductAndPromotion(p, promotionSelected);
+                if (pp != null) {
+                    promotionSelected.removePromotionProduct(pp);
+                }
+            }
         }
     }//GEN-LAST:event_TblspMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        promotions = promotionService.findByTypeNotEqual(0);
+        loadTableKM(promotions);
+        promotionSelected = null;
+        loadTable(new ArrayList<>());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -400,12 +458,20 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Promotion getFormDate() {
-        Promotion promotion = new Promotion();
+        Promotion promotion = promotionSelected;
+        if (promotion == null) {
+            promotion = new Promotion();
+        }
         promotion.setPromotionName(textName.getText().trim());
         promotion.setCreateDate(new Date());
-        DateBetween between = dateChooser.getSelectedDateBetween();
-        promotion.setStartDate(between.getFromDate());
-        promotion.setEndDate(between.getToDate());
+        try {
+            DateBetween between = dateChooser.getSelectedDateBetween();
+            promotion.setStartDate(between.getFromDate());
+            promotion.setEndDate(between.getToDate());
+        } catch (Exception e) {
+            return null;
+        }
+
         Double km = (Double) spinerMucGiamGia.getValue();
         promotion.setDiscount(km);
         BigDecimal bigDecimal = new BigDecimal((Double) spinerGiaToiThieu.getValue());

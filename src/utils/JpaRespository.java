@@ -109,7 +109,9 @@ public class JpaRespository<E, K> {
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(entity);
+            entityManager.flush();
             entityManager.getTransaction().commit();
+            
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();

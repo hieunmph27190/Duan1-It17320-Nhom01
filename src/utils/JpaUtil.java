@@ -25,7 +25,5 @@ public class JpaUtil {
 	public static Session getSession() {
 		return getEntityManager().unwrap(Session.class);
 	}
-	   public static void main(String[] args) {
-        getEntityManager();
-    }
+	
 }

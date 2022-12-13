@@ -1,5 +1,7 @@
 package service;
 
+import domain.ProductDetail;
+import domain.Promotion;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,5 +22,9 @@ public interface Promotion_ProductService {
 	List<Promotion_Product> findAll(int first, int size);
 
 	List<Promotion_Product> findAll();
+
+    Promotion_Product findByProductAndPromotion(ProductDetail d, Promotion p);
+
+    void deletePromotionNull();
 	
 }
