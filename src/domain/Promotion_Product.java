@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,6 +45,12 @@ public class Promotion_Product implements Serializable {
 
 	public Promotion_Product() {
 	}
+        @PrePersist@PreUpdate
+       public void prePersistorUpdate(){
+            if (type==null) {
+                type=1;
+            }
+       }
 
 	public UUID getId() {
 		return this.id;
@@ -75,5 +83,17 @@ public class Promotion_Product implements Serializable {
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Promotion) {
+            Promotion promotion = (Promotion) obj;
+            if (promotion.getId().toString().equals(this.getId().toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+        
 
 }

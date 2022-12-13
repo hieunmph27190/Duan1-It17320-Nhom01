@@ -141,13 +141,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         try {
             empoly.setDateOfBirth(date.parse(txtdate.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             empoly.setDateOfBirth(null);
         }
 
         RoleServiceImpl roleServiceImpl = new RoleServiceImpl();
-        roleServiceImpl.findAll().get(0).getId();
-        empoly.setRole(roleServiceImpl.findAll().get(0));
+        empoly.setRole(roleServiceImpl.findByID(UUID.fromString("98b01a7a-421f-4fc5-a2d7-59a460d318a3")));
         if (pertionImage != null) {
             try {
                 Blob avata = new SerialBlob(pertionImage);
@@ -230,11 +229,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
@@ -283,7 +277,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jPanel3.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 188, -1));
 
         lblAvata.setForeground(new java.awt.Color(255, 255, 102));
-        lblAvata.setText("jLabel12");
         jPanel3.add(lblAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 120, 150));
 
         btnXoaAvata.setText("Xóa");
@@ -402,25 +395,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        jButton7.setBackground(new java.awt.Color(153, 255, 102));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        jButton8.setBackground(new java.awt.Color(153, 255, 51));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        jButton9.setBackground(new java.awt.Color(153, 255, 102));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        jButton10.setBackground(new java.awt.Color(153, 255, 102));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        jButton13.setText("Nhan Vien Da Xoa");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 51, 255)));
@@ -440,21 +414,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(49, 49, 49)
-                                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(61, 61, 61)
-                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(160, 160, 160)
-                                        .addComponent(jButton13)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(184, 184, 184))
         );
@@ -469,16 +429,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton8)
-                            .addComponent(jButton10)
-                            .addComponent(jButton9)
-                            .addComponent(jButton7))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton13)))
-                .addGap(369, 369, 369))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(375, 375, 375))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 0, 780, -1));
@@ -673,10 +625,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnChonAvataActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
        
         int row = table.getSelectedRow();
@@ -727,14 +675,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaAvata;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

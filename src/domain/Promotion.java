@@ -12,6 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -57,9 +61,17 @@ public class Promotion implements Serializable {
 
     //bi-directional many-to-one association to Promotion_Product
     @OneToMany(mappedBy = "promotion")
+    @Cascade({CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
     private List<Promotion_Product> promotionProducts;
 
     public Promotion() {
+    }
+    @PrePersist
+    @PreUpdate
+    public void prePersistorUpdate() {
+        if (type == null) {
+            type = 1;
+        }
     }
 
     public UUID getId() {

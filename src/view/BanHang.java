@@ -70,7 +70,6 @@ public class BanHang extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tblHDH = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
@@ -93,13 +92,13 @@ public class BanHang extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        textHoaDon = new javax.swing.JTextField();
         textTienTra = new javax.swing.JTextField();
-        textTongTien = new javax.swing.JTextField();
         textName = new javax.swing.JTextField();
         textGiamGia = new javax.swing.JTextField();
         sprinerTienDua = new javax.swing.JSpinner();
         jButton5 = new javax.swing.JButton();
+        textHoaDon = new javax.swing.JLabel();
+        textTongTien = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblGH = new javax.swing.JTable();
@@ -133,7 +132,7 @@ public class BanHang extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblHDC);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 384, 130));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 384, 120));
 
         jButton7.setText("Huy HD");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +172,7 @@ public class BanHang extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblHDH);
 
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 378, 130));
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 378, 120));
 
         jButton4.setText("Xoa");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -181,15 +180,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 80, 30));
-
-        jButton11.setText("Tao HD");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 80, 30));
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, 30));
 
         jTabbedPane1.addTab("Hoa Don Da Huy", jPanel4);
 
@@ -244,32 +235,37 @@ public class BanHang extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa ??n"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setText("Ten Khach Hang: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        jLabel5.setText("Ten KH");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 50, 20));
 
         textSoLuong.setEditable(false);
         textSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         textSoLuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 150, 30));
+        textSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSoLuongActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, 20));
 
-        jLabel6.setText("Sdt Khach Hang: ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jLabel6.setText("SDT KH");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 50, -1));
 
         jLabel7.setText("So Luong: ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
-        jPanel1.add(textSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 130, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
+        jPanel1.add(textSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 150, -1));
 
         jLabel8.setText("Tong Tien: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, 30));
 
         jLabel10.setText("Tien Dua: ");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 60, -1));
 
         jLabel11.setText("Tien Thua: ");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
         jLabel12.setText("Giam Gia: ");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 57, 20));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 57, 20));
 
         jButton3.setText("Luu Hoa Don");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +273,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 120, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 120, 30));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +281,7 @@ public class BanHang extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 70, -1));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 70, -1));
 
         jButton6.setText("+");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -293,10 +289,10 @@ public class BanHang extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 40, 30));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 30, 20));
 
         jLabel15.setText("Ma HD: ");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 50, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 20));
 
         jButton1.setText("Thanh Toan");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -304,11 +300,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 100, 30));
-
-        textHoaDon.setEditable(false);
-        textHoaDon.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(textHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 180, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 100, 30));
 
         textTienTra.setEditable(false);
         textTienTra.addActionListener(new java.awt.event.ActionListener() {
@@ -316,13 +308,7 @@ public class BanHang extends javax.swing.JFrame {
                 textTienTraActionPerformed(evt);
             }
         });
-        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 150, 30));
-
-        textTongTien.setEditable(false);
-        textTongTien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textTongTien.setForeground(new java.awt.Color(255, 153, 51));
-        textTongTien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 190, -1));
+        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 150, 20));
 
         textName.setEditable(false);
         textName.addActionListener(new java.awt.event.ActionListener() {
@@ -330,10 +316,10 @@ public class BanHang extends javax.swing.JFrame {
                 textNameActionPerformed(evt);
             }
         });
-        jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 140, 30));
+        jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, 20));
 
         textGiamGia.setEditable(false);
-        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 152, 130, 30));
+        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 160, 20));
 
         sprinerTienDua.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
         sprinerTienDua.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -346,7 +332,7 @@ public class BanHang extends javax.swing.JFrame {
                 sprinerTienDuaPropertyChange(evt);
             }
         });
-        jPanel1.add(sprinerTienDua, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, 30));
+        jPanel1.add(sprinerTienDua, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 130, 20));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jButton5.setText("!");
@@ -355,9 +341,14 @@ public class BanHang extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 30, 30));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 30, 20));
+        jPanel1.add(textHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 350, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 540, 270));
+        textTongTien.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        textTongTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 160, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 540, 240));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -398,7 +389,7 @@ public class BanHang extends javax.swing.JFrame {
         });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 50, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 540, 160));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 540, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -652,10 +643,6 @@ public class BanHang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
-
     private void qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qrActionPerformed
        try {
             ViewQuetQR qR = new ViewQuetQR(this);
@@ -669,6 +656,10 @@ public class BanHang extends javax.swing.JFrame {
     private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textNameActionPerformed
+
+    private void textSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSoLuongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSoLuongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -712,7 +703,6 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -748,12 +738,12 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JTable tblHDH;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField textGiamGia;
-    private javax.swing.JTextField textHoaDon;
+    private javax.swing.JLabel textHoaDon;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSDT;
     private javax.swing.JTextField textSoLuong;
     private javax.swing.JTextField textTienTra;
-    private javax.swing.JTextField textTongTien;
+    private javax.swing.JLabel textTongTien;
     // End of variables declaration//GEN-END:variables
 
     private void loadTable(List<ProductDetail> productDetails) {

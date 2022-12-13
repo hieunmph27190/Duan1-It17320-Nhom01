@@ -223,7 +223,6 @@ public class QLKhachHang extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         txtfirtname = new javax.swing.JTextField();
         txtbuffername = new javax.swing.JTextField();
-        LichSuXoa = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -325,14 +324,6 @@ public class QLKhachHang extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 340, 950, 230));
         getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
         getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
-
-        LichSuXoa.setText("Lich Su Xoa KH");
-        LichSuXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LichSuXoaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(LichSuXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, -1, 30));
 
         jLabel5.setText("Ten Dem: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
@@ -460,12 +451,6 @@ public class QLKhachHang extends javax.swing.JFrame {
         click(row);
 
     }//GEN-LAST:event_tableMouseClicked
-
-    private void LichSuXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LichSuXoaActionPerformed
-        // TODO add your handling code here:
-        LichSuXoaKH kh = new LichSuXoaKH(this, true);
-        kh.setVisible(true);
-    }//GEN-LAST:event_LichSuXoaActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
@@ -637,7 +622,6 @@ public class QLKhachHang extends javax.swing.JFrame {
     private javax.swing.JButton ADD;
     private javax.swing.JButton Clear;
     private javax.swing.JButton Delete;
-    private javax.swing.JButton LichSuXoa;
     private javax.swing.JButton Update;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;

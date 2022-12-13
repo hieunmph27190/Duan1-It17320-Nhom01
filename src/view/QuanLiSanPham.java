@@ -139,7 +139,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         btnClear = new javax.swing.JButton();
         textID = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         cbxSole = new javax.swing.JComboBox<>();
@@ -204,9 +203,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         });
         getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 100, -1));
         getContentPane().add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 220, 16));
-
-        jButton7.setText("San Pham Da Xoa");
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 320, 141, -1));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
@@ -723,7 +719,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
