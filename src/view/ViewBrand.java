@@ -37,6 +37,7 @@ public class ViewBrand extends javax.swing.JDialog {
         brandService = new BrandServiceImpl();
 
         loadTable(brandService.findByTypeNotEqual(0));
+        setSize(580,530);
     }
 
     private void loadTable(List<Brand> getList) {
@@ -155,7 +156,7 @@ public class ViewBrand extends javax.swing.JDialog {
                 btnOkActionPerformed(evt);
             }
         });
-        getContentPane().add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 436, 75, -1));
+        getContentPane().add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 75, -1));
         getContentPane().add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 250, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

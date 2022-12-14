@@ -55,11 +55,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         String herach[] = {"Id", "FullName", "GioiTinh", "Sdt"};
         model.setColumnIdentifiers(herach);
         empoyeesvier = new EmployeeServiceImpl();
-        listmodel = empolmpl.findAll();
+        listmodel = empolmpl.getAlLNhanVien();
         dodate(listmodel);
         datechooer = new DateChooserx();
         datechooer.setTextRefernce(txtdate);
         setSize(1060, 610);
+        txtdate.setText("");
     }
 
     public void dodate(List<Employee> listshow) {
@@ -146,8 +147,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
 
         RoleServiceImpl roleServiceImpl = new RoleServiceImpl();
-        System.out.println(roleServiceImpl.findAll().get(1).getId());
-        System.out.println(roleServiceImpl.findAll().get(1).getCode());
         empoly.setRole(roleServiceImpl.findByID(UUID.fromString("7a1ab098-1f42-c54f-a2d7-59a460d318a3")));
         if (pertionImage != null) {
             try {
@@ -158,10 +157,43 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         }
 
+        if (empoly.getAddress().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Dia Chi Null");
+            return null;
+        }
+        if (empoly.getBufferName().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ho Null");
+            return null;
+        }
+        if (empoly.getFirstName().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ten Dem Null");
+            return null;
+        }
+        if (empoly.getName().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name Null");
+            return null;
+        } 
+        if (!empoly.getEmail().matches(".+@[a-z]+\\.[a-z]+")) {
+            JOptionPane.showMessageDialog(this, "Email Khong Hop Le");
+            return null;
+        }
+        if (!empoly.getPhoneNumber().matches("0[0-9]{9}")) {
+            JOptionPane.showMessageDialog(this, "So Dien Thoai Khong Hop Le");
+            return null;
+        }
+      
+        if (empoly.getUsername().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
+            return null;
+        }
+        if (empoly.getPassword().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mat Khau Null");
+            return null;
+        }
+
         return empoly;
 
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -220,15 +252,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel3.setText("Ho: ");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-        jPanel3.add(txtfistname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 188, -1));
+        jPanel3.add(txtfistname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 188, -1));
 
         jLabel4.setText("Ten Dem: ");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
-        jPanel3.add(txtbuffname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 188, -1));
+        jPanel3.add(txtbuffname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 188, -1));
 
         jLabel5.setText("Ten: ");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-        jPanel3.add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 188, -1));
+        jPanel3.add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 188, -1));
 
         jLabel6.setText("Gioi Tinh: ");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 60, 11));
@@ -236,11 +268,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         buttonGroup1.add(rdbtnMale);
         rdbtnMale.setSelected(true);
         rdbtnMale.setText("Nam");
-        jPanel3.add(rdbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, 20));
+        jPanel3.add(rdbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, 20));
 
         buttonGroup1.add(rdbtnFemale);
         rdbtnFemale.setText("Nu");
-        jPanel3.add(rdbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, 20));
+        jPanel3.add(rdbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, 20));
 
         jLabel7.setText("TK");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 30, -1));
@@ -252,7 +284,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel9.setText("Sdt: ");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 37, -1));
-        jPanel3.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 188, -1));
+        jPanel3.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 188, -1));
 
         lblAvata.setForeground(new java.awt.Color(255, 255, 102));
         jPanel3.add(lblAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 120, 160));
@@ -292,17 +324,17 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 95, 29));
 
         jLabel13.setText("Ngay Sinh: ");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 60, -1));
-        jPanel3.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 186, -1));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 80, 20));
+        jPanel3.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 190, -1));
 
         jLabel14.setText("Email: ");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 43, -1));
-        jPanel3.add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 186, -1));
+        jPanel3.add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 190, -1));
 
         jLabel15.setText("Dia Chi: ");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
-        jPanel3.add(txtaddres, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 230, 180, -1));
-        jPanel3.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 188, 22));
+        jPanel3.add(txtaddres, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 190, -1));
+        jPanel3.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 188, 22));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
         btnAdd.setText("ADD");
@@ -313,7 +345,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 95, 30));
 
-        btnChonAvata.setText("Ch?n");
+        btnChonAvata.setText("Chon");
         btnChonAvata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChonAvataActionPerformed(evt);
@@ -321,7 +353,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(btnChonAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, 30));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 540, 430));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 550, 430));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Danh Sach Nhân Viên");
@@ -422,62 +454,40 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-        int row = table.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "chon dong can xoa");
+        String id = txtid.getText().trim();
+        if (id.length() < 5) {
+            JOptionPane.showMessageDialog(this, "Vui long chon nhan vien muon xoa");
             return;
         }
 
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa không");
+        int confirm = JOptionPane.showConfirmDialog(this, "Ban co chac chan xoa khong");
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
         try {
-            empoyeesvier.remove(UUID.fromString(txtid.getText()));
+            empoyeesvier.remove(UUID.fromString(txtid.getText().trim()));
             JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-            listmodel = empoyeesvier.findAll();
+            listmodel = empoyeesvier.getAlLNhanVien();
             dodate(listmodel);
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        txtsdt.setText("");
-        txtbuffname.setText("");
-        txtfistname.setText("");
-        txtlastname.setText("");
-        txtpassworld.setText("");
-        txtusename.setText("");
-        txtid.setText("");
-        txtemail.setText("");
-        datechooer.toDay();
-        txtaddres.setText("");
-        lblAvata.setIcon(null);
+        clearForm();
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        txtsdt.setText("");
-        txtbuffname.setText("");
-        txtfistname.setText("");
-        txtlastname.setText("");
-        txtpassworld.setText("");
-        txtusename.setText("");
-        txtid.setText("");
-        txtemail.setText("");
-        datechooer.toDay();
-        txtaddres.setText("");
-        lblAvata.setIcon(null);
+        clearForm();
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        int row = table.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "chon dong can sua");
+        String id = txtid.getText().trim();
+        if (id.length() < 5) {
+            JOptionPane.showMessageDialog(this, "Ch?a ch?n nhan vien sua");
             return;
         }
         int confirm = JOptionPane.showConfirmDialog(this, "Ban có muon sua khong");
@@ -486,43 +496,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
         Employee empoly = getform();
 
-        empoly.setId(UUID.fromString(txtid.getText()));
+        empoly.setId(UUID.fromString(txtid.getText().trim()));
         try {
-            if (empoly.getAddress().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                return;
-            }
-            if (empoly.getBufferName().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ho Null");
-                return;
-            }
-            if (empoly.getFirstName().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                return;
-            }
-            if (empoly.getName().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Name Null");
-                return;
-            }
-            if (empoly.getPhoneNumber().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                return;
-            }
-            if (empoly.getEmail().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Email Null");
-                return;
-            }
-            if (empoly.getUsername().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
-                return;
-            }
-            if (empoly.getPassword().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Mat Khau Null");
-                return;
-            }
+
             empoyeesvier.update(empoly);
             JOptionPane.showMessageDialog(this, "Sua thanh công");
-            listmodel = empoyeesvier.findAll();
+            listmodel = empoyeesvier.getAlLNhanVien();
             dodate(listmodel);
 
         } catch (Exception ex) {
@@ -542,46 +521,13 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             return;
         } else {
             try {
-                if (empoly.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-                if (empoly.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-                if (empoly.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-                if (empoly.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Name Null");
-                    return;
-                }
-                if (empoly.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-                if (empoly.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
-                    return;
-                }
-                if (empoly.getUsername().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dang Nhap Null");
-                    return;
-                }
-                if (empoly.getPassword().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Mat Khau Null");
-                    return;
-                }
-
                 empoly.setId(null);
                 empoyeesvier.insert(empoly);
                 JOptionPane.showMessageDialog(this, "Them thanh cong");
-                listmodel = empoyeesvier.findAll();
+                listmodel = empoyeesvier.getAlLNhanVien();
                 dodate(listmodel);
             } catch (Exception ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "UserName da ton tai");
             }
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -639,31 +585,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QuanLyNhanVien().setVisible(true);
@@ -715,4 +636,18 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtsdt;
     private javax.swing.JTextField txtusename;
     // End of variables declaration//GEN-END:variables
+
+    private void clearForm() {
+        txtsdt.setText("");
+        txtbuffname.setText("");
+        txtfistname.setText("");
+        txtlastname.setText("");
+        txtpassworld.setText("");
+        txtusename.setText("");
+        txtid.setText("");
+        txtemail.setText("");
+        txtdate.setText("");
+        txtaddres.setText("");
+        lblAvata.setIcon(null);
+    }
 }

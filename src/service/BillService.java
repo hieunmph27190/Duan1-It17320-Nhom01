@@ -3,6 +3,7 @@ package service;
 import domain.Bill;
 import domain.ProductDetail;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -31,8 +32,8 @@ public interface BillService {
 
     BigDecimal getSumMoney(Bill bill);
 
-    List<Bill> seachlochdc(String customorsname, String empolyename);
-
     Long getQuantity(Bill bill);
+
+    List<Bill> search(String custormername, String empolyname, Date startDate, Date endDate, Integer type);
 
 }

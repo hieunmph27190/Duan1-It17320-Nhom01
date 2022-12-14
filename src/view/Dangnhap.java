@@ -68,16 +68,16 @@ public class Dangnhap extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 210, -1));
 
         jLabel2.setText("User Name ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 61, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 100, -1));
 
         txtUsername.setForeground(new java.awt.Color(255, 204, 51));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 204, 204)));
-        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 84, 340, 28));
+        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 340, 28));
 
         jLabel4.setText("Password");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 60, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 204));
+        jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(70, 50, 255));
         jButton1.setText("Dang nhap");
@@ -88,17 +88,17 @@ public class Dangnhap extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 223, 32));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 223, 32));
 
-        jButton4.setForeground(new java.awt.Color(102, 0, 0));
+        jButton4.setBackground(new java.awt.Color(255, 153, 255));
         jButton4.setText("Quen mat khau");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 290, 150, -1));
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 340, -1));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 150, -1));
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 340, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 420, 360));
 

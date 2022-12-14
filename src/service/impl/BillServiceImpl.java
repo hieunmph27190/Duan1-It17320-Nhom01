@@ -3,6 +3,7 @@ package service.impl;
 import domain.Bill;
 import domain.ProductDetail;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -65,9 +66,10 @@ public class BillServiceImpl implements BillService {
         return billRepository.getQuantity(bill);
     }
 
-    @Override
-    public List<Bill> seachlochdc(String customorsname, String empolyename) {
-        return billRepository.searchcbb(customorsname, empolyename);
+    public List<Bill> search(String custormername, String empolyname, Date startDate, Date endDate, Integer type) {
+        return billRepository.searchcbb(custormername, empolyname, startDate, endDate, type);
     }
+
+   
 
 }

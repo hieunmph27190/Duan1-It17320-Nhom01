@@ -36,6 +36,7 @@ public class ViewSole extends javax.swing.JDialog {
         soleService = new SoleServiceImpl();
 
         loadTable(soleService.findByTypeNotEqual(0));
+        setSize(580,530);
     }
 
     private void loadTable(List<Sole> getList) {
