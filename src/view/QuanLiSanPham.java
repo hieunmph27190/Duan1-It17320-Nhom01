@@ -4,6 +4,9 @@
  */
 package view;
 
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import domain.Brand;
 import domain.Category;
 import domain.Color;
@@ -19,7 +22,9 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +51,7 @@ import service.impl.SizeServiceImpl;
 import service.impl.SoleServiceImpl;
 import utils.Constant;
 import utils.ImageUtil;
+import utils.QrCodeUtil;
 
 /**
  *
@@ -186,6 +192,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         textPrice = new javax.swing.JSpinner();
         jScrollPane3 = new javax.swing.JScrollPane();
         textName = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -462,6 +469,14 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 190, 50));
 
+        jButton2.setText("Tao QRCode");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 320, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -700,6 +715,64 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (textID.getText().trim().length() < 5) {
+            JOptionPane.showMessageDialog(this, "Hay chon san pham muon tao QRCode");
+            return;
+        }
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public String getDescription() {
+                return "Images file (.jpg)";
+            }
+
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    return f.getName().toLowerCase().endsWith(".jpg");
+                }
+            }
+
+        });
+        if (fileChooser.showDialog(this, "Chon file") == fileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            String filePath = file.getPath();
+            if (filePath.contains(".")) {
+						String duoi = filePath.substring(filePath.indexOf("."));
+						if (!(duoi.equals(".jpg") )) {
+							JOptionPane.showInternalMessageDialog(this, "File phai co duoi .jpg ",
+									"L?i", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					} else {
+						filePath += ".jpg";
+					}
+            if (!file.exists()) {
+                try {
+                    String charset = "UTF-8";
+                    
+                    Map<EncodeHintType, ErrorCorrectionLevel> hashMap
+                            = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+                    
+                    hashMap.put(EncodeHintType.ERROR_CORRECTION,
+                            ErrorCorrectionLevel.L);
+                    QrCodeUtil.createQR(textID.getText().trim(), filePath, charset, hashMap, 600, 600);
+                    JOptionPane.showMessageDialog(this, "Da tao QRCode : "+file.getPath());
+                } catch (WriterException|IOException ex) {
+                    ex.printStackTrace();
+                   JOptionPane.showMessageDialog(this, "Loi tao QRCode");
+                } 
+            } else {
+                JOptionPane.showMessageDialog(this, "File da ton tai");
+            }
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -732,6 +805,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
