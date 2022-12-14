@@ -165,6 +165,8 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblKhuyenMai = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
+        cbxLoai = new javax.swing.JComboBox<>();
+        cbxTrangThai = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tblsp = new javax.swing.JTable();
@@ -175,7 +177,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Quan Li Khuyen Mai ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -187,8 +189,8 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jPanel2.add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 58, 270, 20));
 
         jLabel2.setText("Ten KM");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, -1));
-        jPanel2.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 98, 270, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
+        jPanel2.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 98, 270, -1));
 
         jLabel3.setText("Ngay hieu luc");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 100, 20));
@@ -203,14 +205,14 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jLabel11.setText("Muc Giam Gia: ");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 180, 100, 20));
 
-        jLabel7.setText("N?i dung");
+        jLabel7.setText("Noi dung");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 100, 20));
 
         textNote.setColumns(20);
         textNote.setRows(5);
         jScrollPane3.setViewportView(textNote);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 270, 60));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 270, 80));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +244,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
 
         cbxLoaiKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo san pham", "Tat ca" }));
         cbxLoaiKhuyenMai.setToolTipText("");
@@ -295,7 +297,23 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jLabel10.setText("Danh Sach Khuyen Mai");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 530, 230));
+        cbxLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Theo san pham", "Tat ca" }));
+        cbxLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxLoaiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cbxLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 130, -1));
+
+        cbxTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Ngung ap dung", "Dang ap dung", "Chua ap dung" }));
+        cbxTrangThai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTrangThaiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cbxTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 120, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 530, 230));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -317,12 +335,12 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tblsp);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 510, 240));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 510, 210));
 
         jLabel9.setText("San Pham");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 530, 300));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 530, 260));
 
         pack();
         setLocationRelativeTo(null);
@@ -337,7 +355,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
                 promotionService.insert(promotion);
                 promotions = promotionService.findByTypeNotEqual(0);
                 loadTableKM(promotions);
-                JOptionPane.showMessageDialog(this, "Them th�nh c�ng");
+                JOptionPane.showMessageDialog(this, "Them thanh cong");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Loi");
@@ -370,7 +388,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         } else {
             try {
                 if (textID.getText().length() < 5) {
-                    JOptionPane.showMessageDialog(this, "Phai chon san pham muon sua");
+                    JOptionPane.showMessageDialog(this, "Chua chon san pham muon sua");
                     return;
                 }
                 promotionService.update(promotion);
@@ -389,7 +407,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         
         try {
             if (textID.getText().length() < 5) {
-                JOptionPane.showMessageDialog(this, "Phai chon san pham muon xoa");
+                JOptionPane.showMessageDialog(this, "Chua chon san pham muon xoa");
                 return;
             }
             promotionService.remove(UUID.fromString(textID.getText().trim()));
@@ -452,6 +470,38 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
             loadTable(new ArrayList<>());
         }
     }//GEN-LAST:event_cbxLoaiKhuyenMaiActionPerformed
+
+    private void cbxLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLoaiActionPerformed
+       Integer loai = cbxLoai.getSelectedIndex();
+       Integer trangThai = cbxTrangThai.getSelectedIndex();
+       clearForm();
+        if (loai==0) {
+            loai=null;
+        }
+        if (trangThai==0) {
+            trangThai=null;
+        }
+        promotions = promotionService.loc(loai, trangThai);
+        loadTableKM(promotions);
+        productDetails = new ArrayList<>();
+        loadTable(new ArrayList<>());
+    }//GEN-LAST:event_cbxLoaiActionPerformed
+
+    private void cbxTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTrangThaiActionPerformed
+       Integer loai = cbxLoai.getSelectedIndex();
+       Integer trangThai = cbxTrangThai.getSelectedIndex();
+       clearForm();
+        if (loai==0) {
+            loai=null;
+        }
+        if (trangThai==0) {
+            trangThai=null;
+        }
+        promotions = promotionService.loc(loai, trangThai);
+        loadTableKM(promotions);
+        productDetails = new ArrayList<>();
+        loadTable(new ArrayList<>());
+    }//GEN-LAST:event_cbxTrangThaiActionPerformed
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -466,7 +516,9 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cbxLoai;
     private javax.swing.JComboBox<String> cbxLoaiKhuyenMai;
+    private javax.swing.JComboBox<String> cbxTrangThai;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -15,10 +15,7 @@ import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.GenericGenerator;
 
-/**
- * The persistent class for the Size database table.
- *
- */
+
 @Entity
 @NamedQuery(name = "Size.findAll", query = "SELECT s FROM Size s")
 public class Size implements Serializable {

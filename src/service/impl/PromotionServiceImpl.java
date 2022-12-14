@@ -52,5 +52,9 @@ public class PromotionServiceImpl implements PromotionService {
     public void setType(UUID id, int type) throws Exception {
         promotionRepository.setType(id, type);
     }
+
+    public List<Promotion> loc(Integer loai, Integer trangThai) {
+        return promotionRepository.loc(loai, trangThai);
+    }
 	
 }

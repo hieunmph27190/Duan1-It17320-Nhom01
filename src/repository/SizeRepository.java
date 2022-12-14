@@ -17,7 +17,7 @@ public class SizeRepository extends JpaRespository<Size, UUID>{
 		super(Size.class);
 	}
              public List<Size> findByNameLike(String key){
-            String sql = "select c from Size c where c.name like ?1 and type != 0";
+            String sql = "select c from Size c where c.size like ?1 and type != 0";
             EntityManager en = JpaUtil.getEntityManager();
             TypedQuery<Size> ty =  en.createQuery(sql, Size.class);
             ty.setParameter(1, key);

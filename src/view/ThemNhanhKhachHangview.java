@@ -7,6 +7,7 @@ package view;
 import com.raven.datechooser.DateChooser;
 import com.raven.datechooser.DateChooserx;
 import domain.Customer;
+import domain.Employee;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import service.CustomerService;
 import service.impl.CustomerServiceImpl;
 import utils.ImageUtil;
+import utils.JpaUtil;
 
 /**
  *
@@ -48,6 +50,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     private String duongDanAnh = "";
     private byte[] pertionImage;
     private java.awt.Frame parent;
+
     public ThemNhanhKhachHangview(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -62,16 +65,13 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         datechooer.setTextRefernce(jTextField1);
         setLocationRelativeTo(null);
     }
-      public void doddate(List<Customer> listshow) {
+
+    public void doddate(List<Customer> listshow) {
         model.setRowCount(0);
         for (Customer a : listshow) {
             model.addRow(a.toaddrow());
         }
     }
-      
-      
-      
-      
 
     public void clear() {
         txtaddress.setText("");
@@ -163,12 +163,12 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         txtlastname.setText(cuss.getName());
         txtaddress.setText(cuss.getAddress());
         jTextField1.setText(cuss.getDateOfBirth() + "");
-        
-         long avataLenght = 0;
-        
+
+        long avataLenght = 0;
+
         try {
-            if(cuss.getImage() !=null) {
-             avataLenght = cuss.getImage().length();
+            if (cuss.getImage() != null) {
+                avataLenght = cuss.getImage().length();
             }
         } catch (SQLException ex) {
             avataLenght = 0;
@@ -194,9 +194,8 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
             }
             lblanh.setIcon(new ImageIcon(image));
         }
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,7 +264,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 80, 30));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 80, 30));
         getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
         getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 247, -1));
 
@@ -288,7 +287,7 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 230, -1));
 
         jLabel11.setText("Ngay Sinh: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 60, 20));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 80, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,59 +334,41 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     }//GEN-LAST:event_femaleActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
-        // TODO add your handling code here:
+
         Customer cuss = getform();
         if (cuss == null) {
             return;
 
         } else {
             try {
-                if (cuss.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-
-                if (cuss.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-
-                if (cuss.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-
+                
+                
                 if (cuss.getName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Name Null");
                     return;
                 }
 
-                if (cuss.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
+                if (!cuss.getEmail().matches(".+@[a-z]+\\.[a-z]+")) {
+                    JOptionPane.showMessageDialog(this, "Email Khong Hop Le");
                     return;
                 }
-
-                if (cuss.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-
-                if (cuss.getGender().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Gioi Tinh Null");
+                if (!cuss.getPhoneNumber().matches("0[0-9]{9}")) {
+                    JOptionPane.showMessageDialog(this, "So Dien Thoai Khong Hop Le");
                     return;
                 }
 
                 custormer.insert(cuss);
                 JOptionPane.showMessageDialog(this, "Them thanh cong");
+                JpaUtil.getEntityManager();
                 listmodel = custormer.getKH();
                 doddate(listmodel);
                 try {
-                   BanHang bhdiag= (BanHang) this.parent;
-                   bhdiag.selecttedcustomor(cuss);
+                    BanHang bhdiag = (BanHang) this.parent;
+                    bhdiag.selecttedcustomor(cuss);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                 this.dispose();
+                this.dispose();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -26,5 +26,7 @@ public interface PromotionService {
     List<Promotion> findByTypeNotEqual(int i);
 
     void setType(UUID id, int type) throws Exception;
+
+    List<Promotion> loc(Integer loai, Integer trangThai);
 	
 }

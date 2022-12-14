@@ -14,11 +14,6 @@ import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
-/**
- * The persistent class for the Trademark database table.
- * 
- */
 @Entity
 @NamedQuery(name="Brand.findAll", query="SELECT b FROM Brand b")
 public class Brand implements Serializable {

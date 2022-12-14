@@ -85,41 +85,6 @@ public class QLKhachHangNV extends javax.swing.JFrame {
 
     public Customer getform() {
 
-        if (txtaddress.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Dia Chi Null");
-            return null;
-        }
-
-        if (txtbuffername.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ho Null");
-            return null;
-        }
-
-        if (txtfirtname.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ten Dem Null");
-            return null;
-        }
-
-        if (txtlastname.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Name Null");
-            return null;
-        }
-
-        if (txtemail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Email Null");
-            return null;
-        }
-
-        if (txtphone.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-            return null;
-        }
-
-        if (male.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Gioi Tinh Null");
-            return null;
-        }
-
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         Customer cus = new Customer();
         if (cusmoerselect != null) {
@@ -138,6 +103,19 @@ public class QLKhachHangNV extends javax.swing.JFrame {
         cus.setEmail(txtemail.getText());
         cus.setPhoneNumber(txtphone.getText());
         cus.setGender(male.isSelected());
+        if (cus.getName().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name Null");
+            return null;
+        }
+
+        if (!cus.getEmail().matches(".+@[a-z]+\\.[a-z]+")) {
+            JOptionPane.showMessageDialog(this, "Email Khong Hop Le");
+            return null;
+        }
+        if (!cus.getPhoneNumber().matches("0[0-9]{9}")) {
+            JOptionPane.showMessageDialog(this, "So Dien Thoai Khong Hop Le");
+            return null;
+        }
 
         if (pertionImage != null) {
             try {
@@ -161,12 +139,12 @@ public class QLKhachHangNV extends javax.swing.JFrame {
         txtlastname.setText(cuss.getName());
         txtaddress.setText(cuss.getAddress());
         jTextField1.setText(cuss.getDateOfBirth() + "");
-        
-         long avataLenght = 0;
-        
+
+        long avataLenght = 0;
+
         try {
-            if(cuss.getImage() !=null) {
-             avataLenght = cuss.getImage().length();
+            if (cuss.getImage() != null) {
+                avataLenght = cuss.getImage().length();
             }
         } catch (SQLException ex) {
             avataLenght = 0;
@@ -192,10 +170,9 @@ public class QLKhachHangNV extends javax.swing.JFrame {
             }
             lblanh.setIcon(new ImageIcon(image));
         }
-        
+
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -360,12 +337,12 @@ public class QLKhachHangNV extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        
+
         int row = table.getSelectedRow();
-        if(row < 0) {
+        if (row < 0) {
             return;
         }
-        
+
         click(row);
 
     }//GEN-LAST:event_tableMouseClicked
@@ -462,7 +439,7 @@ public class QLKhachHangNV extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QLKhachHangNV().setVisible(true);
