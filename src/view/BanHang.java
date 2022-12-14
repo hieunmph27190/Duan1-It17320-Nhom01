@@ -33,6 +33,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
@@ -61,6 +62,8 @@ public class BanHang extends javax.swing.JFrame {
     private BillDetailService billDetailService = new BillDetailServiceImpl();
     private int indexImg;
     private List<Image> images = new ArrayList<>();
+    private JLabel jLabel13;
+    private JLabel jLabel14;
 
     public BanHang() {
         tongTien = new BigDecimal(0);
