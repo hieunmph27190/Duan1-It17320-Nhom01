@@ -251,10 +251,10 @@ public class QLKhachHang extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 238, -1));
 
         jLabel3.setText("Id: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 50, 20));
 
         jLabel4.setText("Ho: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 70, 20));
 
         male.setSelected(true);
         male.setText("Nam");
@@ -275,7 +275,7 @@ public class QLKhachHang extends javax.swing.JFrame {
                 ADDActionPerformed(evt);
             }
         });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 90, -1));
+        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 90, -1));
 
         Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Button-Close-icon-16.png"))); // NOI18N
         Delete.setText("Delete");
@@ -284,7 +284,7 @@ public class QLKhachHang extends javax.swing.JFrame {
                 DeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 90, -1));
+        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 90, -1));
 
         Clear.setText("Clear");
         Clear.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +292,7 @@ public class QLKhachHang extends javax.swing.JFrame {
                 ClearActionPerformed(evt);
             }
         });
-        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 280, 90, -1));
+        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 90, -1));
 
         Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         Update.setText("Update");
@@ -301,7 +301,7 @@ public class QLKhachHang extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, -1, -1));
+        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -322,50 +322,48 @@ public class QLKhachHang extends javax.swing.JFrame {
         jScrollPane2.setViewportView(table);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 340, 950, 230));
-        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
-        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
+        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 240, -1));
+        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 240, -1));
 
         jLabel5.setText("Ten Dem: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, 20));
 
         jLabel10.setText("So Dien Thoai: ");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 84, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 100, 20));
 
         jLabel6.setText("Ten: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
-        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 240, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 50, 20));
+        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 240, -1));
 
         jLabel7.setText("Gioi Tinh: ");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, -1, 20));
         getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 220, -1));
 
         jLabel9.setText("Email: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 37, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 60, 20));
         getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, 220, -1));
 
         jLabel11.setText("Ngay Sinh: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 80, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 80, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 240, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 240, -1));
 
         jLabel12.setText("Dia Chi: ");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 58, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 58, 20));
 
         txtaddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtaddressActionPerformed(evt);
             }
         });
-        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 240, -1));
+        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 240, -1));
         getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 240, 20));
-
-        lblanh.setText("Anh");
-        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 120, 130));
+        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 120, 160));
 
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -375,7 +373,7 @@ public class QLKhachHang extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
 
-        jButton2.setText("XoaAvata");
+        jButton2.setText("Xoa Anh");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

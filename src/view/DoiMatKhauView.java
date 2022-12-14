@@ -65,13 +65,13 @@ public class DoiMatKhauView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Doi mat khau");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 180, 30));
-        getContentPane().add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 270, -1));
-        getContentPane().add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 270, -1));
+        getContentPane().add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 270, -1));
+        getContentPane().add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 270, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 153, 255));
         jLabel3.setText("Username:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 70, 20));
 
         btnChangeThePassword.setBackground(new java.awt.Color(255, 204, 0));
         btnChangeThePassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -81,22 +81,22 @@ public class DoiMatKhauView extends javax.swing.JFrame {
                 btnChangeThePasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChangeThePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 258, 183, -1));
+        getContentPane().add(btnChangeThePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 183, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 255));
         jLabel5.setText("Password");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 255));
         jLabel6.setText("New password:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, 20));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 153, 255));
         jLabel7.setText("Confirm password:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 130, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

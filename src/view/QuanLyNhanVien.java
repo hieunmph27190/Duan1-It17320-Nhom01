@@ -146,7 +146,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
 
         RoleServiceImpl roleServiceImpl = new RoleServiceImpl();
-        empoly.setRole(roleServiceImpl.findByID(UUID.fromString("98b01a7a-421f-4fc5-a2d7-59a460d318a3")));
+        System.out.println(roleServiceImpl.findAll().get(1).getId());
+        System.out.println(roleServiceImpl.findAll().get(1).getCode());
+        empoly.setRole(roleServiceImpl.findByID(UUID.fromString("7a1ab098-1f42-c54f-a2d7-59a460d318a3")));
         if (pertionImage != null) {
             try {
                 Blob avata = new SerialBlob(pertionImage);

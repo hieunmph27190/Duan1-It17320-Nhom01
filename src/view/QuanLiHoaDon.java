@@ -224,7 +224,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         jLabel4.setText("Trang Thai: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, 20));
 
         cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Huy", "Hoa Don Cho", "Da Thanh Toan" }));
         cbb.addActionListener(new java.awt.event.ActionListener() {
@@ -232,17 +232,17 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
                 cbbActionPerformed(evt);
             }
         });
-        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 220, 30));
+        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 220, 25));
 
         jLabel5.setText("Bo Loc: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 20));
 
         jLabel6.setText("Tim Kiem : ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 20));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 170, -1));
 
         jButton1.setText("SEACH");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, 20));
         getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, -1));
         getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 120, -1));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 120, -1));

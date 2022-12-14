@@ -216,7 +216,7 @@ public class BanHang extends javax.swing.JFrame {
                 qrActionPerformed(evt);
             }
         });
-        jPanel5.add(qr, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 50, 40));
+        jPanel5.add(qr, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         btnThem.setText("Thêm");
