@@ -4,6 +4,7 @@
  */
 package view;
 
+import com.raven.datechooser.DateBetween;
 import com.raven.datechooser.DateChooser;
 import domain.Bill;
 import domain.BillDetail;
@@ -169,13 +170,13 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cbb = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        txtlocnhanvien = new javax.swing.JTextField();
-        txtlockhachhang = new javax.swing.JTextField();
+        txtTenNhanVien = new javax.swing.JTextField();
+        txtTenKhachHang = new javax.swing.JTextField();
         txtThoiGian = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -226,28 +227,21 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         jLabel4.setText("Trang Thai: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, 20));
 
-        cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Da Huy", "Hoa Don Cho", "Da Thanh Toan" }));
+        cbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca", "Hoa Don Cho", "Da Thanh Toan" }));
         cbb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbActionPerformed(evt);
             }
         });
-        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 220, 25));
+        getContentPane().add(cbb, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 130, 20));
 
         jLabel5.setText("Bo Loc: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 20));
-
-        jLabel6.setText("Tim Kiem : ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 20));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 170, -1));
-
-        jButton1.setText("SEACH");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, 20));
-        getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, -1));
-        getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 120, -1));
-        getContentPane().add(txtThoiGian, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 220, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 50, 20));
+        getContentPane().add(txtTenNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 110, -1));
+        getContentPane().add(txtTenKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 120, -1));
+        getContentPane().add(txtThoiGian, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 260, -1));
 
         jButton3.setText("SEACH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +249,19 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 80, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 140, 80, 23));
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Ten Nhan Vien");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 110, 20));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Th?i gian");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 260, 20));
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Ten Khach Hang");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 120, 20));
 
         pack();
         setLocationRelativeTo(null);
@@ -275,24 +281,23 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHDCMouseClicked
 
     private void cbbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbActionPerformed
-        // TODO add your handling code here:
-        int cbbtt = cbb.getSelectedIndex();
-        if (cbbtt > 0) {
-            hdcs = billService.findByTypeEqual(cbbtt - 1);
-            loadTableHDC(hdcs);
-        } else {
-            hdcs = billService.findAll();
-            loadTableHDC(hdcs);
-        }
+   
+        
 
     }//GEN-LAST:event_cbbActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        hdcs = billService.seachlochdc(txtlockhachhang.getText(), txtlocnhanvien.getText());
-//            loadTable(hdcs);
+        DateBetween between =  dateChooser.getSelectedDateBetween();
+        
         loadTableHDC(hdcs);
-
+        Integer i = cbb.getSelectedIndex();
+        if (i > 0) {
+           hdcs = billService.search(txtTenKhachHang.getText().trim(), txtTenNhanVien.getText().trim(),between.getFromDate(),between.getToDate(),i);
+            loadTableHDC(hdcs);
+        } else {
+            hdcs = billService.search(txtTenKhachHang.getText().trim(), txtTenNhanVien.getText().trim(),between.getFromDate(),between.getToDate(),null);
+            loadTableHDC(hdcs);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -332,7 +337,6 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbb;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -340,13 +344,14 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
+    private javax.swing.JTextField txtTenKhachHang;
+    private javax.swing.JTextField txtTenNhanVien;
     private javax.swing.JTextField txtThoiGian;
-    private javax.swing.JTextField txtlockhachhang;
-    private javax.swing.JTextField txtlocnhanvien;
     // End of variables declaration//GEN-END:variables
 }

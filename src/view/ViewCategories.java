@@ -35,6 +35,7 @@ public class ViewCategories extends javax.swing.JDialog {
         categoryService = new CategoryServiceImpl();
 
         loadTable(categoryService.findByTypeNotEqual(0));
+        setSize(580,530);
     }
 
     private void loadTable(List<Category> getList) {

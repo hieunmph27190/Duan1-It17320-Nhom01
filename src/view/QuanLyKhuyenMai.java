@@ -132,7 +132,6 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         });
         dateChooser.setDateSelectionMode(DateChooser.DateSelectionMode.BETWEEN_DATE_SELECTED);
         dateChooser.setTextField(textNgayHieuLuc);
-
     }
 
     @SuppressWarnings("unchecked")

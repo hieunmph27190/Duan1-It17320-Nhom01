@@ -259,7 +259,7 @@ public class Employee implements Serializable {
     }
 
     public Object[] toaddrow() {
-        return new Object[]{id, firstName + bufferName + name, gender?"Nam":"Nu", phoneNumber, password, username, email, address, image, type};
+        return new Object[]{id, firstName +" "+ bufferName+" " + name, gender?"Nam":"Nu", phoneNumber, password, username, email, address, image, type};
     }
 
     @Override

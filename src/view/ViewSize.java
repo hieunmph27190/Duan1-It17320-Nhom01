@@ -35,8 +35,8 @@ public class ViewSize extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         sizeService = new SizeServiceImpl();
-
         loadTable(sizeService.findByTypeNotEqual(0));
+        setSize(580,530);
     }
 
     private void loadTable(List<Size> getList) {
@@ -223,7 +223,7 @@ public class ViewSize extends javax.swing.JDialog {
             loadTable(sizeService.findByTypeNotEqual(0));
             clearForm();
         } catch (Exception ex) {
-            Logger.getLogger(ViewSize.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         try {
             QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;

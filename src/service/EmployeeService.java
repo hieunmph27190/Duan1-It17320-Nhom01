@@ -30,4 +30,6 @@ public interface EmployeeService {
     Employee findByUserName(String UserName) throws Exception;
 
     Employee findByUserNamePassWord(String UserName, String PassWord) throws Exception;
+
+    List<Employee> getAlLNhanVien();
 }

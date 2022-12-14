@@ -36,6 +36,7 @@ public class ViewColors extends javax.swing.JDialog {
         colorService = new ColorServiceImpl();
 
         loadTable(colorService.findByTypeNotEqual(0));
+       setSize(580,530);
     }
 
     private void loadTable(List<Color> getList) {
