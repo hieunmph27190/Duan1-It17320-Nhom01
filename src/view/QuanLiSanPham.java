@@ -495,6 +495,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 }
             }
         }
+        //
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorActionPerformed

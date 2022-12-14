@@ -192,6 +192,7 @@ public class ViewSole extends javax.swing.JDialog {
                 ex.printStackTrace();
             }
         }
+        
         try {
             QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
             Object obj = qlsp.cbxSole.getSelectedItem();
@@ -225,6 +226,7 @@ public class ViewSole extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(ViewSole.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         try {
             QuanLiSanPham qlsp = (QuanLiSanPham) this.parent;
             Object obj = qlsp.cbxSole.getSelectedItem();
