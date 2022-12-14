@@ -51,6 +51,7 @@ public class BanHang extends javax.swing.JFrame {
         tongTien = new BigDecimal(0);
         initComponents();
         init();
+        hdcs=billService.findByTypeEqual(1);
         loadTableHDC(hdcs);
         this.productDetailService = new ProductDetailServiceImpl();
         setLocationRelativeTo(null);
@@ -220,7 +221,7 @@ public class BanHang extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa ??n"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hoa Don"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Ten KH");
@@ -234,10 +235,10 @@ public class BanHang extends javax.swing.JFrame {
                 textSoLuongActionPerformed(evt);
             }
         });
-        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, 20));
+        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, 30));
 
         jLabel6.setText("SDT KH");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 50, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 50, 20));
 
         jLabel7.setText("So Luong: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
@@ -307,7 +308,7 @@ public class BanHang extends javax.swing.JFrame {
         jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, 20));
 
         textGiamGia.setEditable(false);
-        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 160, 20));
+        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 112, 170, 30));
 
         sprinerTienDua.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
         sprinerTienDua.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -338,7 +339,7 @@ public class BanHang extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 540, 230));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gio Hang"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
@@ -436,13 +437,17 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_tblGHMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if (billSelected==null) {
+           JOptionPane.showMessageDialog(this, "Chua chon hoa don");
+           return;
+        }
         if (tblSP.getSelectedRow() >= 0) {
             DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
             if (!billDetailService.containsProductDetail(billSelected, productDetailSelected)) {
                 BillDetail billDetail = new BillDetail();
                 billDetail.setBill(billSelected);
                 billDetail.setProductDetail(productDetails.get(tblSP.getSelectedRow()));
-                billDetail.setPrice(productDetails.get(tblSP.getSelectedRow()).getPrice());
+                billDetail.setPrice(new BigDecimal(productDetails.get(tblSP.getSelectedRow()).getPrice().doubleValue()*(1-(productDetailService.getKM(productDetails.get(tblSP.getSelectedRow()).getId()).doubleValue()/100))));
                 billDetail.setQuantity(1);
                 try {
                     productDetailService.changeAmount(billDetail.getProductDetail().getId(), 0 - billDetail.getQuantity());
@@ -789,8 +794,8 @@ public class BanHang extends javax.swing.JFrame {
     private void loadTable(List<ProductDetail> productDetails) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblSP.getModel();
         defaultTableModel.setRowCount(0);
-        for (ProductDetail productDetail : productDetails) {
-            defaultTableModel.addRow(productDetail.toRow());
+        for (ProductDetail pd : productDetails) {
+            defaultTableModel.addRow(new Object[]{pd.getProduct()==null?null:pd.getProduct().getProductName(),pd.getCategory(),pd.getColor(),pd.getSize(),pd.getBrand(),pd.getSole(),pd.getAmount(),pd.getPrice(),productDetailService.getKM(pd.getId())+" %"});
         }
     }
 
@@ -849,7 +854,7 @@ public class BanHang extends javax.swing.JFrame {
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Ten", "Loai", "Mau", "Size", "Hang", "De", "So luong", "Gia", "Bao hanh (thang)", "Mo ta"
+                    "Ten", "Loai", "Mau", "Size", "Hang", "De", "So luong", "Gia", "KM"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -864,7 +869,7 @@ public class BanHang extends javax.swing.JFrame {
         tblGH.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{"ID",
-                    "Ten", "Gia", "So luong", "Thanh tien", ""
+                    "Ten", "Gia", "So luong", "Thanh tien"
                 }
         ) {
             boolean[] canEdit = new boolean[]{

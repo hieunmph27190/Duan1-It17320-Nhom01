@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import utils.Constant;
@@ -26,6 +28,29 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         super(ProductDetail.class);
     }
 
+    public Double getKM(UUID id) {
+        String sql = "SELECT IIF(EXISTS (SELECT SUM(Discount) FROM dbo.Promotion WHERE GETDATE()>=StartDate AND GETDATE()<=EndDate AND Type =2),(SELECT SUM(Discount) FROM dbo.Promotion WHERE GETDATE()>=StartDate AND GETDATE()<=EndDate AND Type =2),0) + IIF(EXISTS (SELECT SUM(Discount) FROM dbo.ProductDetail JOIN dbo.Promotion_Product ON Promotion_Product.ProductDetailId = ProductDetail.Id\n"
+                + "								JOIN dbo.Promotion ON Promotion.Id = Promotion_Product.PromotionId\n"
+                + "								WHERE GETDATE()>=StartDate AND GETDATE()<=EndDate AND Promotion.Type =1 AND dbo.ProductDetail.Type !=0 AND ProductDetail.Id =:id),(SELECT SUM(Discount) FROM dbo.ProductDetail JOIN dbo.Promotion_Product ON Promotion_Product.ProductDetailId = ProductDetail.Id\n"
+                + "								JOIN dbo.Promotion ON Promotion.Id = Promotion_Product.PromotionId\n"
+                + "								WHERE GETDATE()>=StartDate AND GETDATE()<=EndDate AND Promotion.Type =1 AND dbo.ProductDetail.Type !=0 AND ProductDetail.Id =:id),0)";
+        Map<String, Object> param = new HashMap<>();
+        param.put("id", id);
+        EntityManager en = JpaUtil.getEntityManager();
+        Query q = en.createNativeQuery(sql);
+        q.setParameter("id", id);
+
+        try {
+            Double giamgia = (Double) q.getSingleResult();
+            if (giamgia == null) {
+                giamgia = 0D;
+            }
+            return giamgia;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0D;
+        }
+    }
 
     public List<ProductDetail> searchProductDetail(String productName, String category, String color, String size, String brand, String soles, String amount, String price) {
         Map<Integer, Object> mapParam = new HashMap<>();
@@ -118,13 +143,12 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         return ty.getResultList();
     }
 
-
     public void changeAmount(UUID id, Integer amountChange) throws Exception {
         String jpql = "update ProductDetail set amount = :amount where id = :id";
         EntityManager entityManager = JpaUtil.getEntityManager();
         ProductDetail productDetail = entityManager.find(ProductDetail.class, id);
         Long newAmount = productDetail.getAmount() + amountChange;
-        if (newAmount<0) {
+        if (newAmount < 0) {
             throw new Exception("So luong khong du");
         }
         try {
@@ -137,7 +161,7 @@ public class ProductDetailRepository extends JpaRespository<ProductDetail, UUID>
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw e;
-        }finally{
+        } finally {
             entityManager.close();
         }
     }

@@ -75,4 +75,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
        productDetailRepository.changeAmount(id, amountChange);
     }
 
+    public Double getKM(UUID id) {
+        return productDetailRepository.getKM(id);
+    }
+    
+
 }
