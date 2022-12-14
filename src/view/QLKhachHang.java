@@ -389,38 +389,17 @@ public class QLKhachHang extends javax.swing.JFrame {
 
         } else {
             try {
-                if (cuss.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-
-                if (cuss.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-
-                if (cuss.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-
                 if (cuss.getName().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Name Null");
                     return;
                 }
 
-                if (cuss.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
+                if (!cuss.getEmail().matches(".+@[a-z]+\\.[a-z]+")) {
+                    JOptionPane.showMessageDialog(this, "Email Khong Hop Le");
                     return;
                 }
-
-                if (cuss.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-
-                if (cuss.getGender().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Gioi Tinh Null");
+                if (!cuss.getPhoneNumber().matches("0[0-9]{9}")) {
+                    JOptionPane.showMessageDialog(this, "So Dien Thoai Khong Hop Le");
                     return;
                 }
 

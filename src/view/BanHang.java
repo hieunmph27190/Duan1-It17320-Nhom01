@@ -109,9 +109,8 @@ public class BanHang extends javax.swing.JFrame {
             lblIndexAnh.setText(indexImg + "/" + images.size());
         }
     }
-    
-    
-     public static final String pathUnicode = "font\\unicode.ttf";
+
+    public static final String pathUnicode = "font\\unicode.ttf";
 
     public void exportBill() {
         try {
@@ -189,7 +188,6 @@ public class BanHang extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -218,10 +216,10 @@ public class BanHang extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         textSoLuong = new javax.swing.JTextField();
@@ -340,28 +338,28 @@ public class BanHang extends javax.swing.JFrame {
         jPanel5.add(txt_search_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, -1));
 
         jLabel2.setText("Ten");
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 30, -1));
 
         jLabel3.setText("Loai");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 30, -1));
 
         jLabel4.setText("Mau");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 30, -1));
 
         jLabel9.setText("Size");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
-
-        jLabel13.setText("Hang");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
-
-        jLabel14.setText("De");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 30, -1));
 
         jLabel16.setText("So Luong");
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 60, -1));
 
         jLabel17.setText("Gia");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 30, -1));
+
+        jLabel12.setText("Hang");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 40, -1));
+
+        jLabel18.setText("De");
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 40, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 370));
 
@@ -395,7 +393,7 @@ public class BanHang extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 60, 30));
 
         jLabel11.setText("Tien Thua: ");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, 30));
 
         jButton3.setText("Luu Hoa Don");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -438,7 +436,7 @@ public class BanHang extends javax.swing.JFrame {
                 textTienTraActionPerformed(evt);
             }
         });
-        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 170, 20));
+        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 170, 30));
 
         textName.setEditable(false);
         textName.addActionListener(new java.awt.event.ActionListener() {
@@ -550,7 +548,7 @@ public class BanHang extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 250, 170));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Thêm");
+        btnThem.setText("Them");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -671,16 +669,16 @@ public class BanHang extends javax.swing.JFrame {
 
             billService.setType(billSelected.getId(), 2);
             JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
-                    int row = tblGH.getSelectedRow();
-        if (row == 0) {
+            int row = tblGH.getSelectedRow();
+            if (row == 0) {
 
-        } else {
-            if(JOptionPane.showConfirmDialog(this, "Ban Co Muon In Anh Hoa Don ?")==JOptionPane.OK_OPTION) {
-            exportBill();
-            clearForm();
+            } else {
+                if (JOptionPane.showConfirmDialog(this, "Ban Co Muon In Anh Hoa Don ?") == JOptionPane.OK_OPTION) {
+                    exportBill();
+                    clearForm();
+                }
             }
-        }
-  
+
             hdcs = billService.findByTypeEqual(1);
             loadTableHDC(hdcs);
             billDEtailGHs = new ArrayList<>();
@@ -688,11 +686,13 @@ public class BanHang extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        BigDecimal tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+        sprinerTienDua.setValue(tongTien.doubleValue());
+        textTienTra.setText("0");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void sprinerTienDuaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sprinerTienDuaPropertyChange
@@ -932,9 +932,11 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1103,12 +1105,16 @@ public class BanHang extends javax.swing.JFrame {
     }
 
     public void addProdToGH(ProductDetail productDetailSelected) {
+        if (billSelected == null) {
+            JOptionPane.showMessageDialog(this, "Chua chon hoa don");
+            return;
+        }
         this.productDetailSelected = productDetailSelected;
         if (!billDetailService.containsProductDetail(billSelected, this.productDetailSelected)) {
             BillDetail billDetail = new BillDetail();
             billDetail.setBill(billSelected);
             billDetail.setProductDetail(productDetailSelected);
-            billDetail.setPrice(productDetailSelected.getPrice());
+            billDetail.setPrice(new BigDecimal(productDetails.get(tblSP.getSelectedRow()).getPrice().doubleValue() * (1 - (productDetailService.getKM(productDetails.get(tblSP.getSelectedRow()).getId()).doubleValue() / 100))));
             billDetail.setQuantity(1);
             try {
                 productDetailService.changeAmount(billDetail.getProductDetail().getId(), 0 - billDetail.getQuantity());

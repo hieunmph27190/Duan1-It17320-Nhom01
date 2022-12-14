@@ -191,7 +191,7 @@ public class Promotion implements Serializable {
 
     public Object[] toRow() {
         return new Object[]{
-            id, promotionName, type, minimumPrice, discount, getTrangThai()
+            id, promotionName, type==1?"Theo san pham":"Tat ca", minimumPrice, discount, getTrangThai()
         };
     }
 
