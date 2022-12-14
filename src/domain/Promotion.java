@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -61,11 +62,12 @@ public class Promotion implements Serializable {
 
     //bi-directional many-to-one association to Promotion_Product
     @OneToMany(mappedBy = "promotion")
-    @Cascade({CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
+    @Cascade({CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Promotion_Product> promotionProducts;
 
     public Promotion() {
     }
+
     @PrePersist
     @PreUpdate
     public void prePersistorUpdate() {
@@ -155,6 +157,9 @@ public class Promotion implements Serializable {
     }
 
     public Promotion_Product addPromotionProduct(Promotion_Product promotionProduct) {
+        if (promotionProducts == null) {
+            promotionProducts = new ArrayList<Promotion_Product>();
+        }
         getPromotionProducts().add(promotionProduct);
         promotionProduct.setPromotion(this);
 
@@ -162,6 +167,9 @@ public class Promotion implements Serializable {
     }
 
     public Promotion_Product removePromotionProduct(Promotion_Product promotionProduct) {
+        if (promotionProducts == null) {
+            promotionProducts = new ArrayList<Promotion_Product>();
+        }
         getPromotionProducts().remove(promotionProduct);
         promotionProduct.setPromotion(null);
 
@@ -183,7 +191,7 @@ public class Promotion implements Serializable {
 
     public Object[] toRow() {
         return new Object[]{
-            id,promotionName,type,minimumPrice,discount,getTrangThai()
+            id, promotionName, type, minimumPrice, discount, getTrangThai()
         };
     }
 

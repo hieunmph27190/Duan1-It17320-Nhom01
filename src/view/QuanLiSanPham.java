@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -482,7 +483,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             }
             if (JOptionPane.showConfirmDialog(this, meseage, "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
-
+                    productDetail.setCreateDate(new Date());
                     productDetail.setId(null);
                     productDetailService.insert(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
