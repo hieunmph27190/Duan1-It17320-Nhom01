@@ -4,6 +4,20 @@
  */
 package view;
 
+import com.itextpdf.kernel.color.Color;
+import com.itextpdf.kernel.color.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.border.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+import com.itextpdf.text.pdf.BaseFont;
 import domain.Bill;
 import domain.BillDetail;
 import domain.Customer;
@@ -13,6 +27,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -91,6 +106,87 @@ public class BanHang extends javax.swing.JFrame {
             lblIndexAnh.setText(indexImg + "/" + images.size());
         }
     }
+    
+    
+     public static final String pathUnicode = "font\\unicode.ttf";
+
+    public void exportBill() {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String date = sdf.format(new Date());
+            String path = "hoa_don" + date + ".pdf";
+            PdfWriter pdfWriter = new PdfWriter(path);
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+            float col = 280f;
+            float columWidth[] = {col, col};
+
+            PdfFont font = PdfFontFactory.createFont(pathUnicode, BaseFont.IDENTITY_H);
+
+            Table table = new Table(columWidth);
+            table.setBackgroundColor(new DeviceRgb(63, 169, 260)).setFontColor(Color.WHITE);
+            table.setFont(font);
+
+            table.addCell(new Cell().add("Bill Gteem Store").setTextAlignment(TextAlignment.CENTER)
+                    .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setFontSize(30f)
+                    .setBorder(Border.NO_BORDER));
+            table.addCell(new Cell().add("Ma hoa don:" + textHoaDon.getText()).setTextAlignment(TextAlignment.RIGHT)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setBorder(Border.NO_BORDER)
+                    .setMarginRight(10f));
+
+            float colWidth[] = {80, 250, 200, 200};
+            Table customerInforTable = new Table(colWidth);
+            customerInforTable.setFont(font);
+            customerInforTable.addCell(new Cell(0, 4)
+                    .add("Thong tin khach hang").setBold().setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("Ho ten:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add(textName.getText()).setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("So dien thoai:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add(textSDT.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("Id Hoa Don:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add(textHoaDon.getText()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            float itemColWidth[] = {15, 110, 110, 110, 110, 110};
+            Table itemTable = new Table(itemColWidth);
+            itemTable.setFont(font);
+            itemTable.addCell(new Cell().add("STT").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Ten san pham").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Thong tin SP").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("So luong").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Gia ban").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Thanh tien").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+
+            itemTable.addCell(new Cell().add("Vans classic"));
+            itemTable.addCell(new Cell().add("Vans Màu tr?ng Size 40"));
+            itemTable.addCell(new Cell().add("2"));
+            itemTable.addCell(new Cell().add("250,000 Vn?"));
+            itemTable.addCell(new Cell().add("500,000 Vn?"));
+
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("Tong Tien").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add(textTongTien.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+
+            document.add(table);
+            document.add(new Paragraph("\n"));
+            document.add(customerInforTable);
+            document.add(new Paragraph("\n"));
+            document.add(itemTable);
+            document.close();
+            System.out.println("Export successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -106,8 +202,23 @@ public class BanHang extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        txt_search_productname = new javax.swing.JTextField();
+        txt_search_category = new javax.swing.JTextField();
+        txt_search_color = new javax.swing.JTextField();
+        txt_search_size = new javax.swing.JTextField();
+        txt_search_brand = new javax.swing.JTextField();
+        txt_search_sole = new javax.swing.JTextField();
+        txt_search_quantity = new javax.swing.JTextField();
+        txt_search_price = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         textSoLuong = new javax.swing.JTextField();
@@ -140,6 +251,7 @@ public class BanHang extends javax.swing.JFrame {
         lblIndexAnh = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
         qr = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -211,13 +323,44 @@ public class BanHang extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tblSP);
 
-        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 460, 270));
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 340, -1));
+        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 480, 230));
 
-        jButton12.setText("Tim Kiem");
-        jPanel5.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+        jTextField3.setText("jTextField3");
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, -1, -1));
+        jPanel5.add(txt_search_productname, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 50, -1));
+        jPanel5.add(txt_search_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 60, -1));
+        jPanel5.add(txt_search_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 60, -1));
+        jPanel5.add(txt_search_size, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 60, -1));
+        jPanel5.add(txt_search_brand, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 60, -1));
+        jPanel5.add(txt_search_sole, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 60, -1));
+        jPanel5.add(txt_search_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 60, -1));
+        jPanel5.add(txt_search_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
+        jLabel2.setText("Ten");
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel3.setText("Loai");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabel4.setText("Mau");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        jLabel9.setText("Size");
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jLabel13.setText("Hang");
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+
+        jLabel14.setText("De");
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        jLabel16.setText("So Luong");
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+
+        jLabel17.setText("Gia");
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 370));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hoa Don"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -404,7 +547,7 @@ public class BanHang extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 250, 170));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Th�m");
+        btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -419,6 +562,14 @@ public class BanHang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(qr, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 60, 50));
+
+        jButton4.setText("Bo Loc");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -508,21 +659,33 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_textTienTraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         if (billSelected.getBillDetails().size() == 0) {
             JOptionPane.showMessageDialog(this, "Hoa don chua co san pham");
             return;
         }
         try {
+
             billService.setType(billSelected.getId(), 2);
             JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
+                    int row = tblGH.getSelectedRow();
+        if (row == 0) {
+
+        } else {
+            if(JOptionPane.showConfirmDialog(this, "Ban Co Muon In Anh Hoa Don ?")==JOptionPane.OK_OPTION) {
+            exportBill();
+            clearForm();
+            }
+        }
+  
             hdcs = billService.findByTypeEqual(1);
             loadTableHDC(hdcs);
             billDEtailGHs = new ArrayList<>();
             loadTableGH(billDEtailGHs);
-            clearForm();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -705,6 +868,13 @@ public class BanHang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        productDetails = productDetailService.searchProductDetail(txt_search_productname.getText(), txt_search_category.getText(), txt_search_color.getText(), txt_search_size.getText(), txt_search_brand.getText(), txt_search_sole.getText(), txt_search_quantity.getText(), txt_search_price.getText());
+        loadTable(productDetails);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -747,11 +917,11 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -760,10 +930,16 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -773,7 +949,7 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JLabel lblIndexAnh;
     private javax.swing.JButton qr;
@@ -787,6 +963,14 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JTextField textSoLuong;
     private javax.swing.JTextField textTienTra;
     private javax.swing.JLabel textTongTien;
+    private javax.swing.JTextField txt_search_brand;
+    private javax.swing.JTextField txt_search_category;
+    private javax.swing.JTextField txt_search_color;
+    private javax.swing.JTextField txt_search_price;
+    private javax.swing.JTextField txt_search_productname;
+    private javax.swing.JTextField txt_search_quantity;
+    private javax.swing.JTextField txt_search_size;
+    private javax.swing.JTextField txt_search_sole;
     // End of variables declaration//GEN-END:variables
 
     private void loadTable(List<ProductDetail> productDetails) {
@@ -794,7 +978,9 @@ public class BanHang extends javax.swing.JFrame {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblSP.getModel();
         defaultTableModel.setRowCount(0);
         for (ProductDetail pd : productDetails) {
+
             defaultTableModel.addRow(new Object[]{pd.getProduct() == null ? null : pd.getProduct().getProductName(), pd.getCategory(), pd.getColor(), pd.getSize(), pd.getBrand(), pd.getSole(), pd.getAmount(), decimalFormat.format(pd.getPrice()), productDetailService.getKM(pd.getId()) + " %"});
+
         }
     }
 
@@ -833,7 +1019,7 @@ public class BanHang extends javax.swing.JFrame {
             ProductDetail productDetail = billDetail.getProductDetail();
             JSpinner spinner = new JSpinner();
             spinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
-            JButton button = new JButton("Xóa");
+            JButton button = new JButton("XÃ³a");
 
             defaultTableModel.addRow(
                     new Object[]{

@@ -31,7 +31,7 @@ public class JpaRespository<E, K> {
         } else {
             query = entityManager.createNativeQuery(jpql, classResult);
         }
-        if (param instanceof Map<String, Object>) {
+        if (param instanceof Map) {
             for (Map.Entry<String, Object> entry : param.entrySet()) {
                 String key = entry.getKey();
                 Object val = entry.getValue();
@@ -53,7 +53,7 @@ public class JpaRespository<E, K> {
         } else {
             query = entityManager.createNativeQuery(jpql, classResult);
         }
-        if (param instanceof Map<String, Object>) {
+        if (param instanceof Map) {
             for (Map.Entry<String, Object> entry : param.entrySet()) {
                 String key = entry.getKey();
                 Object val = entry.getValue();
