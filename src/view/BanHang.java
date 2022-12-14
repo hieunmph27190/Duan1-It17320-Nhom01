@@ -163,7 +163,7 @@ public class BanHang extends javax.swing.JFrame {
             itemTable.addCell(new Cell().add("Thanh tien").setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
 
             itemTable.addCell(new Cell().add("Vans classic"));
-            itemTable.addCell(new Cell().add("Vans M�u tr?ng Size 40"));
+            itemTable.addCell(new Cell().add("Vans Màu tr?ng Size 40"));
             itemTable.addCell(new Cell().add("2"));
             itemTable.addCell(new Cell().add("250,000 Vn?"));
             itemTable.addCell(new Cell().add("500,000 Vn?"));
@@ -228,7 +228,6 @@ public class BanHang extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -236,7 +235,6 @@ public class BanHang extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         textTienTra = new javax.swing.JTextField();
         textName = new javax.swing.JTextField();
-        textGiamGia = new javax.swing.JTextField();
         sprinerTienDua = new javax.swing.JSpinner();
         jButton5 = new javax.swing.JButton();
         textHoaDon = new javax.swing.JLabel();
@@ -368,7 +366,7 @@ public class BanHang extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Ten KH");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 50, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 50, 25));
 
         textSoLuong.setEditable(false);
         textSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -378,26 +376,23 @@ public class BanHang extends javax.swing.JFrame {
                 textSoLuongActionPerformed(evt);
             }
         });
-        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, 30));
+        jPanel1.add(textSoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 170, 30));
 
         jLabel6.setText("SDT KH");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 50, 20));
 
         jLabel7.setText("So Luong: ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
-        jPanel1.add(textSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 150, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 30));
+        jPanel1.add(textSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 170, -1));
 
         jLabel8.setText("Tong Tien: ");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, 30));
 
         jLabel10.setText("Tien Dua: ");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 60, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 60, 30));
 
         jLabel11.setText("Tien Thua: ");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
-
-        jLabel12.setText("Giam Gia: ");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 57, 20));
 
         jButton3.setText("Luu Hoa Don");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -405,15 +400,15 @@ public class BanHang extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 120, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 120, 30));
 
-        btnSearch.setText("Search");
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search-icon-24.png"))); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 70, -1));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 48, 25, 25));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -421,7 +416,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 30, 20));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 25, 25));
 
         jLabel15.setText("Ma HD: ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 20));
@@ -432,7 +427,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 100, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 100, 30));
 
         textTienTra.setEditable(false);
         textTienTra.addActionListener(new java.awt.event.ActionListener() {
@@ -448,10 +443,7 @@ public class BanHang extends javax.swing.JFrame {
                 textNameActionPerformed(evt);
             }
         });
-        jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, 20));
-
-        textGiamGia.setEditable(false);
-        jPanel1.add(textGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 112, 170, 30));
+        jPanel1.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, 25));
 
         sprinerTienDua.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
         sprinerTienDua.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -464,7 +456,7 @@ public class BanHang extends javax.swing.JFrame {
                 sprinerTienDuaPropertyChange(evt);
             }
         });
-        jPanel1.add(sprinerTienDua, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 130, 20));
+        jPanel1.add(sprinerTienDua, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 130, 30));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Question-Help-icon-16.png"))); // NOI18N
@@ -473,7 +465,7 @@ public class BanHang extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 135, 30, 30));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 30, 30));
         jPanel1.add(textHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 350, 20));
 
         textTongTien.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -552,10 +544,10 @@ public class BanHang extends javax.swing.JFrame {
         lblIndexAnh.setText("0/0");
         jPanel4.add(lblIndexAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 100, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 250, 170));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 250, 170));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Th�m");
+        btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -667,7 +659,13 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_textTienTraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      try {
+
+        if (billSelected.getBillDetails().size() == 0) {
+            JOptionPane.showMessageDialog(this, "Hoa don chua co san pham");
+            return;
+        }
+        try {
+
             billService.setType(billSelected.getId(), 2);
             JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
                     int row = tblGH.getSelectedRow();
@@ -708,9 +706,14 @@ public class BanHang extends javax.swing.JFrame {
         int i = tblGH.getSelectedRow();
         if (i >= 0) {
             try {
+                Integer slChange = billDEtailGHs.get(i).getQuantity();
+                productDetailService.changeAmount(billDEtailGHs.get(i).getProductDetail().getId(), slChange);
                 billDetailService.remove(billDEtailGHs.get(i).getId());
                 billDEtailGHs = billDetailService.findByBill(billSelected);
                 loadTableGH(billDEtailGHs);
+
+                productDetails = productDetailService.findByTypeNotEqual(0);
+                loadTable(productDetails);
                 DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
                 tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
                 textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
@@ -926,9 +929,6 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -957,7 +957,6 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
     private javax.swing.JTable tblSP;
-    private javax.swing.JTextField textGiamGia;
     private javax.swing.JLabel textHoaDon;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSDT;
@@ -975,10 +974,13 @@ public class BanHang extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadTable(List<ProductDetail> productDetails) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblSP.getModel();
         defaultTableModel.setRowCount(0);
         for (ProductDetail pd : productDetails) {
-            defaultTableModel.addRow(new Object[]{pd.getProduct() == null ? null : pd.getProduct().getProductName(), pd.getCategory(), pd.getColor(), pd.getSize(), pd.getBrand(), pd.getSole(), pd.getAmount(), pd.getPrice(), productDetailService.getKM(pd.getId()) + " %"});
+
+            defaultTableModel.addRow(new Object[]{pd.getProduct() == null ? null : pd.getProduct().getProductName(), pd.getCategory(), pd.getColor(), pd.getSize(), pd.getBrand(), pd.getSole(), pd.getAmount(), decimalFormat.format(pd.getPrice()), productDetailService.getKM(pd.getId()) + " %"});
+
         }
     }
 
@@ -1017,7 +1019,7 @@ public class BanHang extends javax.swing.JFrame {
             ProductDetail productDetail = billDetail.getProductDetail();
             JSpinner spinner = new JSpinner();
             spinner.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
-            JButton button = new JButton("Xóa");
+            JButton button = new JButton("XÃ³a");
 
             defaultTableModel.addRow(
                     new Object[]{
@@ -1094,7 +1096,6 @@ public class BanHang extends javax.swing.JFrame {
         textSDT.setText("");
         textTongTien.setText("");
         textTienTra.setText("");
-        textGiamGia.setText("");
         sprinerTienDua.setValue(0D);
     }
 
