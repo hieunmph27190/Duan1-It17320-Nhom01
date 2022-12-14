@@ -672,11 +672,13 @@ public class BanHang extends javax.swing.JFrame {
             int row = tblGH.getSelectedRow();
             if (row == 0) {
 
+
             } else {
                 if (JOptionPane.showConfirmDialog(this, "Ban Co Muon In Anh Hoa Don ?") == JOptionPane.OK_OPTION) {
                     exportBill();
                     clearForm();
                 }
+
             }
 
             hdcs = billService.findByTypeEqual(1);

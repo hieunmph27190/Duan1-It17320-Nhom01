@@ -17,7 +17,9 @@ public class BrandRepository extends JpaRespository<Brand, UUID> {
     }
 
     public List<Brand> findByNameLike(String key) {
+
         String sql = "select c from Brand c where c.name like ?1 and type != 0";
+
         EntityManager en = JpaUtil.getEntityManager();
         TypedQuery<Brand> ty = en.createQuery(sql, Brand.class);
         ty.setParameter(1, key);
