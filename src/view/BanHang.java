@@ -675,7 +675,7 @@ public class BanHang extends javax.swing.JFrame {
         if (row == 0) {
 
         } else {
-            if(JOptionPane.showConfirmDialog(this, "Ban Co Muon In Anh Hoa Don ?")==JOptionPane.OK_OPTION) {
+            if(JOptionPane.showConfirmDialog(this, "Ban Co Muon In  Hoa Don ?")==JOptionPane.OK_OPTION) {
             exportBill();
             clearForm();
             }
