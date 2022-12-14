@@ -109,7 +109,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 ex.printStackTrace();
                 icon = null;
             }
-            Image image = ImageUtil.resize(icon.getImage(), 120, 150);
+            Image image = ImageUtil.resize(icon.getImage(), 120, 160);
             try {
                 pertionImage = ImageUtil.toByteArray(icon.getImage(), "jpg");
             } catch (IOException e1) {
@@ -279,7 +279,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jPanel3.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 188, -1));
 
         lblAvata.setForeground(new java.awt.Color(255, 255, 102));
-        jPanel3.add(lblAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 120, 150));
+        jPanel3.add(lblAvata, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 120, 160));
 
         btnXoaAvata.setText("Xóa");
         btnXoaAvata.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +298,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 99, 30));
 
-        jButton4.setText("Exit");
+        jButton4.setText("Clear");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -466,11 +466,36 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+          txtsdt.setText("");
+        txtbuffname.setText("");
+        txtfistname.setText("");
+        txtlastname.setText("");
+        txtpassworld.setText("");
+        txtusename.setText("");
+        txtid.setText("");
+        txtemail.setText("");
+        datechooer.toDay();
+        txtaddres.setText("");
+        lblAvata.setIcon(null);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        //  System.exit(0);
+        txtsdt.setText("");
+        txtbuffname.setText("");
+        txtfistname.setText("");
+        txtlastname.setText("");
+        txtpassworld.setText("");
+        txtusename.setText("");
+        txtid.setText("");
+        txtemail.setText("");
+        datechooer.toDay();
+        txtaddres.setText("");
+        lblAvata.setIcon(null);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -609,7 +634,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             File file = fileChooser.getSelectedFile();
             if (file.exists()) {
                 ImageIcon icon = new ImageIcon(file.getPath());
-                Image image = ImageUtil.resize(icon.getImage(), 120, 150);
+                Image image = ImageUtil.resize(icon.getImage(), 120, 160);
                 ImageIcon imageIcon = new ImageIcon(image);
                 try {
                     pertionImage = ImageUtil.toByteArray(icon.getImage(), "jpg");
@@ -628,7 +653,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChonAvataActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-       
+
         int row = table.getSelectedRow();
         if (row >= 0) {
             click(row);

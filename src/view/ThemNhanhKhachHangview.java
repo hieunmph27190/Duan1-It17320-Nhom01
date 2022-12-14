@@ -227,11 +227,12 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtaddress = new javax.swing.JTextField();
         txtid = new javax.swing.JLabel();
         lblanh = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtaddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,10 +242,10 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 140, -1));
 
         jLabel3.setText("Id: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 70, 20));
 
         jLabel4.setText("Ho: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 70, 20));
 
         male.setSelected(true);
         male.setText("Nam");
@@ -265,50 +266,43 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
             }
         });
         getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 80, 30));
-        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 250, -1));
-        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 247, -1));
+        getContentPane().add(txtfirtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
+        getContentPane().add(txtbuffername, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 247, -1));
 
         jLabel5.setText("Ten Dem: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
 
         jLabel10.setText("So Dien Thoai: ");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 84, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 84, 20));
 
         jLabel6.setText("Ten: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 247, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 60, 20));
+        getContentPane().add(txtlastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 247, -1));
 
         jLabel7.setText("Gioi Tinh: ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 70, 20));
         getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 230, -1));
 
         jLabel9.setText("Email: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 37, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 80, 20));
         getContentPane().add(txtphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 230, -1));
 
         jLabel11.setText("Ngay Sinh: ");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 60, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 247, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 247, -1));
 
         jLabel12.setText("Dia Chi: ");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 58, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 58, 20));
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 250, 20));
 
-        txtaddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtaddressActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 247, -1));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 240, 20));
-
-        lblanh.setText("Anh");
-        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 120, 150));
+        lblanh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 120, 160));
 
         jButton1.setText("Chon Anh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -316,15 +310,21 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 80, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 100, 30));
 
-        jButton2.setText("XoaAvata");
+        jButton2.setText("Xoa Anh");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 80, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 100, 30));
+
+        txtaddress.setColumns(20);
+        txtaddress.setRows(5);
+        jScrollPane1.setViewportView(txtaddress);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 226, 250, 80));
 
         pack();
         setLocationRelativeTo(null);
@@ -397,10 +397,6 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtaddressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -507,10 +503,11 @@ public class ThemNhanhKhachHangview extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblanh;
     private javax.swing.JRadioButton male;
-    private javax.swing.JTextField txtaddress;
+    private javax.swing.JTextArea txtaddress;
     private javax.swing.JTextField txtbuffername;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtfirtname;

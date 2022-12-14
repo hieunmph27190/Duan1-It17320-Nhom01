@@ -156,7 +156,7 @@ public class ViewBrand extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 436, 75, -1));
-        getContentPane().add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 242, -1));
+        getContentPane().add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 250, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search-icon-24.png"))); // NOI18N
@@ -166,7 +166,7 @@ public class ViewBrand extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 106, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 223, 106, 30));
 
         jLabel5.setText("FindName");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 60, 20));
