@@ -40,10 +40,10 @@ public class Dangnhap extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         jLabel3.setText("User Name ");
 
@@ -74,10 +74,6 @@ public class Dangnhap extends javax.swing.JFrame {
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 204, 204)));
         jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 84, 340, 28));
 
-        txtPassword.setForeground(new java.awt.Color(255, 102, 102));
-        txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 51, 255)));
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 340, 26));
-
         jLabel4.setText("Password");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
@@ -102,6 +98,7 @@ public class Dangnhap extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 290, 150, -1));
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 340, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 420, 360));
 
@@ -177,7 +174,7 @@ public class Dangnhap extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,9 +55,9 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtVerification = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtConfirmPassword = new javax.swing.JPasswordField();
+        txtVerification = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,7 +114,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 255));
         jLabel5.setText("Verification:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, 25));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 255));
@@ -125,9 +125,17 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 153, 255));
         jLabel7.setText("Confirm password:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 249, 130, -1));
-        getContentPane().add(txtVerification, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 220, -1));
         getContentPane().add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 220, -1));
         getContentPane().add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 220, -1));
+
+        txtVerification.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtVerification.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtVerification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVerificationActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtVerification, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 220, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +236,10 @@ public class QuenMatKhau extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSendCodeActionPerformed
 
+    private void txtVerificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVerificationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVerificationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +292,6 @@ public class QuenMatKhau extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JTextField txtUserName;
-    private javax.swing.JPasswordField txtVerification;
+    private javax.swing.JTextField txtVerification;
     // End of variables declaration//GEN-END:variables
 }

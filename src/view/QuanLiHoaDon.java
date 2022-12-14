@@ -4,6 +4,7 @@
  */
 package view;
 
+import com.raven.datechooser.DateChooser;
 import domain.Bill;
 import domain.BillDetail;
 import domain.Customer;
@@ -31,6 +32,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     /**
      * Creates new form QuanLiHoaDon
      */
+    private DateChooser dateChooser = new DateChooser();
     private BigDecimal tongTien;
     private Bill billSelected;
     private List<Bill> hdcs = new ArrayList<Bill>();
@@ -45,8 +47,9 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     public QuanLiHoaDon() {
         initComponents();
         setLocationRelativeTo(null);
-
         init();
+        dateChooser.setDateSelectionMode(DateChooser.DateSelectionMode.BETWEEN_DATE_SELECTED);
+        dateChooser.setTextField(txtThoiGian);
         loadTableHDC(hdcs);
         loadTableHDDH(hdcs);
         hdcs = billService.findAll();
@@ -171,8 +174,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtlocnhanvien = new javax.swing.JTextField();
         txtlockhachhang = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtThoiGian = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -245,8 +247,7 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, 20));
         getContentPane().add(txtlocnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, -1));
         getContentPane().add(txtlockhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 120, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 120, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 110, -1));
+        getContentPane().add(txtThoiGian, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 220, -1));
 
         jButton3.setText("SEACH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -342,10 +343,9 @@ public class QuanLiHoaDon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
+    private javax.swing.JTextField txtThoiGian;
     private javax.swing.JTextField txtlockhachhang;
     private javax.swing.JTextField txtlocnhanvien;
     // End of variables declaration//GEN-END:variables
