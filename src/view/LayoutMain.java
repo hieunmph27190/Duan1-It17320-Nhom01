@@ -57,59 +57,61 @@ public class LayoutMain extends JFrame {
         });
     }
 
-
     public LayoutMain() {
         setResizable(false);
         initComponents();
         cardLayout = (CardLayout) panelContent.getLayout();
         mapChucNang = new ArrayList<ChucNangItem>();
         if (AuthUtil.isLogin()) {
-			if (AuthUtil.isNhanVien()) {
-				 mapChucNang.add(new ChucNangItem("Trang Chu",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
-			                new JPanel()));
-				  mapChucNang.add(new ChucNangItem(" Ban Hang",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHang().getContentPane()));
+            if (AuthUtil.isNhanVien()) {
+                mapChucNang.add(new ChucNangItem("Trang Chu",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new TrangChu().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Ban Hang",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHang().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Khach Hang",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QLKhachHangNV().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Hoa Don",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiHoaDonNV().getContentPane()));
 
-				 
-			}
-			if (AuthUtil.isQuanLi()) {
-				   mapChucNang.add(new ChucNangItem("Trang Chu",
-			             new ImageIcon(
-			                     LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
-			             new JPanel()));
+            }
+            if (AuthUtil.isQuanLi()) {
+                mapChucNang.add(new ChucNangItem("Trang Chu",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),
+                        (JPanel) new TrangChu().getContentPane()));
 
-			        mapChucNang.add(new ChucNangItem(" Nhan vien",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyNhanVien().getContentPane()));
-			        mapChucNang.add(new ChucNangItem(" San pham",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiSanPham().getContentPane()));
-			        mapChucNang.add(new ChucNangItem(" Khach Hang",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QLKhachHang().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Nhan vien",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyNhanVien().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" San pham",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiSanPham().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Khach Hang",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QLKhachHang().getContentPane()));
 
-			        mapChucNang.add(new ChucNangItem(" Ban Hang",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHang().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Ban Hang",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new BanHang().getContentPane()));
 
-			        mapChucNang.add(new ChucNangItem(" Hoa Don",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiHoaDon().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Hoa Don",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiHoaDon().getContentPane()));
 
-			        mapChucNang.add(new ChucNangItem(" Khuyen Mai",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyKhuyenMai().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Khuyen Mai",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLyKhuyenMai().getContentPane()));
 
-			        mapChucNang.add(new ChucNangItem(" Thong Ke",
-			                new ImageIcon(
-			                        LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")),(JPanel) new QuanLiThongKe().getContentPane()));
+                mapChucNang.add(new ChucNangItem(" Thong Ke",
+                        new ImageIcon(
+                                LayoutMain.class.getResource("/resources/icon/Actions-document-edit-icon-16.png")), (JPanel) new QuanLiThongKe().getContentPane()));
 
-			}
-		}
-   	
+            }
+        }
 
         initChucNang();
     }
@@ -147,7 +149,7 @@ public class LayoutMain extends JFrame {
         panelThongTinUser.setBounds(0, 0, 200, 120);
         panelMenu.add(panelThongTinUser);
         panelThongTinUser.setLayout(null);
-        
+
         Employee em = AuthUtil.getEmployee();
         avatar = new ImageAvatar();
         long avataLenght = 0;
@@ -160,7 +162,7 @@ public class LayoutMain extends JFrame {
         }
 
         if (avataLenght == 0) {
-           avatar.setImage(null);
+            avatar.setImage(null);
         } else {
 
             ImageIcon icon;
@@ -170,7 +172,7 @@ public class LayoutMain extends JFrame {
                 ex.printStackTrace();
                 icon = null;
             }
-            Image image = ImageUtil.resize(icon.getImage(), 120, 160);   
+            Image image = ImageUtil.resize(icon.getImage(), 120, 160);
             avatar.setImage(new ImageIcon(image));
         }
         avatar.setBounds(5, 5, 85, 85);

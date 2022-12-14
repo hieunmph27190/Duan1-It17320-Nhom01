@@ -43,8 +43,7 @@ public class BanHang extends javax.swing.JFrame {
     private List<ProductDetail> productDetails = new ArrayList<>();
     private List<BillDetail> billDEtailGHs = new ArrayList<>();
     private BillService billService = new BillServiceImpl();
-    private BillDetailService billDetailService = new BillDetailServiceImpl() {
-    };
+    private BillDetailService billDetailService = new BillDetailServiceImpl();
     private int indexImg;
     private List<Image> images = new ArrayList<>();
 
@@ -272,7 +271,7 @@ public class BanHang extends javax.swing.JFrame {
         });
         jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 70, -1));
 
-        jButton6.setText("+");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -297,7 +296,7 @@ public class BanHang extends javax.swing.JFrame {
                 textTienTraActionPerformed(evt);
             }
         });
-        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 150, 20));
+        jPanel1.add(textTienTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 170, 20));
 
         textName.setEditable(false);
         textName.addActionListener(new java.awt.event.ActionListener() {
@@ -324,18 +323,18 @@ public class BanHang extends javax.swing.JFrame {
         jPanel1.add(sprinerTienDua, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 130, 20));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        jButton5.setText("!");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Question-Help-icon-16.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 30, 20));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 135, 30, 30));
         jPanel1.add(textHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 350, 20));
 
         textTongTien.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         textTongTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 160, 50));
+        jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 170, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 540, 230));
 
@@ -527,7 +526,7 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void sprinerTienDuaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sprinerTienDuaPropertyChange

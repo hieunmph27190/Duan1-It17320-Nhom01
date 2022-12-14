@@ -302,7 +302,7 @@ public class ProductDetail implements Serializable {
         return promotionProduct;
     }
     public Object[] toRow() {
-        return new Object[]{this.getProduct()==null?null:this.getProduct().getProductName(),category,color,size,brand,sole,amount,price,warrantyTime,description};
+        return new Object[]{this.getProduct()==null?null:this.getProduct().getProductName(),category,color,size,brand,sole,amount,price,description};
     }
 
     @Override

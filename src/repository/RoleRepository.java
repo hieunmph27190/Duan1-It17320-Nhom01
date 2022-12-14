@@ -18,7 +18,7 @@ public class RoleRepository extends JpaRespository<Role, UUID>{
 		super(Role.class);
 	}
         
-             public List<Role> findByNameLike(String key){
+    public List<Role> findByNameLike(String key){
             String sql = "select c from Role c where c.name like ?1 and type != 0";
             EntityManager en = JpaUtil.getEntityManager();
             TypedQuery<Role> ty =  en.createQuery(sql, Role.class);

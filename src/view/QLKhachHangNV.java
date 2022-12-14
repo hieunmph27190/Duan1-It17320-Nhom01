@@ -34,7 +34,7 @@ import utils.ImageUtil;
  *
  * @author Administrator
  */
-public class QLKhachHang extends javax.swing.JFrame {
+public class QLKhachHangNV extends javax.swing.JFrame {
 
     /**
      * Creates new form khachhang
@@ -48,7 +48,7 @@ public class QLKhachHang extends javax.swing.JFrame {
     private String duongDanAnh = "";
     private byte[] pertionImage;
 
-    public QLKhachHang() {
+    public QLKhachHangNV() {
         initComponents();
 
         table.setModel(model);
@@ -132,7 +132,7 @@ public class QLKhachHang extends javax.swing.JFrame {
         try {
             cus.setDateOfBirth(date.parse(jTextField1.getText()));
         } catch (ParseException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKhachHangNV.class.getName()).log(Level.SEVERE, null, ex);
             cus.setDateOfBirth(null);
         }
         cus.setEmail(txtemail.getText());
@@ -203,15 +203,12 @@ public class QLKhachHang extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jToolBar1 = new javax.swing.JToolBar();
-        buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         male = new javax.swing.JRadioButton();
         female = new javax.swing.JRadioButton();
-        ADD = new javax.swing.JButton();
-        Delete = new javax.swing.JButton();
         Clear = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -244,7 +241,7 @@ public class QLKhachHang extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Quan Ly Khach Hang");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 238, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 20, 250, -1));
 
         jLabel3.setText("Id: ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 50, 20));
@@ -252,12 +249,10 @@ public class QLKhachHang extends javax.swing.JFrame {
         jLabel4.setText("Ho: ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 70, 20));
 
-        buttonGroup1.add(male);
         male.setSelected(true);
         male.setText("Nam");
         getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, -1, -1));
 
-        buttonGroup1.add(female);
         female.setText("Nu");
         female.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,31 +261,13 @@ public class QLKhachHang extends javax.swing.JFrame {
         });
         getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 200, -1, -1));
 
-        ADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/new-icon-16.png"))); // NOI18N
-        ADD.setText("Add");
-        ADD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ADDActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 90, -1));
-
-        Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Button-Close-icon-16.png"))); // NOI18N
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, 100, -1));
-
         Clear.setText("Clear");
         Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClearActionPerformed(evt);
             }
         });
-        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 90, -1));
+        getContentPane().add(Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 280, 90, -1));
 
         Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         Update.setText("Update");
@@ -299,7 +276,7 @@ public class QLKhachHang extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, -1, -1));
+        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 280, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -381,60 +358,6 @@ public class QLKhachHang extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
-        // TODO add your handling code here:
-        Customer cuss = getform();
-        if (cuss == null) {
-            return;
-
-        } else {
-            try {
-                if (cuss.getAddress().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Dia Chi Null");
-                    return;
-                }
-
-                if (cuss.getBufferName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ho Null");
-                    return;
-                }
-
-                if (cuss.getFirstName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ten Dem Null");
-                    return;
-                }
-
-                if (cuss.getName().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Name Null");
-                    return;
-                }
-
-                if (cuss.getEmail().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Email Null");
-                    return;
-                }
-
-                if (cuss.getPhoneNumber().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "So Dien Thoai Null");
-                    return;
-                }
-
-                if (cuss.getGender().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Gioi Tinh Null");
-                    return;
-                }
-
-                custormer.insert(cuss);
-                JOptionPane.showMessageDialog(this, "Them thanh cong");
-                listmodel = custormer.getKH();
-                doddate(listmodel);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-
-    }//GEN-LAST:event_ADDActionPerformed
-
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
         
@@ -473,30 +396,6 @@ public class QLKhachHang extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_UpdateActionPerformed
-
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        // TODO add your handling code here:
-        int row = table.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "chon dong can xoa");
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa không");
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-        try {
-            custormer.setType(UUID.fromString(txtid.getText()), 0);
-            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-            doddate(custormer.getKH());
-
-        } catch (Exception ex) {
-          ex.printStackTrace();
-        }
-        clear();
-
-    }//GEN-LAST:event_DeleteActionPerformed
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         // TODO add your handling code here:
@@ -566,7 +465,7 @@ public class QLKhachHang extends javax.swing.JFrame {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QLKhachHang().setVisible(true);
+                new QLKhachHangNV().setVisible(true);
             }
         });
     }
@@ -581,13 +480,10 @@ public class QLKhachHang extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ADD;
     private javax.swing.JButton Clear;
-    private javax.swing.JButton Delete;
     private javax.swing.JButton Update;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JRadioButton female;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
