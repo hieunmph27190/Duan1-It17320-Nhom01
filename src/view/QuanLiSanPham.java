@@ -70,6 +70,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
     public QuanLiSanPham() {
         initComponents();
+
         productDetailService = new ProductDetailServiceImpl();
         loadBrand();
         loadCategory();
@@ -127,7 +128,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         }
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -307,7 +307,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        table.setColumnSelectionAllowed(true);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -327,7 +326,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             table.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 950, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 960, 190));
 
         jLabel14.setText("Decription: ");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 80, 20));
@@ -388,7 +387,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         jPanel1.add(txt_search_quantity);
         jPanel1.add(txt_search_price);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 840, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 850, -1));
 
         jButton1.setText("SEACH");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -519,6 +518,9 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clearForm();
+        showImage(null);
+        indexImg = 0;
+        lblIndexAnh.setText("0/0");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -526,26 +528,32 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (productDetail == null) {
 
         } else {
-            if (JOptionPane.showConfirmDialog(this, "Xac Nhan Cap Nhat", "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
-                try {
-                    productDetailService.update(productDetail);
-                    productDetails = productDetailService.findByTypeNotEqual(0);
-                    loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "Cap Nhat Thanh Cong");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Cap Nhat That Bai");
+
+            if (productDetailSelected == null) {
+                   JOptionPane.showMessageDialog(this, "Can chon san pham cap nhat");
+            } else {
+                if (JOptionPane.showConfirmDialog(this, "Xac Nhan Cap Nhat", "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+                    try {
+                        productDetail.setId(productDetailSelected.getId());
+                        productDetailService.update(productDetail);
+                        productDetails = productDetailService.findByTypeNotEqual(0);
+                        loadTable(productDetails);
+                        JOptionPane.showMessageDialog(this, "Cap Nhat Thanh Cong");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "Cap Nhat That Bai");
+                    }
                 }
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        ProductDetail productDetail = getFormData();
-        if (productDetail != null) {
+
+        if (productDetailSelected != null) {
             if (JOptionPane.showConfirmDialog(this, "Xac Nhan Xoa", "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
-                    productDetailService.setType(productDetail.getId(), 0);
+                    productDetailService.setType(productDetailSelected.getId(), 0);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
                     JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
@@ -555,7 +563,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 }
             }
         } else {
-
+            JOptionPane.showMessageDialog(this, "Chua chon san pham");
         }
         clearForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -610,7 +618,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddAvata1ActionPerformed
 
     private void btnAddAvata2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAvata2ActionPerformed
-      JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileFilter() {
             @Override
             public String getDescription() {
@@ -630,7 +638,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (fileChooser.showDialog(this, "Ch?n file") == fileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             if (file.exists()) {
-                Image img = images.get(indexImg-1);
+                Image img = images.get(indexImg - 1);
                 ImageIcon icon = new ImageIcon(file.getPath());
                 java.awt.Image image = ImageUtil.resize(icon.getImage(), 100, 130);
                 ImageIcon imageIcon = new ImageIcon(image);
@@ -642,7 +650,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     ex.printStackTrace();;
                 }
-                images.set(indexImg-1, img);
+                images.set(indexImg - 1, img);
                 lblAnh.setIcon(imageIcon);
                 lblIndexAnh.setText(indexImg + "/" + images.size());
 
@@ -655,10 +663,11 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddAvata2ActionPerformed
 
     private void btnAddAvataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAvataActionPerformed
-       images.remove(indexImg-1);
-       indexImg -=1;
-       lblIndexAnh.setText(indexImg + "/" + images.size());
-               
+        images.remove(indexImg - 1);
+        indexImg -= 1;
+        showImage(images.get(indexImg - 1));
+        lblIndexAnh.setText(indexImg + "/" + images.size());
+
     }//GEN-LAST:event_btnAddAvataActionPerformed
 
     private void cbxCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoryActionPerformed
@@ -677,16 +686,16 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_search_productnameActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        if (indexImg<=images.size()-1) {
-             indexImg += 1;
-        showImage(images.get(indexImg - 1));
+        if (indexImg <= images.size() - 1) {
+            indexImg += 1;
+            showImage(images.get(indexImg - 1));
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        if (indexImg>1) {
-             indexImg -= 1;
-        showImage(images.get(indexImg - 1));
+        if (indexImg > 1) {
+            indexImg -= 1;
+            showImage(images.get(indexImg - 1));
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -763,13 +772,9 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Name Null");
             return null;
         }
+        ProductDetail productDetail = null;
+        productDetail = new ProductDetail();
 
-        if (textNote.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Note Null");
-            return null;
-        }
-
-        ProductDetail productDetail = productDetailSelected;
         if (productDetail == null) {
             productDetail = new ProductDetail();
         }
@@ -781,8 +786,8 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             product.setProductName(productName);
         }
         productDetail.setProduct(product);
-        java.math.BigDecimal price = (java.math.BigDecimal) textPrice.getValue();
-        BigDecimal priceBigDecimal = new BigDecimal(price.doubleValue());
+        Double price = (Double) textPrice.getValue();
+        BigDecimal priceBigDecimal = new BigDecimal(price);
         productDetail.setPrice(priceBigDecimal);
         Long amount = (Long) spinAmount.getValue();
         productDetail.setAmount(amount);
@@ -798,7 +803,9 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         productDetail.setSize(size);
         Sole sole = (Sole) cbxSole.getSelectedItem();
         productDetail.setSole(sole);
-        productDetail.setImages(images);
+        if (productDetailSelected != null) {
+            productDetail.setType(productDetailSelected.getType());
+        }
         return productDetail;
     }
 
@@ -815,8 +822,12 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         long avataLenght = 0;
 
         try {
-            if (image.getImage() != null) {
-                avataLenght = image.getImage().length();
+            if (image != null) {
+                if (image.getImage() != null) {
+                    avataLenght = image.getImage().length();
+                } else {
+
+                }
             }
         } catch (SQLException ex) {
             avataLenght = 0;
@@ -856,19 +867,19 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             cbxSize.setSelectedItem(pd.getSize());
             cbxSole.setSelectedItem(pd.getSole());
             textName.setText(pd.getProduct().getProductName());
-            textPrice.setValue(pd.getPrice());
-            spinAmount.setValue(pd.getAmount());
+            textPrice.setValue(pd.getPrice().doubleValue());
+            spinAmount.setValue(pd.getAmount().longValue());
             textNote.setText(pd.getDescription());
             productDetailSelected = pd;
             images = productDetailSelected.getImages();
-            indexImg=1;
-            if (images.size()>0) {
-            showImage(images.get(indexImg-1));    
-            }else{
-              lblAnh.setIcon(null);
-              lblIndexAnh.setText("0/0");
+            indexImg = 1;
+            if (images.size() > 0) {
+                showImage(images.get(indexImg - 1));
+            } else {
+                lblAnh.setIcon(null);
+                lblIndexAnh.setText("0/0");
             }
-            
+
         }
     }
 
