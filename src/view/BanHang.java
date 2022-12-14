@@ -107,8 +107,6 @@ public class BanHang extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        qr = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -142,6 +140,8 @@ public class BanHang extends javax.swing.JFrame {
         lblAnh = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
         lblIndexAnh = new javax.swing.JLabel();
+        btnThem = new javax.swing.JButton();
+        qr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,27 +214,10 @@ public class BanHang extends javax.swing.JFrame {
         jScrollPane6.setViewportView(tblSP);
 
         jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 460, 270));
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 220, -1));
-
-        qr.setText("QR");
-        qr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                qrActionPerformed(evt);
-            }
-        });
-        jPanel5.add(qr, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
-
-        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnThem.setText("Thêm");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 60, 25));
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 340, -1));
 
         jButton12.setText("Tim Kiem");
-        jPanel5.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+        jPanel5.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 350));
 
@@ -426,7 +409,24 @@ public class BanHang extends javax.swing.JFrame {
         lblIndexAnh.setText("0/0");
         jPanel4.add(lblIndexAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 100, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 250, 170));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 250, 170));
+
+        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 155, 60, 30));
+
+        qr.setText("QR");
+        qr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qrActionPerformed(evt);
+            }
+        });
+        getContentPane().add(qr, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 60, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

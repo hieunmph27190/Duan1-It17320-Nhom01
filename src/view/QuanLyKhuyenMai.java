@@ -192,6 +192,12 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
         jLabel3.setText("Ngay hieu luc");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 84, 20));
+
+        textNgayHieuLuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNgayHieuLucActionPerformed(evt);
+            }
+        });
         jPanel2.add(textNgayHieuLuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 270, -1));
 
         jLabel11.setText("Muc Giam Gia: ");
@@ -414,6 +420,10 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         promotionSelected = null;
         loadTable(new ArrayList<>());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void textNgayHieuLucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNgayHieuLucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNgayHieuLucActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
