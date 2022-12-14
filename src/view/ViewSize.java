@@ -113,7 +113,7 @@ public class ViewSize extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblSize);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 281, 492, 153));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 281, 500, 153));
 
         jLabel2.setText("Id");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 65, 37, -1));
@@ -155,7 +155,7 @@ public class ViewSize extends javax.swing.JDialog {
                 btnOkActionPerformed(evt);
             }
         });
-        getContentPane().add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 452, 75, -1));
+        getContentPane().add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 75, -1));
         getContentPane().add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 221, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -169,7 +169,7 @@ public class ViewSize extends javax.swing.JDialog {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
 
         jLabel5.setText("FindName");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 63, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 63, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

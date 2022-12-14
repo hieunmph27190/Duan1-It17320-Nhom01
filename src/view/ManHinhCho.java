@@ -54,7 +54,7 @@ public class ManHinhCho extends JFrame {
                 Thread connect = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        JpaUtil.getEntityManagerFactory();
+                        JpaUtil.getEntityManager();
                     }
                 });
                 int i = 1;

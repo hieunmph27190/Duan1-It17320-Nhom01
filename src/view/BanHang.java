@@ -7,12 +7,16 @@ package view;
 import domain.Bill;
 import domain.BillDetail;
 import domain.Customer;
+import domain.Image;
 import domain.ProductDetail;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -25,6 +29,8 @@ import service.impl.BillServiceImpl;
 import service.impl.CustomerServiceImpl;
 import service.impl.ProductDetailServiceImpl;
 import utils.AuthUtil;
+import utils.ImageUtil;
+
 ;
 
 public class BanHang extends javax.swing.JFrame {
@@ -32,7 +38,6 @@ public class BanHang extends javax.swing.JFrame {
     private BigDecimal tongTien;
     private Bill billSelected;
     private List<Bill> hdcs = new ArrayList<Bill>();
-    private List<Bill> hddhs = new ArrayList<Bill>();
     private ProductDetail productDetailSelected;
     private ProductDetailService productDetailService;
     private List<ProductDetail> productDetails = new ArrayList<>();
@@ -40,19 +45,51 @@ public class BanHang extends javax.swing.JFrame {
     private BillService billService = new BillServiceImpl();
     private BillDetailService billDetailService = new BillDetailServiceImpl() {
     };
+    private int indexImg;
+    private List<Image> images = new ArrayList<>();
 
     public BanHang() {
         tongTien = new BigDecimal(0);
         initComponents();
         init();
-        hdcs = billService.findByTypeEqual(1);
-        hddhs = billService.findByTypeEqual(0);
         loadTableHDC(hdcs);
-        loadTableHDDH(hddhs);
         this.productDetailService = new ProductDetailServiceImpl();
         setLocationRelativeTo(null);
         productDetails = productDetailService.findByTypeNotEqual(0);
         loadTable(productDetails);;
+    }
+
+    private void showImage(Image image) {
+        long avataLenght = 0;
+
+        try {
+            if (image.getImage() != null) {
+                avataLenght = image.getImage().length();
+            }
+        } catch (SQLException ex) {
+            avataLenght = 0;
+        }
+        byte[] byteImage = null;
+        if (avataLenght == 0) {
+            byteImage = null;
+            lblAnh.setIcon(null);
+        } else {
+            ImageIcon icon;
+            try {
+                icon = new ImageIcon(image.getImage().getBytes(1, (int) image.getImage().length()));
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                icon = null;
+            }
+            java.awt.Image imagex = ImageUtil.resize(icon.getImage(), 120, 150);
+            try {
+                byteImage = ImageUtil.toByteArray(icon.getImage(), "jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            lblAnh.setIcon(new ImageIcon(imagex));
+            lblIndexAnh.setText(indexImg + "/" + images.size());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -66,10 +103,6 @@ public class BanHang extends javax.swing.JFrame {
         tblHDC = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblHDH = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
@@ -104,6 +137,11 @@ public class BanHang extends javax.swing.JFrame {
         tblGH = new javax.swing.JTable();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jButton14 = new javax.swing.JButton();
+        lblAnh = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        lblIndexAnh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -151,38 +189,6 @@ public class BanHang extends javax.swing.JFrame {
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 80, 30));
 
         jTabbedPane1.addTab("Hoa Don Cho", jPanel3);
-
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblHDH.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblHDH.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHDHMouseClicked(evt);
-            }
-        });
-        jScrollPane5.setViewportView(tblHDH);
-
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 378, 120));
-
-        jButton4.setText("Xoa");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, 30));
-
-        jTabbedPane1.addTab("Hoa Don Da Huy", jPanel4);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 500, 150));
 
@@ -348,7 +354,7 @@ public class BanHang extends javax.swing.JFrame {
         textTongTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 160, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 540, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 540, 230));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gi? hàng"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -389,7 +395,38 @@ public class BanHang extends javax.swing.JFrame {
         });
         jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 50, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 540, 160));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 540, 160));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton14.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton14.setText("<");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 40, 50));
+
+        lblAnh.setBackground(new java.awt.Color(255, 0, 0));
+        lblAnh.setForeground(new java.awt.Color(255, 51, 102));
+        jPanel4.add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 100, 130));
+
+        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton13.setText(">");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 40, 50));
+
+        lblIndexAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIndexAnh.setText("0/0");
+        jPanel4.add(lblIndexAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 100, -1));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 250, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -420,7 +457,6 @@ public class BanHang extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
-
 
             } else {
                 JOptionPane.showMessageDialog(this, "San pham da co trong gio hang");
@@ -453,29 +489,15 @@ public class BanHang extends javax.swing.JFrame {
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
         productDetailSelected = productDetails.get(tblSP.getSelectedRow());
-    }//GEN-LAST:event_tblSPMouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        if (AuthUtil.getEmployee() != null) {
-            try {
-                Bill bill = new Bill();
-                bill.setEmployee(AuthUtil.getEmployee());
-                bill.setCreateDate(new Date());
-                billService.insert(bill);
-                hdcs = billService.findByTypeEqual(1);
-                loadTableHDC(hdcs);
-                billSelected = bill;
-                focusRowTableHDC(billSelected);
-                clearForm();
-                textHoaDon.setText(billSelected.getId().toString());
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "L?i");
-                ex.printStackTrace();
+            images = productDetailSelected.getImages();
+            indexImg=1;
+            if (images.size()>0) {
+            showImage(images.get(indexImg-1));    
+            }else{
+              lblAnh.setIcon(null);
+              lblIndexAnh.setText("0/0");
             }
-        }
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_tblSPMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -485,50 +507,20 @@ public class BanHang extends javax.swing.JFrame {
         new ThemNhanhKhachHangview(this, true).setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void tblHDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDCMouseClicked
-        int i = tblHDC.getSelectedRow();
-        if (i >= 0) {
-            DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
-            clearForm();
-            billSelected = hdcs.get(i);
-            textHoaDon.setText(billSelected.getId().toString());
-            billDEtailGHs = billDetailService.findByBill(billSelected);
-            loadTableGH(billDEtailGHs);
-
-            tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
-            textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
-            textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
-
-            Customer customer = billSelected.getCustomer();
-            if (customer != null) {
-                textName.setText(customer.getFullName());
-                textSDT.setText(customer.getPhoneNumber());
-
-            } else {
-                textName.setText("");
-                textSDT.setText("");
-            }
-        }
-    }//GEN-LAST:event_tblHDCMouseClicked
-
     private void textTienTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTienTraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textTienTraActionPerformed
 
-    private void tblHDHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDHMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblHDHMouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+
         try {
             billService.setType(billSelected.getId(), 2);
             JOptionPane.showMessageDialog(this, "Thanh Toan thanh cong");
-             hdcs = billService.findByTypeEqual(1);
-             loadTableHDC(hdcs);
-             billDEtailGHs = new ArrayList<>();
-             loadTableGH(billDEtailGHs);
-             clearForm();
+            hdcs = billService.findByTypeEqual(1);
+            loadTableHDC(hdcs);
+            billDEtailGHs = new ArrayList<>();
+            loadTableGH(billDEtailGHs);
+            clearForm();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -548,33 +540,6 @@ public class BanHang extends javax.swing.JFrame {
         textTienTra.setText(decimalFormat.format(new BigDecimal(tienDua - tongTien.doubleValue())));
     }//GEN-LAST:event_sprinerTienDuaStateChanged
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        List<BillDetail> billDetails = billDetailService.findByBill(billSelected);
-        for (BillDetail billDetail : billDetails) {
-            ProductDetail productDetail = billDetail.getProductDetail();
-
-            Integer slChange = billDetail.getQuantity() - 0;
-            try {
-                productDetailService.changeAmount(productDetail.getId(), slChange);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-        }
-        try {
-            billService.setType(billSelected.getId(), 0);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        hdcs = billService.findByTypeEqual(1);
-        loadTableHDC(hdcs);
-        productDetails = productDetailService.findByTypeNotEqual(0);
-        loadTable(productDetails);
-        loadTableGH(new ArrayList<>());
-        hddhs = billService.findByTypeEqual(0);
-        loadTableHDDH(hddhs);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         int i = tblGH.getSelectedRow();
         if (i >= 0) {
@@ -589,7 +554,7 @@ public class BanHang extends javax.swing.JFrame {
                 Double tienDua = (Double) sprinerTienDua.getValue();
                 textTienTra.setText(decimalFormat.format(String.valueOf(tienDua - tongTien.doubleValue())));
             } catch (Exception ex) {
-              //  JOptionPane.showMessageDialog(this, "Loi");
+                //  JOptionPane.showMessageDialog(this, "Loi");
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -632,19 +597,8 @@ public class BanHang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            billService.remove(hddhs.get(tblHDH.getSelectedRow()).getId());
-            hddhs = billService.findByTypeEqual(0);
-            loadTableHDDH(hddhs);
-            JOptionPane.showMessageDialog(this, "Xoa thanh cong");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Loi");
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qrActionPerformed
-       try {
+        try {
             ViewQuetQR qR = new ViewQuetQR(this);
             qR.setLocationRelativeTo(this);
             qR.setVisible(true);
@@ -660,6 +614,92 @@ public class BanHang extends javax.swing.JFrame {
     private void textSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textSoLuongActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (AuthUtil.getEmployee() != null) {
+            try {
+                Bill bill = new Bill();
+                bill.setEmployee(AuthUtil.getEmployee());
+                bill.setCreateDate(new Date());
+                billService.insert(bill);
+                hdcs = billService.findByTypeEqual(1);
+                loadTableHDC(hdcs);
+                billSelected = bill;
+                focusRowTableHDC(billSelected);
+                clearForm();
+                textHoaDon.setText(billSelected.getId().toString());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "L?i");
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        List<BillDetail> billDetails = billDetailService.findByBill(billSelected);
+        for (BillDetail billDetail : billDetails) {
+            ProductDetail productDetail = billDetail.getProductDetail();
+
+            Integer slChange = billDetail.getQuantity() - 0;
+            try {
+                productDetailService.changeAmount(productDetail.getId(), slChange);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
+        try {
+            billService.setType(billSelected.getId(), 0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        hdcs = billService.findByTypeEqual(1);
+        loadTableHDC(hdcs);
+        productDetails = productDetailService.findByTypeNotEqual(0);
+        loadTable(productDetails);
+        loadTableGH(new ArrayList<>());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void tblHDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDCMouseClicked
+        int i = tblHDC.getSelectedRow();
+        if (i >= 0) {
+            DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
+            clearForm();
+            billSelected = hdcs.get(i);
+            textHoaDon.setText(billSelected.getId().toString());
+            billDEtailGHs = billDetailService.findByBill(billSelected);
+            loadTableGH(billDEtailGHs);
+
+            tongTien = billService.getSumMoney(billSelected) == null ? new BigDecimal(0) : billService.getSumMoney(billSelected);
+            textTongTien.setText(tongTien == null ? null : decimalFormat.format(tongTien));
+            textSoLuong.setText(billService.getQuantity(billSelected) == null ? null : billService.getQuantity(billSelected).toString());
+
+            Customer customer = billSelected.getCustomer();
+            if (customer != null) {
+                textName.setText(customer.getFullName());
+                textSDT.setText(customer.getPhoneNumber());
+
+            } else {
+                textName.setText("");
+                textSDT.setText("");
+            }
+        }
+    }//GEN-LAST:event_tblHDCMouseClicked
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        if (indexImg > 1) {
+            indexImg -= 1;
+            showImage(images.get(indexImg - 1));
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if (indexImg <= images.size() - 1) {
+            indexImg += 1;
+            showImage(images.get(indexImg - 1));
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -704,9 +744,10 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -727,15 +768,15 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAnh;
+    private javax.swing.JLabel lblIndexAnh;
     private javax.swing.JButton qr;
     private javax.swing.JSpinner sprinerTienDua;
     private javax.swing.JTable tblGH;
     private javax.swing.JTable tblHDC;
-    private javax.swing.JTable tblHDH;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField textGiamGia;
     private javax.swing.JLabel textHoaDon;
@@ -758,18 +799,6 @@ public class BanHang extends javax.swing.JFrame {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDC.getModel();
         defaultTableModel.setRowCount(0);
         for (Bill bill : hdcs) {
-            defaultTableModel.addRow(
-                    new Object[]{
-                        bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName()
-                    }
-            );
-        }
-    }
-
-    private void loadTableHDDH(List<Bill> hddhs) {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) tblHDH.getModel();
-        defaultTableModel.setRowCount(0);
-        for (Bill bill : hddhs) {
             defaultTableModel.addRow(
                     new Object[]{
                         bill.getId(), bill.getCreateDate(), bill.getEmployee().getFullName(), bill.getCustomer() == null ? null : bill.getCustomer().getFullName()
@@ -881,6 +910,7 @@ public class BanHang extends javax.swing.JFrame {
         textGiamGia.setText("");
         sprinerTienDua.setValue(0D);
     }
+
     public void addProdToGH(ProductDetail productDetailSelected) {
         this.productDetailSelected = productDetailSelected;
         if (!billDetailService.containsProductDetail(billSelected, this.productDetailSelected)) {

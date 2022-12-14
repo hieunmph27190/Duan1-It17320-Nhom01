@@ -17,7 +17,6 @@ import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.StyledEditorKit;
 import service.ProductDetailService;
 import service.PromotionService;
 import service.Promotion_ProductService;
@@ -69,7 +68,7 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
 
                 if (pp.getProductDetail().getId().toString().equals(p.getId().toString())) {
                     return true;
-                } 
+                }
             }
         } else {
             return false;
@@ -196,16 +195,16 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         jPanel2.add(textNgayHieuLuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 270, -1));
 
         jLabel11.setText("Muc Giam Gia: ");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 180, 100, 20));
 
         jLabel7.setText("N?i dung");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 100, 20));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 100, 20));
 
         textNote.setColumns(20);
         textNote.setRows(5);
         jScrollPane3.setViewportView(textNote);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 270, 60));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 270, 60));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -243,14 +242,14 @@ public class QuanLyKhuyenMai extends javax.swing.JFrame {
         cbxLoaiKhuyenMai.setToolTipText("");
         jPanel2.add(cbxLoaiKhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 270, 30));
 
-        jLabel8.setText("Khuyen mãi theo");
+        jLabel8.setText("Khuyen mai theo");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 30));
 
         spinerGiaToiThieu.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 10000.0d));
         jPanel2.add(spinerGiaToiThieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 260, -1));
 
         jLabel12.setText("Gia Toi Thieu: ");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 80, 20));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 90, 20));
 
         jLabel13.setText("%");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 20, 20));

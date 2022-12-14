@@ -202,7 +202,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 100, -1));
-        getContentPane().add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 220, 16));
+        getContentPane().add(textID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 280, 16));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
@@ -258,7 +258,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(cbxColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 220, -1));
 
         jLabel13.setText("So luong");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 57, 20));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 80, 20));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
         btnDelete.setText("DELETE");
@@ -267,10 +267,10 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 100, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 110, -1));
 
         jLabel11.setText("Gia");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 57, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 70, 20));
 
         textNote.setColumns(20);
         textNote.setRows(5);
@@ -283,7 +283,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 30, -1));
 
         jLabel9.setText("ProductName: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 80, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 90, 20));
 
         spinAmount.setModel(new javax.swing.SpinnerNumberModel(0L, 0L, null, 1L));
         getContentPane().add(spinAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 197, -1));
@@ -300,7 +300,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "T�n", "Lo?i", "M�u", "Size", "H�ng", "??", "S? l??ng", "Gi�", "M� t?"
+                "T�n", "Loai", "Mau", "Size", "Hang", "De", "So Luong", "Gia", "Mo Ta"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -311,6 +311,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table.setColumnSelectionAllowed(true);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -333,7 +334,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 950, 190));
 
         jLabel14.setText("Decription: ");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 80, -1));
 
         btnCategory.setText("+");
         btnCategory.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +416,6 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         lblAnh.setBackground(new java.awt.Color(255, 0, 0));
         lblAnh.setForeground(new java.awt.Color(255, 51, 102));
-        lblAnh.setText("?nh");
         jPanel2.add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 130));
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -453,7 +453,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
 
         lblIndexAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndexAnh.setText("0/0");
-        jPanel2.add(lblIndexAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 100, -1));
+        jPanel2.add(lblIndexAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 100, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, 250, 200));
 
@@ -475,21 +475,21 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         } else {
             String meseage = "";
             if (productDetail.getProduct().getId() == null) {
-                meseage = "B?n có ch?c ch?n mu?n thêm m?t s?n ph?m v?i tên :" + productDetail.getProduct().getProductName();
+                meseage = "Ban Co Muon Them San Pham Moi :" + productDetail.getProduct().getProductName();
             } else {
-                meseage = "B?n có ch?c ch?n mu?n thêm l?a ch?n chó s?n ph?m (" + productDetail.getProduct().getProductName() + ")";
+                meseage = "Ban Co Muon Them Lua Chon Cho San Pham: (" + productDetail.getProduct().getProductName() + ")";
             }
-            if (JOptionPane.showConfirmDialog(this, meseage, "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, meseage, "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
 
                     productDetail.setId(null);
                     productDetailService.insert(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    JOptionPane.showMessageDialog(this, "Them Thanh Cong");
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Thêm th?t b?i");
+                    JOptionPane.showMessageDialog(this, "Them That Bai");
                 }
             }
         }
@@ -524,15 +524,15 @@ public class QuanLiSanPham extends javax.swing.JFrame {
         if (productDetail == null) {
 
         } else {
-            if (JOptionPane.showConfirmDialog(this, "Xác nh?n c?p nh?t", "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "Xac Nhan Cap Nhat", "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.update(productDetail);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t thành công");
+                    JOptionPane.showMessageDialog(this, "Cap Nhat Thanh Cong");
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
+                    JOptionPane.showMessageDialog(this, "Cap Nhat That Bai");
                 }
             }
         }
@@ -541,20 +541,21 @@ public class QuanLiSanPham extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         ProductDetail productDetail = getFormData();
         if (productDetail != null) {
-            if (JOptionPane.showConfirmDialog(this, "Xác nh?n xóa", "Xác nh?n", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "Xac Nhan Xoa", "Xac Nhan", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION) {
                 try {
                     productDetailService.setType(productDetail.getId(), 0);
                     productDetails = productDetailService.findByTypeNotEqual(0);
                     loadTable(productDetails);
-                    JOptionPane.showMessageDialog(this, "C?p nh?t thành công");
+                    JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "C?p nh?t th?t b?i");
+                    JOptionPane.showMessageDialog(this, "Xoa That Bai");
                 }
             }
         } else {
 
         }
+        clearForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddAvata1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAvata1ActionPerformed
@@ -575,7 +576,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
             }
 
         });
-        if (fileChooser.showDialog(this, "Ch?n file") == fileChooser.APPROVE_OPTION) {
+        if (fileChooser.showDialog(this, "Chon file") == fileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             if (file.exists()) {
                 Image img = new Image();
@@ -595,7 +596,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
                 lblAnh.setIcon(imageIcon);
                 indexImg = images.size();
                 lblIndexAnh.setText(indexImg + "/" + images.size());
-
+                showImage(img);
             } else {
                 JOptionPane.showMessageDialog(this, "File khong ton tai");
             }
